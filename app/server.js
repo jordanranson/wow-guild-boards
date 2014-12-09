@@ -76,8 +76,8 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-var key  = fs.readFileSync('./app/wowguild.jordanranson.com.key', 'utf8');
-var cert = fs.readFileSync('./app/wowguild.jordanranson.com.cert', 'utf8');
+var key  = fs.readFileSync('./wowguild.jordanranson.com.key', 'utf8');
+var cert = fs.readFileSync('./wowguild.jordanranson.com.cert', 'utf8');
 var credentials = { key: key, cert: cert };
 var server      = https.createServer(credentials, app);
 var http        = express();
