@@ -1,12 +1,13 @@
 {
-    "name": "wow-guild-boards",
-    "version": "0.0.1",
-    "dependencies": {
-        "express": ">= 0.0.0",
-        "cookie-parser": ">= 0.0.0",
-        "express-session": ">= 0.0.0",
-        "passport": ">= 0.0.0",
-        "passport-github": ">= 0.0.0",
-        "passport-bnet": ">= 0.0.0"
-    }
+  "name": "wow-guild-boards",
+  "version": "0.0.1",
+  "dependencies": {
+    "cookie-parser": ">= 0.0.0",
+    "express": ">= 0.0.0",
+    "express-handlebars": "^1.1.0",
+    "express-session": ">= 0.0.0",
+    "passport": ">= 0.0.0",
+    "passport-bnet": ">= 0.0.0",
+    "passport-github": ">= 0.0.0"
+  }
 }

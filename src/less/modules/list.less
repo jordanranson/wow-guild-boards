@@ -1,0 +1,147 @@
+/*------------------------------------*
+    Lists
+*------------------------------------*/
+
+.list {
+    list-style-type: none;
+
+    &.list-x li {
+        cursor: pointer;
+        &.active { cursor: default; }
+    }
+}
+
+/*------------------------------------*
+    Block List
+*------------------------------------*/
+
+.list-block {
+    li {
+        position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        align-content: center;
+        justify-content: flex-start;
+
+        padding: @padding;
+
+        box-shadow: 0 -1px 0 @borderColor inset;
+        .no-select;
+
+        &.active {
+            background-color: @wellColorDark;
+        }
+
+        &.marked {
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+
+                top: -1px;
+                left: 0;
+                width: 5px;
+                bottom: 0px;
+
+                background: @primaryColor;
+            }
+        }
+
+        &.disabled {
+            cursor: default;
+            > * {
+                opacity: 0.35;
+            }
+        }
+
+        &.thin {
+            padding-top: @paddingThin;
+            padding-bottom: @paddingThin;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            align-content: center;
+            justify-content: flex-start;
+            position: absolute;
+
+            top: 0;
+            right: @padding;
+            height: 100%;
+
+            > * {
+                margin-left: 5px;
+            }
+        }
+
+        &.dark {
+            background-color: @navHoverColor;
+            color: @navTextColor;
+            box-shadow: 0 -1px 0 @navSelectedColor inset !important;
+            strong {
+                color: @white;
+            }
+        }
+
+        strong {
+            color: @headerColor;
+        }
+    }
+}
+
+
+/*------------------------------------*
+    Nav List
+*------------------------------------*/
+
+.list-nav {
+    li {
+        margin-bottom: @paddingThin - 3px;
+        .no-select;
+    }
+
+    a, h2 {
+        padding: 0 @padding;
+    }
+
+    a {
+        display: block;
+
+        padding: 3px 0;
+        padding-left: @padding + @padding;
+
+        color: @navTextColor;
+        text-decoration: none;
+
+        &:hover {
+            background-color: @navHoverColor;
+        }
+
+        &.active {
+            background-color: @navSelectedColor;
+            color: @navSelectedTextColor;
+        }
+    }
+
+    h2 {
+        .fade;
+        color: @navTextColor;
+    }
+
+    .list-nav-header:first-child {
+        margin-top: 0;
+    }
+}
+
+.list-nav-header {
+    margin-top: @padding + @paddingThin;
+
+    h2 {
+        text-transform: uppercase;
+        font-weight: 900;
+        font-size: 9pt;
+    }
+}

@@ -1,0 +1,50 @@
+<!--
+    Main nav
+-->
+
+{{#section 'nav'}}
+    <a href="/topics" class="active">Forums</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/roster">Roster</a>
+    <i></i>
+    {{#if user}}
+        <a href="/account" class="nav-button">Username</a>
+        <a href="/logout">Sign out</a>
+    {{else}}
+        <a href="/auth/bnet" class="nav-button">Sign in</a>
+    {{/if}}
+{{/section}}
+
+
+
+<!--
+    Breadcrumb and breadcrumb nav
+-->
+
+{{#section 'breadcrumb'}}
+    <span>Topics</span> <i></i>
+    <a href="">Board</a> <i></i>
+    <a href="">Topic</a>
+{{/section}}
+
+{{#section 'breadcrumb_nav'}}
+    <a class="active">Replies</a>
+    <a>Views</a>
+    <a>Newest</a>
+{{/section}}
+
+
+
+<!--
+    Scripts
+-->
+
+{{#section 'scripts'}}
+    <script src="/js/modules/forums.js"></script>
+{{/section}}
+
+
+
+<!--
+    Main content
+-->

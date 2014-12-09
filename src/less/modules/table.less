@@ -1,0 +1,130 @@
+/*------------------------------------*
+    Table
+*------------------------------------*/
+
+table.table {
+
+    th, td {
+        box-sizing: border-box;
+
+        padding: 0 @paddingThin;
+        height: @inputHeight;
+
+        line-height: @inputHeight;
+    }
+
+    thead {
+        th {
+            background-color: @navBackgroundColor;
+            color: @white;
+            font-weight: 600;
+        }
+    }
+
+    &.table-small {
+        th, td {
+            padding: 0 @paddingThin*0.8;
+            height: @iconHeight;
+
+            line-height: @iconHeight;
+            font-size: @fontSizeSmall;
+        }
+    }
+
+    &.table-large {
+        th, td {
+            padding: 0 @padding;
+            height: @listIconHeight;
+
+            line-height: @listIconHeight;
+            font-size: @fontSizeHeader;
+        }
+    }
+
+    &.table-striped {
+        tbody {
+            tr:nth-child(2n) {
+                td {
+                    background-color: lighten(@wellColor, 2.5%);
+                }
+            }
+        }
+    }
+
+    &:not(.table-inline) {
+        td {
+            box-shadow: -1px -1px 0 @borderColorLight inset;
+            &:first-child {
+                box-shadow:
+                    -1px -1px 0 @borderColorLight inset,
+                1px 0 0 @borderColorLight inset;
+            }
+        }
+
+        tbody {
+            tr:first-child {
+                td {
+                    box-shadow:
+                    0 1px 0 @borderColorLight inset,
+                        -1px -1px 0 @borderColorLight inset;
+                    &:first-child {
+                        box-shadow:
+                        0 1px 0 @borderColorLight inset,
+                            -1px -1px 0 @borderColorLight inset,
+                        1px 0 0 @borderColorLight inset;
+                    }
+                }
+            }
+        }
+    }
+
+    &.table-inline {
+        td {
+            box-shadow: 0 -1px 0 @borderColorLight inset;
+        }
+        tr:last-child {
+            td {
+                box-shadow: none;
+            }
+        }
+    }
+
+    &.table-wide {
+        width: 100%;
+    }
+
+    .cell-center {
+        text-align: center;
+    }
+
+    .cell-icon {
+        min-width: @inputHeight;
+        text-align: center;
+    }
+
+    .cell-right {
+        text-align: right;
+    }
+
+    tr.active {
+        td {
+            box-shadow: 0 -1px 0 @primaryColor !important;
+            background-color: @primaryColor !important;
+            color: @white;
+        }
+    }
+
+    tr.disabled {
+        td {
+            color: @borderColor;
+        }
+
+        &.active {
+            td {
+                box-shadow: none !important;
+                background-color: @borderColorLight !important;
+                color: @white;
+            }
+        }
+    }
+}

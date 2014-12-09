@@ -1,0 +1,27 @@
+{
+  "name": "wow-guild-boards",
+  "version": "0.0.1",
+  "description": "Version 0.1 Roadmap\r ===================\r - [ ] Front Page\r     - [ ] Announcements + Guild News/Achieves + Gallery\r - [ ] Forums\r     - [ ] Types of boards\r        - [ ] Announcements\r        - [ ] Gallery\r        - [ ] General discussion\r     - [ ] Threaded discussion\r - [ ] Users\r     - [ ] Display name, class, rank, title\r - [ ] Authentication & Permissions\r     - [ ] Admin\r     - [ ] Guild Master\r     - [ ] Officer\r     - [ ] Member\r - [x] Battle.net authentication\r - [ ] Guild News & Achievements",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^2.0.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jordanranson/wow-guild-boards.git"
+  },
+  "author": "Jordan Ranson",
+  "license": "Apache2",
+  "bugs": {
+    "url": "https://github.com/jordanranson/wow-guild-boards/issues"
+  },
+  "homepage": "https://github.com/jordanranson/wow-guild-boards"
+}

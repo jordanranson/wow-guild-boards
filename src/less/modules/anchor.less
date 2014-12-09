@@ -1,0 +1,178 @@
+/*------------------------------------*
+    Anchor
+*------------------------------------*/
+
+.anchor {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.anchor-topleft {
+    top: 0;
+    left: 0;
+
+    &.anchor-offset {
+        top: @padding;
+        left: @padding;
+    }
+
+    &.anchor-offset-thick {
+        top: @paddingThick;
+        left: @paddingThick;
+    }
+}
+
+.anchor-topright {
+    top: 0;
+    right: 0;
+
+    &.anchor-offset {
+        top: @padding;
+        right: @padding;
+    }
+
+    &.anchor-offset-thick {
+        top: @paddingThick;
+        right: @paddingThick;
+    }
+}
+
+.anchor-bottomleft {
+    bottom: 0;
+    left: 0;
+
+    &.anchor-offset {
+        bottom: @padding;
+        left: @padding;
+    }
+
+    &.anchor-offset-thick {
+        bottom: @paddingThick;
+        left: @paddingThick;
+    }
+}
+
+.anchor-bottomright {
+    bottom: 0;
+    right: 0;
+
+    &.anchor-offset {
+        bottom: @padding;
+        right: @padding;
+    }
+
+    &.anchor-offset-thick {
+        bottom: @paddingThick;
+        right: @paddingThick;
+    }
+}
+
+.anchor-center,
+.anchor-top,
+.anchor-left,
+.anchor-bottom,
+.anchor-right {
+    display: table;
+
+    .anchor-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+.anchor-center,
+.anchor-top,
+.anchor-bottom {
+    .anchor-wrapper {
+        text-align: center;
+    }
+}
+
+.anchor-center {
+    width: 100%;
+    height: 100%;
+
+    z-index: 2;
+}
+
+.anchor-top {
+    top: 0;
+    width: 100%;
+
+    &.anchor-offset {
+        top: @padding;
+    }
+
+    &.anchor-offset-thick {
+        top: @paddingThick;
+    }
+}
+
+.anchor-left {
+    left: 0;
+    height: 100%;
+
+    &.anchor-offset {
+        left: @padding;
+    }
+
+    &.anchor-offset-thick {
+        left: @paddingThick;
+    }
+}
+
+.anchor-bottom {
+    bottom: 0;
+    width: 100%;
+
+    &.anchor-offset {
+        bottom: @padding;
+    }
+
+    &.anchor-offset-thick {
+        bottom: @paddingThick;
+    }
+}
+
+.anchor-right {
+    right: 0;
+    height: 100%;
+
+    &.anchor-offset {
+        right: @padding;
+    }
+
+    &.anchor-offset-thick {
+        right: @paddingThick;
+    }
+}
+
+.anchor-modal {
+    z-index: 9000000;
+    pointer-events: all;
+
+    &:after {
+        content: '';
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background: @black;
+        opacity: 0.8;
+        z-index: 9000001;
+    }
+
+    .panel-modal {
+        z-index: 9000002;
+    }
+}
+
+.anchor-content {
+    display: inline-block;
+    pointer-events: all;
+    text-align: left;
+}

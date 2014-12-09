@@ -1,0 +1,565 @@
+/*------------------------------------*
+    Miscellaneous Components
+*------------------------------------*/
+
+.inliner {
+    position: relative;
+    display: inline-block;
+
+    height: 1.5em;
+    min-width: 1ex;
+
+    line-height: 1.5em;
+    vertical-align: bottom;
+
+    i {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.inliner-element(@width, @height: 1.5em) {
+    width: @width;
+    height: @height;
+
+    i {
+        width: @width;
+        height: @height;
+    }
+}
+
+.maru {
+    .inliner-element(@iconHeight);
+}
+
+.batsu {
+    .inliner-element(@iconHeight);
+}
+
+.icon, .list-icon {
+    i {
+        border-radius: 50%;
+        background-color: #ccc;
+    }
+
+    &.icon-positive i {
+        box-shadow: 0 0 0 3px @success;
+    }
+
+    &.icon-neutral i {
+        box-shadow: 0 0 0 3px @warning;
+    }
+
+    &.icon-negative i {
+        box-shadow: 0 0 0 3px @error;
+    }
+}
+
+.icon {
+    .inliner-element(@iconHeight, @iconHeight);
+}
+
+.list-icon {
+    .inliner-element(@listIconHeight, @listIconHeight);
+
+    .badge {
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+
+        box-shadow: 0 0 0 3px @backgroundColor;
+    }
+}
+
+.arrow {
+    i {
+        width: 8px;
+        height: 8px;
+
+        &:before, &:after {
+            content: '';
+            display: block;
+            position: absolute;
+        }
+
+        &:before {
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 3px;
+        }
+
+        &:after {
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 8px;
+        }
+    }
+}
+
+.arrow-color(@color: @textColor) {
+    i {
+        &:before, &:after {
+            background-color: @color;
+        }
+    }
+}
+
+.arrow-top {
+    .inliner-element(@iconHeightSmall);
+    .arrow-color;
+    .arrow;
+    i {
+        transform: rotateZ(45deg);
+        margin: -2px 0 0 -4px;
+    }
+}
+
+.arrow-left {
+    .inliner-element(@iconHeightSmall);
+    .arrow-color;
+    .arrow;
+    i {
+        transform: rotateZ(-45deg);
+        margin: -3px 0 0 -3px;
+    }
+}
+
+.arrow-bottom {
+    .inliner-element(@iconHeightSmall);
+    .arrow-color;
+    .arrow;
+    i {
+        transform: rotateZ(-135deg);
+        margin: -5px 0 0 -4px;
+    }
+}
+
+.arrow-right {
+    .inliner-element(@iconHeightSmall);
+    .arrow-color;
+    .arrow;
+    i {
+        transform: rotateZ(135deg);
+        margin: -3px 0 0 -6px;
+    }
+}
+
+
+.arrow-white {
+    .arrow-color(@white);
+}
+
+.arrow-light {
+    .arrow-color(@textColorLight);
+}
+
+.arrow-dark {
+    .arrow-color(@black);
+}
+
+.subtitle {
+    color: @textColorLight;
+}
+
+.tag {
+    display: inline-block;
+
+    padding: 0 7px;
+    height: @iconHeight;
+
+    border-radius: 3px;
+    background-color: @borderColorDark;
+
+    line-height: @iconHeight;
+    font-weight: 900;
+    font-size: @fontSizeSmall;
+    text-transform: uppercase;
+}
+
+.badge {
+    display: inline-block;
+    box-sizing: border-box;
+
+    padding: 0 (@iconHeightSmall / 2);
+    height: @iconHeightSmall;
+    min-width: @iconHeightSmall;
+
+    border-radius: @iconHeightSmall;
+    background-color: @borderColorDark;
+
+    line-height: @iconHeightSmall;
+    font-weight: 900;
+    font-size: @fontSizeTiny;
+    text-align: center;
+}
+
+.notification {
+    position: absolute;
+
+    width: 40vmax;
+    margin-left: -20vmax;
+
+    z-index: 9900000;
+    box-shadow: 0 2px 45px @navBackgroundColor;
+
+    .well {
+        padding: @padding;
+    }
+}
+
+
+/*------------------------------------*
+    Spinner
+*------------------------------------*/
+
+@keyframes spinnerAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    33% {
+        transform: rotate(120deg);
+    }
+
+    34% {
+        transform: rotate(120deg);
+    }
+
+    66% {
+        transform: rotate(240deg);
+    }
+
+    67% {
+        transform: rotate(240deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    position: relative;
+    display: inline-block;
+
+    width: @iconHeight;
+    height: @iconHeight;
+
+    animation: spinnerAnimation 3500ms infinite;
+    animation-timing-function: cubic-bezier(0.825, -0.450, 0.200, 1.450);
+
+    &:after {
+        content: '';
+        position: absolute;
+        display: block;
+
+        top: 50%;
+        left: 50%;
+        margin-top: -9px;
+        margin-left: -8px;
+        width: 0;
+        height: 0;
+
+        border-left: solid 8px transparent;
+        border-right: solid 8px transparent;
+        border-bottom: solid 14px @borderColorDark;
+    }
+
+    &.spinner-light {
+        &:after {
+            border-bottom-color: @borderColorLight;
+        }
+    }
+
+    &.spinner-white {
+        &:after {
+            border-bottom-color: @white;
+        }
+    }
+}
+
+
+/*------------------------------------*
+    Wells
+*------------------------------------*/
+
+.well {
+    padding: @paddingThin;
+    background-color: @borderColorLight;
+}
+
+.well-success,
+.well-info,
+.well-warning,
+.well-error {
+    color: @white;
+
+    .subtitle {
+        color: @white;
+        opacity: 0.7;
+    }
+
+    .modal-close {
+        color: @white;
+        opacity: 0.7;
+    }
+}
+
+.well-success {
+    background-color: @success;
+}
+
+.well-info {
+    background-color: @primaryColor;
+}
+
+.well-warning {
+    background-color: @warning;
+}
+
+.well-error {
+    background-color: @error;
+}
+
+.well-code {
+    font-size: @fontSizeSmall;
+}
+
+.well-white {
+    background-color: @white;
+}
+
+
+/*------------------------------------*
+    Popovers
+*------------------------------------*/
+
+.popover {
+    position: relative;
+    padding: @paddingThin;
+    background-color: @white;
+    border: solid 1px darken(@borderColorLight, 5%);
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        display: block;
+
+        width: 0;
+        height: 0;
+        bottom: -12px;
+        left: 50%;
+    }
+
+    &:before {
+        margin-left: -12px;
+        margin-bottom: -1px;
+
+        z-index: 1;
+        border-left: solid 13px transparent;
+        border-right: solid 13px transparent;
+        border-top: solid 13px darken(@borderColorLight, 5%);
+    }
+
+    &:after {
+        margin-left: -11px;
+
+        z-index: 2;
+        border-left: solid 12px transparent;
+        border-right: solid 12px transparent;
+        border-top: solid 12px @white;
+    }
+
+    &.popover-borderless {
+        border: none;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    &.popover-dark {
+        border: none;
+        background-color: @navSelectedColor;
+        color: @white;
+
+        &:before {
+            display: none;
+        }
+
+        &:after {
+            border-top-color: @navSelectedColor;
+        }
+    }
+}
+
+
+/*------------------------------------*
+    Helpers
+*------------------------------------*/
+
+.push-left       { margin-right:  @paddingThin; }
+.push-far-left   { margin-right:  @padding; }
+
+.push-right      { margin-left: @paddingThin; }
+.push-far-right  { margin-left: @padding; }
+
+.push-top        { margin-bottom: @paddingThin; }
+.push-far-top    { margin-bottom: @padding; }
+
+.push-bottom     { margin-top: @paddingThin; }
+.push-far-bottom { margin-top: @padding; }
+
+.short-line      { line-height: 1.3em   !important; }
+.click-through   { pointer-events: none !important; }
+.pointer         { cursor: pointer      !important; }
+.fade            { opacity: 0.35        !important; }
+.last            { margin-bottom: 0     !important; }
+.no-wrap         { white-space: nowrap  !important; }
+.underline       { border-bottom: solid 1px @borderColor !important; }
+.align-center    { text-align: center   !important; }
+.align-right     { text-align: right    !important; }
+.hidden          { display: none        !important; }
+
+.disabled {
+    opacity: .5 !important;
+    cursor: default !important;
+    pointer-events: none;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.success {
+     color: darken(@success, 15%);
+}
+
+.success-filled {
+    color: @white;
+    background-color: @success;
+}
+
+.warning {
+    color: darken(@warning, 15%);
+}
+
+.warning-filled {
+    color: @white;
+    background-color: @warning;
+}
+
+.error {
+    color: darken(@error, 15%);
+}
+
+.error-filled {
+    color: @white;
+    background-color: @error;
+}
+
+.truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/*------------------------------------*
+    Labels
+*------------------------------------*/
+
+label.label {
+    display: inline-block;
+    height: @inputHeight;
+
+    line-height: @inputHeight;
+    vertical-align: top;
+}
+
+
+/*------------------------------------*
+    Content Groups
+*------------------------------------*/
+
+.group {
+    margin-bottom: @padding;
+
+    h2 {
+        margin-top: @paddingThick;
+    }
+
+    h1 + h2 {
+        margin-top: 0;
+    }
+    p + hr {
+        margin-top: @padding * 1.25;
+    }
+
+    + .group {
+        margin-top: @paddingThick;
+    }
+}
+
+
+/*------------------------------------*
+    Progress Bar
+*------------------------------------*/
+
+.progress-bar {
+    position: relative;
+
+    content: '';
+    display: block;
+
+    width: 12em;
+    height: @iconHeightSmall;
+
+    box-shadow: 0 0 0 1px darken(@borderColorLight, 5%) inset;
+    background-color: @borderColorLight;
+
+    line-height: @inputHeight;
+
+    i {
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        height: @iconHeightSmall;
+
+        background-color: @primaryColor;
+    }
+
+    &.progress-bar-small {
+        height: 6px;
+        line-height: 6px;
+        i {
+            height: 6px;
+            line-height: 6px;
+        }
+    }
+
+    &.progress-bar-large {
+        height: @iconHeight;
+        line-height: @iconHeight;
+        i {
+            height: @iconHeight;
+            line-height: @iconHeight;
+        }
+    }
+
+    &.progress-bar-wide {
+        width: 100%;
+    }
+}

@@ -1,0 +1,259 @@
+/*------------------------------------*
+    Tabs
+*------------------------------------*/
+
+.tab-container {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    padding-top: @inputHeight;
+
+    &.tab-container-vertical {
+        overflow: hidden;
+        padding-top: 0 !important;
+
+        .tabs {
+            position: relative;
+            float: left;
+
+            top: 0 !important;
+            //left: 1px;
+            width: @inputHeight !important;
+            height: 100% !important;
+
+            .tab {
+                float: none;
+                box-shadow:
+                1px 1px 0 darken(@borderColorLight, 5%) inset,
+                -1px 0 0 darken(@borderColorLight, 5%) inset;
+
+                &:last-child {
+                    box-shadow: 0 0 0 1px darken(@borderColorLight, 5%) inset;
+                }
+
+                &.active {
+                    box-shadow: none !important;
+                }
+            }
+        }
+
+        .tab-groups {
+            height: 100%;
+            margin-left: @inputHeight - 1;
+            clear: none;
+        }
+
+        .tab-group {
+            height: 100%;
+        }
+
+        &.tab-container-small {
+            .tabs {
+                width: @iconHeight !important;
+            }
+
+            .tab-groups {
+                margin-left: @iconHeight - 1;
+            }
+        }
+
+        &.tab-container-large {
+            .tabs {
+                width: @listIconHeight !important;
+            }
+
+            .tab-groups {
+                margin-left: @listIconHeight - 1;
+            }
+        }
+
+        &.tab-container-header {
+            .tabs {
+                width: @headerHeight !important;
+            }
+
+            .tab-groups {
+                margin-left: @headerHeight - 1;
+            }
+        }
+
+        .tabs-dark {
+            .tab,
+            .tab:last-child {
+                box-shadow: 0 -1px 0 lighten(@navBackgroundColor, 7.5%) inset;
+
+                &.active {
+                    box-shadow: none !important;
+                }
+            }
+        }
+    }
+
+    &.tab-container-small {
+        padding-top: @iconHeight;
+
+        .tabs {
+            height: @iconHeight;
+
+            .tab {
+                height: @iconHeight;
+                font-size: @fontSizeSmall;
+                line-height: @iconHeight;
+
+                &.tab-icon {
+                    width: @iconHeight;
+                }
+            }
+        }
+
+        .tab-group {
+            font-size: @fontSizeSmall;
+
+            &.tab-group-padded {
+                padding: @paddingThin;
+            }
+        }
+    }
+
+    &.tab-container-large {
+        padding-top: @listIconHeight;
+
+        .tabs {
+            height: @listIconHeight;
+
+            .tab {
+                height: @listIconHeight;
+
+                font-size: @fontSizeHeader;
+                line-height: @listIconHeight;
+
+                &.tab-icon {
+                    width: @listIconHeight;
+                }
+            }
+        }
+
+        .tab-group {
+            font-size: @fontSizeHeader;
+        }
+    }
+
+    &.tab-container-header {
+        padding-top: @headerHeight;
+
+        .tabs {
+            height: @headerHeight;
+
+            .tab {
+                height: @headerHeight;
+
+                font-size: @fontSizeHeader;
+                line-height: @headerHeight;
+
+                &.tab-icon {
+                    width: @headerHeight;
+                }
+            }
+        }
+    }
+}
+
+.tabs {
+    position: absolute;
+    top: 1px;
+    height: @inputHeight;
+    z-index: 1;
+
+    .tab {
+        box-sizing: border-box;
+        position: relative;
+
+        padding: 0 @padding;
+        height: @inputHeight;
+
+        background-color: @borderColorLight;
+        box-shadow:
+            -1px -1px 0 darken(@borderColorLight, 5%) inset,
+            0 1px 0 darken(@borderColorLight, 5%) inset;
+        .no-select;
+        cursor: pointer;
+        outline: none;
+        float: left;
+
+        text-align: center;
+        line-height: @inputHeight;
+        font-weight: 600;
+
+        &:first-child {
+            box-shadow: 0 0 0 1px darken(@borderColorLight, 5%) inset;
+        }
+
+        &.tab-icon {
+            padding: 0;
+            width: @inputHeight;
+        }
+
+        &.active {
+            box-shadow: none !important;
+            background-color: @primaryColor;
+            color: @white;
+            cursor: default;
+        }
+    }
+
+    &.tabs-wide {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        align-content: stretch;
+        justify-content: flex-start;
+
+        width: 100%;
+
+        .tab {
+            width: 100%;
+        }
+    }
+
+    &.tabs-dark {
+        background-color: @navBackgroundColor;
+        width: 100%;
+
+        .tab,
+        .tab:last-child {
+            box-shadow: -1px 0 0 lighten(@navBackgroundColor, 7.5%) inset;
+            background-color: @navBackgroundColor;
+            color: @navTextColor;
+
+            &.active {
+                box-shadow: none !important;
+                background-color: @navSelectedColor;
+                color: @white;
+            }
+        }
+    }
+}
+
+.tab-groups {
+    position: relative;
+    clear: both;
+
+    .tab-group {
+        box-sizing: border-box;
+        display: none;
+
+        box-shadow: 0 0 0 1px darken(@borderColorLight, 5%) inset;
+
+        &.tab-group-padded {
+            padding: @padding;
+        }
+
+        &.tab-group-borderless {
+            box-shadow: none !important;
+        }
+
+        &.active {
+            display: block;
+        }
+    }
+}

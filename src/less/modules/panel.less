@@ -1,0 +1,233 @@
+/*------------------------------------*
+    Panel
+*------------------------------------*/
+
+.panel {
+    position: relative;
+    background-color: @backgroundColor;
+
+    &.panel-dimmed {
+        background-color: @wellColor;
+
+        > header {
+            box-shadow: 0 -1px 0 @borderColorDark inset;
+        }
+
+        &.panel-header-borderless,
+        &.panel-header-inline {
+            box-shadow: none;
+        }
+
+        .list-block {
+            li {
+                box-shadow: 0 -1px 0 @borderColorDark inset;
+            }
+        }
+
+        .list-icon .badge {
+            box-shadow: 0 0 0 3px @wellColor;
+        }
+    }
+}
+
+.panel > header {
+    position: relative;
+
+    padding: 0 @padding;
+    height: @headerHeight;
+
+    box-shadow: 0 -1px 0 @borderColor inset;
+
+    line-height: @headerHeight;
+
+    h1 {
+        display: inline-block;
+
+        margin-top: -4px;
+        margin-bottom: 0;
+        padding-right: 1px;
+        height: 1em;
+
+        line-height: 1em;
+        vertical-align: middle;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: @fontSizeHeader;
+    }
+
+    .panel-header-controls {
+        position: absolute;
+
+        right: @padding;
+        top: (@headerHeight - @inputHeight) / 2;
+        min-width: @inputHeight;
+        height: @inputHeight;
+
+        line-height: @inputHeight;
+        vertical-align: middle;
+    }
+
+    &.panel-header-center {
+        text-align: center;
+    }
+
+    &.panel-header-right {
+        text-align: right;
+
+        .panel-header-controls {
+            right: auto;
+            left: @padding;
+        }
+    }
+
+    &.panel-header-borderless {
+        box-shadow: none;
+    }
+
+    &.panel-header-inline {
+        height: @headerHeight - 20px;
+        box-shadow: none;
+
+        .panel-header-controls {
+            top: (@headerHeight - @inputHeight) / 2 - 6;
+        }
+    }
+}
+
+.panel > section {
+    &.panel-content-scroll {
+        overflow-y: auto;
+        position: absolute;
+        top: @headerHeight;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.panel-body {
+    &.panel-body-padded {
+        padding: @padding;
+    }
+
+    p,
+    ol,
+    ul,
+    .input-group,
+    .input-group-inline,
+    .table,
+    .well,
+    .popover {
+        margin-bottom: @paddingThin;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .popover {
+        margin-bottom: @paddingThin + 12px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+/*------------------------------------*
+    Navigation Panel
+*------------------------------------*/
+
+.panel-nav,
+.panel-dark {
+    background-color: @navBackgroundColor;
+    color: @navTextColor;
+    box-shadow: none !important;
+
+    h1 {
+        color: @navSelectedTextColor;
+    }
+}
+
+.panel-nav {
+    .panel-body {
+        padding: @padding 0;
+    }
+
+    a.active {
+        cursor: none;
+    }
+
+    hr {
+        border-top-color: #afb4cc;
+        opacity: .15;
+    }
+}
+
+.modal-close {
+    position: absolute;
+
+    right: @paddingThin;
+    top: @paddingThin;
+    width: @inputHeight;
+    height: @inputHeight;
+
+    cursor: pointer;
+    color: @textColorLight;
+
+    &.modal-close-small {
+        width: @inputHeight/2;
+        height: @inputHeight/2;
+
+        font-size: 75%;
+        line-height: @inputHeight/2;
+
+        &:after {
+            width: @inputHeight/2;
+            height: @inputHeight/2;
+
+            line-height: @inputHeight/2;
+        }
+    }
+
+    &:after {
+        content: '×';
+        display: block;
+        position: absolute;
+
+        left: 0;
+        top: 0;
+        width: @inputHeight;
+        height: @inputHeight;
+
+        font-weight: 600;
+        line-height: @inputHeight;
+        text-align: center;
+        font-size: 200%;
+    }
+}
+
+
+/*------------------------------------*
+    Panel Group
+*------------------------------------*/
+
+.panel-group {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: flex-start;
+
+    .panel {
+    }
+
+    &.panel-align-center {
+        justify-content: center;
+    }
+
+    &.panel-align-right {
+        justify-content: flex-end;
+    }
+}
