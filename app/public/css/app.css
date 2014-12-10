@@ -194,14 +194,11 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background-color: rgba(40, 43, 58, 0.05);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(40, 43, 58, 0.1);
+  background-color: rgba(255, 255, 255, 0.25);
   cursor: pointer;
-}
-*:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(40, 43, 58, 0.15);
 }
 /*------------------------------------*
     Anchors
@@ -2574,6 +2571,7 @@ body {
 }
 .page-header {
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   height: 60px;
@@ -2610,7 +2608,6 @@ body {
   letter-spacing: 1px;
 }
 .page-header-nav a.active {
-  cursor: default;
   text-decoration: underline;
 }
 .page-header-nav i {
@@ -2619,6 +2616,7 @@ body {
 }
 .page-breadcrumb {
   position: fixed;
+  z-index: 9;
   top: 60px;
   left: 0;
   height: 40px;
@@ -2699,12 +2697,78 @@ body {
   font-size: 140%;
   font-weight: lighter;
 }
+.section-header p.subject {
+  opacity: 1;
+}
+.section-header p span {
+  opacity: .65;
+}
+.section-header p strong {
+  opacity: 1;
+}
 .section-content {
   margin-bottom: 60px;
   clear: both;
 }
 .section-content.clear {
   overflow: hidden;
+}
+/*------------------------------------*
+    WoW class colors
+*------------------------------------*/
+.deathknight {
+  color: #C41F3B;
+}
+.druid {
+  color: #FF7D0A;
+}
+.hunter {
+  color: #ABD473;
+}
+.mage {
+  color: #69CCF0;
+}
+.monk {
+  color: #00FF96;
+}
+.paladin {
+  color: #F58CBA;
+}
+.priest {
+  color: #FFFFFF;
+}
+.rogue {
+  color: #FFF569;
+}
+.shaman {
+  color: #0070DE;
+}
+.warlock {
+  color: #9482C9;
+}
+.warrior {
+  color: #C79C6E;
+}
+.poor {
+  color: #9d9d9d;
+}
+.common {
+  color: #fff;
+}
+.uncommon {
+  color: #1eff00;
+}
+.rare {
+  color: #0070ff;
+}
+.epic {
+  color: #a335ee;
+}
+.legendary {
+  color: #ff8000;
+}
+.heirloom {
+  color: #e6cc80;
 }
 /*------------------------------------*
     Forum styles
@@ -2775,6 +2839,80 @@ body {
   letter-spacing: -1px;
 }
 .forum-list-counter small {
+  opacity: .65;
+}
+.thread-list {
+  list-style-type: none;
+}
+.thread-list li {
+  padding: 40px 0;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.05);
+}
+.thread-list li:first-child {
+  padding-top: 0;
+}
+.thread-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.thread-list header {
+  margin-bottom: 17px;
+  overflow: hidden;
+}
+.thread-list header h4 {
+  float: left;
+}
+.thread-list header h4 strong {
+  color: #ffffff;
+  font-size: 120%;
+  font-weight: bolder;
+  letter-spacing: -1px;
+}
+.thread-list header h4 small {
+  font-size: 100%;
+  font-weight: lighter;
+}
+.thread-list header h4 span {
+  opacity: .65;
+}
+.thread-list header h4 em {
+  font-style: normal;
+}
+.thread-list header .timestamp {
+  float: right;
+  opacity: .65;
+  font-size: 80%;
+}
+.thread-list header .timestamp a {
+  color: #dfdfdf;
+  text-decoration: none;
+}
+.thread-list header .timestamp span {
+  padding-left: 10px;
+  opacity: .5;
+}
+.thread-list section {
+  clear: both;
+  margin-bottom: 17px;
+}
+.thread-list section p {
+  margin-bottom: 10px;
+}
+.thread-list section p:last-child {
+  margin-bottom: 0;
+}
+.thread-list section .deleted {
+  opacity: .35;
+}
+.thread-list section .edited {
+  opacity: .35;
+  font-style: italic;
+}
+.thread-list footer a {
+  font-size: 80%;
+  padding-right: 10px;
+  color: #dfdfdf;
+  text-transform: uppercase;
   opacity: .65;
 }
 /*-----------------------------------*/

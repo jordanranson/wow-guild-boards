@@ -1,0 +1,201 @@
+<!--
+    Main nav
+-->
+
+{{#section 'nav'}}
+    <a href="/topics" class="active">Forums</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/roster">Roster</a>
+    <i></i>
+    {{#if user}}
+        <a href="/account" class="nav-button">Username</a>
+        <a href="/logout">Sign out</a>
+    {{else}}
+        <a href="/auth/bnet" class="nav-button">Sign in</a>
+    {{/if}}
+{{/section}}
+
+
+
+<!--
+    Breadcrumb and breadcrumb nav
+-->
+
+{{#section 'breadcrumb'}}
+    <a href="/topics">Announcements</a> <i>&rsaquo;</i>
+    <span>Thread Title</span>
+{{/section}}
+
+{{#section 'breadcrumb_nav'}}
+    <a class="active">1</a>
+    <a>2</a>
+    <a>3</a>
+    <a>4</a>
+    <a>Last</a>
+{{/section}}
+
+
+
+<!--
+    Scripts
+-->
+
+{{#section 'scripts'}}
+    <script src="/js/modules/forums.js"></script>
+{{/section}}
+
+
+
+<!--
+    Main content
+-->
+
+<header class="section-header">
+    <h1>Thread Title</h1>
+    <p class="subject">
+        <span>Created by </span>
+        <strong>Lupanar</strong>
+        <span> on </span>
+        <strong>Nov 19</strong>
+        <span> in </span>
+        <strong>Announcements</strong>
+        <span>.</span></p>
+</header>
+
+<section class="section-content clear">
+
+    <ul class="thread-list">
+
+        <li>
+            <header>
+                <h4>
+                    <strong>Lumberjack Lupanar</strong><br>
+                    <small>
+                        <em class="deathknight">Death Knight</em>
+                        <span>&middot; Raider</span>
+                        <span>&middot; 636</span>
+                    </small>
+                </h4>
+                <span class="timestamp"><a href="">Nov 19, 20:53 <span>#1</span></a></span>
+            </header>
+            <section>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam dictum nec mi id pulvinar. Nunc vel dictum nisl.
+                    Aliquam erat volutpat. Nam accumsan leo ut urna sollicitudin pellentesque.
+                    Aliquam semper metus quis urna aliquam, nec volutpat nibh posuere.
+                </p>
+            </section>
+            <footer>
+                <a href="">Reply</a>
+                <a href="">Quote</a>
+                <a href="">Edit</a>
+                <a href="">Remove</a>
+            </footer>
+        </li>
+
+        <li>
+            <header>
+                <h4>
+                    <strong>Talirarr, Hand of Adal</strong><br>
+                    <small>
+                        <em class="druid">Druid</em>
+                        <span>&middot; Officer</span>
+                        <span>&middot; 632</span>
+                    </small>
+                </h4>
+                <span class="timestamp"><a href="">Nov 19, 20:53 <span>#2</span></a></span>
+            </header>
+            <section>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam dictum nec mi id pulvinar. Nunc vel dictum nisl.
+                    Aliquam erat volutpat. Nam accumsan leo ut urna sollicitudin pellentesque.
+                    Aliquam semper metus quis urna aliquam, nec volutpat nibh posuere.
+                </p>
+            </section>
+            <footer>
+                <a href="">Reply</a>
+                <a href="">Quote</a>
+            </footer>
+        </li>
+
+        <li>
+            <header>
+                <h4>
+                    <strong>Maligo (Guest)</strong><br>
+                    <small>
+                        <em class="mage">Mage</em>
+                        <span>&middot; Rawrgrrglrg</span>
+                        <span>&middot; 622</span>
+                    </small>
+                </h4>
+                <span class="timestamp"><a href="">Nov 19, 20:53 <span>#3</span></a></span>
+            </header>
+            <section>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam <a href="">dictum nec</a> mi id pulvinar. Nunc vel dictum nisl.
+                    Aliquam erat volutpat. Nam accumsan leo ut urna sollicitudin pellentesque.
+                    Aliquam semper metus quis urna aliquam, nec volutpat nibh posuere.
+                </p>
+            </section>
+            <footer>
+                <a href="">Reply</a>
+                <a href="">Quote</a>
+            </footer>
+        </li>
+
+        <li>
+            <header>
+                <h4>
+                    <strong>Lumberjack Lupanar</strong><br>
+                    <small>
+                        <em class="deathknight">Death Knight</em>
+                        <span>&middot; Raider</span>
+                        <span>&middot; 636</span>
+                    </small>
+                </h4>
+                <span class="timestamp"><a href="">Nov 19, 20:53 <span>#4</span></a></span>
+            </header>
+            <section>
+                <p>
+                    <em class="deleted">Deleted.</em>
+                </p>
+            </section>
+            <footer>
+                <a href="">Reply</a>
+                <a href="">Quote</a>
+            </footer>
+        </li>
+
+        <li>
+            <header>
+                <h4>
+                    <strong>Lumberjack Lupanar</strong><br>
+                    <small>
+                        <em class="deathknight">Death Knight</em>
+                        <span>&middot; Raider</span>
+                        <span>&middot; 636</span>
+                    </small>
+                </h4>
+                <span class="timestamp"><a href="">Nov 19, 20:53 <span>#5</span></a></span>
+            </header>
+            <section>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Etiam dictum nec mi id pulvinar. Nunc vel dictum nisl.
+                </p>
+                <p class="edited">
+                    Edited by Lupanar on Nov 19.
+                </p>
+            </section>
+            <footer>
+                <a href="">Reply</a>
+                <a href="">Quote</a>
+            </footer>
+        </li>
+
+    </ul>
+
+</section>

@@ -29,6 +29,8 @@ body {
 
 .page-header {
     position: fixed;
+    z-index: 10;
+
     top: 0;
     left: 0;
     height: 60px;
@@ -73,7 +75,6 @@ body {
         }
 
         &.active {
-            cursor: default;
             text-decoration: underline;
         }
     }
@@ -86,6 +87,8 @@ body {
 
 .page-breadcrumb {
     position: fixed;
+    z-index: 9;
+
     top: 60px;
     left: 0;
     height: 40px;
@@ -150,7 +153,7 @@ body {
 
 .page-footer {
     margin-bottom: 60px;
-    
+
     h3 {
         font-size: 180%;
         letter-spacing: -1px;
@@ -185,6 +188,18 @@ body {
 
         font-size: 140%;
         font-weight: lighter;
+
+        &.subject {
+            opacity: 1;
+        }
+
+        span {
+            opacity: .65;
+        }
+
+        strong {
+            opacity: 1;
+        }
     }
  }
 

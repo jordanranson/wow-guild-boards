@@ -133,6 +133,19 @@ app.get('/threads', function(req, res) {
     }
 });
 
+// thread
+app.get('/thread', function(req, res) {
+    if(req.isAuthenticated()) {
+        res.render('thread', {
+            user: req.user
+        });
+    } else {
+        res.render('thread', {
+            user: null
+        });
+    }
+});
+
 
 
 /*------------------------------------*
