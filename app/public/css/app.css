@@ -2565,9 +2565,11 @@ body {
   width: 100%;
 }
 .page-section-content {
+  box-sizing: border-box;
   margin: 0 auto;
+  padding: 0 20px;
   width: 80%;
-  max-width: 1000px;
+  max-width: 1040px;
   min-width: 480px;
 }
 .page-header {
@@ -2733,20 +2735,36 @@ body {
   font-weight: bold;
   letter-spacing: -1px;
 }
-.forum-list li header p {
+.forum-list li header p span {
   opacity: .65;
+}
+.forum-list li header p strong {
+  font-weight: lighter;
+  opacity: 1;
+}
+.forum-list li header .gutter {
+  width: 71px;
+  float: left;
+  line-height: 0;
+  letter-spacing: 0;
+}
+.forum-list li header .content {
+  margin-left: 71px;
 }
 .forum-list li footer {
   float: right;
 }
 .forum-list-counter {
   display: inline-block;
-  margin-right: 10px;
+  margin-top: 4px;
+  margin-left: 15px;
+  margin-right: 1px;
   text-align: center;
 }
 .forum-list-counter strong,
 .forum-list-counter small {
   display: block;
+  line-height: 1.2em;
 }
 .forum-list-counter strong {
   font-size: 120%;

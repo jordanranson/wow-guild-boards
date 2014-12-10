@@ -1,0 +1,183 @@
+<!--
+    Main nav
+-->
+
+{{#section 'nav'}}
+    <a href="/topics" class="active">Forums</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/roster">Roster</a>
+    <i></i>
+    {{#if user}}
+        <a href="/account" class="nav-button">Username</a>
+        <a href="/logout">Sign out</a>
+    {{else}}
+        <a href="/auth/bnet" class="nav-button">Sign in</a>
+    {{/if}}
+{{/section}}
+
+
+
+<!--
+    Breadcrumb and breadcrumb nav
+-->
+
+{{#section 'breadcrumb'}}
+    <span>Topics</span> <i>&rsaquo;</i>
+    <a href="">Board</a> <i>&rsaquo;</i>
+    <a href="">Topic</a>
+{{/section}}
+
+{{#section 'breadcrumb_nav'}}
+    <a class="active">Replies</a>
+    <a>Views</a>
+    <a>Newest</a>
+{{/section}}
+
+
+
+<!--
+    Scripts
+-->
+
+{{#section 'scripts'}}
+    <script src="/js/modules/forums.js"></script>
+{{/section}}
+
+
+
+<!--
+    Main content
+-->
+
+<header class="section-header">
+    <h1>Announcements</h1>
+    <p>The latest happenings of AXION.</p>
+</header>
+
+<section class="section-content clear">
+
+    <ul class="forum-list">
+
+        <li class="thread-item">
+            <a href="">
+                <header>
+                    <div class="gutter">
+                        <img src="//placehold.it/54x54">
+                    </div>
+                    <div class="content">
+                        <h2>Thread Title</h2>
+                        <p><span>posted by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong>.</p>
+                    </div>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Views</small>
+                    </div>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Replies</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+
+        <li class="thread-item">
+            <a href="">
+                <header>
+                    <div class="gutter">
+                        <img src="//placehold.it/54x54">
+                    </div>
+                    <div class="content">
+                        <h2>Thread Title</h2>
+                        <p><span>posted by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong>.</p>
+                    </div>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Views</small>
+                    </div>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Replies</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+
+        <li class="thread-item">
+            <a href="">
+                <header>
+                    <div class="gutter">
+                        <img src="//placehold.it/54x54">
+                    </div>
+                    <div class="content">
+                        <h2>Thread Title</h2>
+                        <p><span>posted by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong>.</p>
+                    </div>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Views</small>
+                    </div>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Replies</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+
+        <li class="thread-item">
+            <a href="">
+                <header>
+                    <div class="gutter">
+                        <img src="//placehold.it/54x54">
+                    </div>
+                    <div class="content">
+                        <h2>Thread Title</h2>
+                        <p><span>posted by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong>.</p>
+                    </div>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Views</small>
+                    </div>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Replies</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+
+        <li class="thread-item">
+            <a href="">
+                <header>
+                    <div class="gutter">
+                        <img src="//placehold.it/54x54">
+                    </div>
+                    <div class="content">
+                        <h2>Thread Title</h2>
+                        <p><span>posted by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong>.</p>
+                    </div>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Views</small>
+                    </div>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Replies</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+
+    </ul>
+
+</section>

@@ -35,8 +35,24 @@
                 font-weight: bold;
                 letter-spacing: -1px;
             }
+
             p {
-                opacity: .65;
+                span { opacity: .65; }
+                strong {
+                    font-weight: lighter;
+                    opacity: 1;
+                }
+            }
+
+            .gutter {
+                width: 54px + @padding;
+                float: left;
+                line-height: 0;
+                letter-spacing: 0;
+            }
+
+            .content {
+                margin-left: 54px + @padding;
             }
         }
 
@@ -48,13 +64,16 @@
 
 .forum-list-counter {
     display: inline-block;
-    margin-right: 10px;
+    margin-top: 4px;
+    margin-left: 15px;
+    margin-right: 1px;
 
     text-align: center;
 
     strong,
     small {
         display: block;
+        line-height: 1.2em;
     }
 
     strong {

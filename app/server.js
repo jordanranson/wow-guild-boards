@@ -120,6 +120,19 @@ app.get('/topics', function(req, res) {
     }
 });
 
+// threads
+app.get('/threads', function(req, res) {
+    if(req.isAuthenticated()) {
+        res.render('threads', {
+            user: req.user
+        });
+    } else {
+        res.render('threads', {
+            user: null
+        });
+    }
+});
+
 
 
 /*------------------------------------*
