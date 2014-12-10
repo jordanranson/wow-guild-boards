@@ -58,7 +58,7 @@ app.use(session({
 }));
 
 
-app.engine('handlebars', exphbs({
+app.engine('.hbs', exphbs({
     defaultLayout: 'master',
     extname: '.hbs',
     helpers: {
@@ -66,13 +66,10 @@ app.engine('handlebars', exphbs({
             if(!this._sections) this._sections = {};
             this._sections[name] = options.fn(this);
             return null;
-        },
-        percent: function(value, max) {
-            return (Math.round(value / max) * 100) + '%';
         }
     }
 }));
-app.set('view engine', 'handlebars');
+app.set('view engine', '.hbs');
 
 // Initialize Passport
 app.use(passport.initialize());
@@ -84,7 +81,8 @@ app.use(passport.session());
  *------------------------------------*/
 
 // static content
-app.use('/public', express.static(__dirname + 'public/'));
+console.log('Serving static files at', __dirname + '/public/');
+app.use('/public', express.static(__dirname + '/public/'));
 
 // authentication
 app.get('/auth/bnet',           passport.authenticate('bnet') );

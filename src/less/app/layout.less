@@ -1,0 +1,162 @@
+/*------------------------------------*
+    Main layout components (header, footer, nav, etc)
+*------------------------------------*/
+
+body {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+.page {
+    width: 100%;
+    min-width: 480px;
+    padding-top: 100px;
+}
+
+.page-section {
+    width: 100%;
+}
+
+.page-section-content {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1000px;
+    min-width: 480px;
+}
+
+.page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+
+    background-color: @pageHeaderBackgroundColor;
+    line-height: 60px;
+
+    h1 {
+        float: left;
+        font-size: 180%;
+        letter-spacing: -1px;
+
+        a {
+            color: @pageHeaderColor;
+            text-decoration: none;
+        }
+    }
+}
+
+.page-header-nav {
+    float: right;
+
+    a {
+        display: inline-block;
+        margin-left: 10px;
+
+        color: @pageHeaderColor;
+        font-size: 80%;
+        letter-spacing: 1px;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        &.nav-button {
+            height: 32px;
+            line-height: 32px;
+            padding: 0 12px;
+
+            background: @pageHeaderColor;
+            color: @pageHeaderBackgroundColor;
+            border-radius: 3px;
+        }
+
+        &.active {
+            cursor: default;
+            text-decoration: underline;
+        }
+    }
+
+    i {
+        display: inline-block;
+        width: 10px;
+    }
+}
+
+.page-breadcrumb {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: 40px;
+
+    background-color: @pageNavBackgroundColor;
+
+    font-size: 80%;
+    line-height: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    h2 {
+        float: left;
+        font-weight: lighter;
+
+        span {
+            opacity: .65;
+        }
+
+        i {
+            font-style: normal;
+            opacity: .35;
+            display: inline-block;
+            margin: 0 5px;
+            font-size: 140%;
+            line-height: 37px;
+            vertical-align: top;
+        }
+
+        a {
+            color: @pageHeaderColor;
+        }
+    }
+}
+
+.page-content {
+    margin: 60px 0;
+}
+
+.page-breadcrumb-nav {
+    float: right;
+
+    a {
+        display: inline-block;
+        margin-left: 10px;
+
+        opacity: .65;
+        cursor: pointer;
+
+        color: @pageHeaderColor;
+        letter-spacing: 1px;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        &.active {
+            cursor: default;
+            opacity: 1;
+            text-decoration: underline;
+        }
+    }
+}
+
+.page-footer {
+    h3 {
+        font-size: 180%;
+        letter-spacing: -1px;
+        opacity: .35;
+    }
+    h4 {
+        font-size: 80%;
+        opacity: .2;
+        letter-spacing: 1px;
+        font-weight: lighter;
+    }
+    a {
+        color: @headerColor;
+    }
+}

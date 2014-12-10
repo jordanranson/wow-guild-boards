@@ -2,35 +2,48 @@
 <html>
 <head>
     <title>AXION &mdash; Darkspear &middot; Alliance</title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="The homepage of Axion - Darkspear, World of Warcraft Alliance Guild. News, forums, gallery, roster and more.">
+
     <link rel="stylesheet" type="text/css" href="public/css/app.css">
     <!--<link rel="stylesheet" type="text/css" href="public/css/app.min.css">-->
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <div class="page">
 
-        <header class="page-header">
-            <h1><a href="/">AXION</a></h1>
-            <nav class="page-header-nav">
-                {{{_sections.nav}}}
-            </nav>
+        <header class="page-header page-section">
+            <div class="page-section-content">
+                <h1><a href="/">AXION</a></h1>
+                <nav class="page-header-nav">
+                    {{{_sections.nav}}}
+                </nav>
+            </div>
         </header>
 
-        <nav class="page-breadcrumb">
-            <h2>
-                {{{_sections.breadcrumb}}}
-            </h2>
-            <nav class="page-breadcrumb-nav">
-                {{{_sections.breadcrumb_nav}}}
-            </nav>
+        <nav class="page-breadcrumb page-section">
+            <div class="page-section-content">
+                <h2>
+                    {{{_sections.breadcrumb}}}
+                </h2>
+                <nav class="page-breadcrumb-nav">
+                    {{{_sections.breadcrumb_nav}}}
+                </nav>
+            </div>
         </nav>
 
-        <div class="page-content">
-            {{{body}}}
+        <div class="page-content page-section">
+            <div class="page-section-content">
+                {{{body}}}
+            </div>
         </div>
 
-        <footer class="page-footer">
-            <h3>AXION &mdash; Darkspear &middot; Alliance</h3>
-            <h4>powered by <a href="" target="_blank">WoW Guild Boards</a></h4>
+        <footer class="page-footer page-section">
+            <div class="page-section-content">
+                <h3>AXION &mdash; Darkspear &middot; Alliance</h3>
+                <h4>powered by <a href="" target="_blank">WoW Guild Boards</a></h4>
+            </div>
         </footer>
 
     </div>
