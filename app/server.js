@@ -159,6 +159,19 @@ app.get('/roster', function(req, res) {
     }
 });
 
+// gallery
+app.get('/gallery', function(req, res) {
+    if(req.isAuthenticated()) {
+        res.render('gallery', {
+            user: req.user
+        });
+    } else {
+        res.render('gallery', {
+            user: null
+        });
+    }
+});
+
 
 
 /*------------------------------------*

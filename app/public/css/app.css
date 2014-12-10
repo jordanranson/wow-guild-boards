@@ -2921,6 +2921,12 @@ body {
 .roster-table th {
   text-align: left;
 }
+.roster-table th:first-child {
+  border-radius: 3px 0 0 3px;
+}
+.roster-table th:last-child {
+  border-radius: 0 3px 3px 0;
+}
 .roster-table th a {
   cursor: pointer;
   color: #ffffff;
