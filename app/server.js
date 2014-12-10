@@ -146,6 +146,19 @@ app.get('/thread', function(req, res) {
     }
 });
 
+// roster
+app.get('/roster', function(req, res) {
+    if(req.isAuthenticated()) {
+        res.render('roster', {
+            user: req.user
+        });
+    } else {
+        res.render('roster', {
+            user: null
+        });
+    }
+});
+
 
 
 /*------------------------------------*

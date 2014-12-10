@@ -1,0 +1,88 @@
+<!--
+    Main nav
+-->
+
+{{#section 'nav'}}
+    <a href="/topics">Forums</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/roster" class="active">Roster</a>
+    <i></i>
+    {{#if user}}
+        <a href="/account" class="nav-button">Username</a>
+        <a href="/logout">Sign out</a>
+    {{else}}
+        <a href="/auth/bnet" class="nav-button">Sign in</a>
+    {{/if}}
+{{/section}}
+
+
+
+<!--
+    Breadcrumb and breadcrumb nav
+-->
+
+{{#section 'breadcrumb'}}
+    <span>Roster</span>
+{{/section}}
+
+{{#section 'breadcrumb_nav'}}
+{{/section}}
+
+
+
+<!--
+    Scripts
+-->
+
+{{#section 'scripts'}}
+    <script src="/js/modules/roster.js"></script>
+{{/section}}
+
+
+
+<!--
+    Main content
+-->
+
+
+<header class="section-header">
+    <h1>Roster</h1>
+    <p>A lovely list of our lively raiders.</p>
+</header>
+
+<section class="section-content clear">
+    <table class="table table-wide table-inline table-large roster-table">
+        <thead>
+            <tr>
+                <th><a class="active">Name</a></th>
+                <th><a>Role</a></th>
+                <th><a>Specialization</a></th>
+                <th><a>Guild Rank</a></th>
+                <th><a>Item Level</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="deathknight">Lupanar</td>
+                <td>Damage</td>
+                <td>Blood, Unholy</td>
+                <td>Raider</td>
+                <td>636</td>
+            </tr>
+            <tr>
+                <td class="druid">Talirarr</td>
+                <td>Healer</td>
+                <td>Restoration, Feral</td>
+                <td>Officer</td>
+                <td>632</td>
+            </tr>
+            <tr>
+                <td class="mage">Krhat</td>
+                <td>Damage</td>
+                <td>Frost, Arcane</td>
+                <td>Raider</td>
+                <td>625</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -251,7 +251,7 @@ var {
 code {
   display: inline-block;
   padding: 0 8px;
-  background: #eceff3;
+  background: rgba(255, 255, 255, 0.05);
   font-size: 11pt;
 }
 h1 {
@@ -263,7 +263,7 @@ h2 {
 }
 hr {
   margin: 17px 0;
-  border-top-color: #eceff3;
+  border-top-color: rgba(255, 255, 255, 0.05);
 }
 /*------------------------------------*
     Miscellaneous Components
@@ -536,7 +536,7 @@ hr {
   padding: 0 7px;
   height: 26px;
   border-radius: 3px;
-  background-color: #cdd1d4;
+  background-color: rgba(255, 255, 255, 0.05);
   line-height: 26px;
   font-weight: 900;
   font-size: 11pt;
@@ -549,7 +549,7 @@ hr {
   height: 16px;
   min-width: 16px;
   border-radius: 16px;
-  background-color: #cdd1d4;
+  background-color: rgba(255, 255, 255, 0.05);
   line-height: 16px;
   font-weight: 900;
   font-size: 9pt;
@@ -642,10 +642,10 @@ hr {
   height: 0;
   border-left: solid 8px transparent;
   border-right: solid 8px transparent;
-  border-bottom: solid 14px #cdd1d4;
+  border-bottom: solid 14px rgba(255, 255, 255, 0.05);
 }
 .spinner.spinner-light:after {
-  border-bottom-color: #eceff3;
+  border-bottom-color: rgba(255, 255, 255, 0.05);
 }
 .spinner.spinner-white:after {
   border-bottom-color: #ffffff;
@@ -655,7 +655,7 @@ hr {
 *------------------------------------*/
 .well {
   padding: 10px;
-  background-color: #eceff3;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 .well-success,
 .well-info,
@@ -702,7 +702,7 @@ hr {
   position: relative;
   padding: 10px;
   background-color: #ffffff;
-  border: solid 1px #dce2e9;
+  border: solid 1px rgba(242, 242, 242, 0.05);
 }
 .popover:before,
 .popover:after {
@@ -720,7 +720,7 @@ hr {
   z-index: 1;
   border-left: solid 13px transparent;
   border-right: solid 13px transparent;
-  border-top: solid 13px #dce2e9;
+  border-top: solid 13px rgba(242, 242, 242, 0.05);
 }
 .popover:after {
   margin-left: -11px;
@@ -792,7 +792,7 @@ hr {
   white-space: nowrap  !important;
 }
 .underline {
-  border-bottom: solid 1px #dadee1 !important;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.05) !important;
 }
 .align-center {
   text-align: center   !important;
@@ -878,8 +878,8 @@ label.label {
   display: block;
   width: 12em;
   height: 16px;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
-  background-color: #eceff3;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
+  background-color: rgba(255, 255, 255, 0.05);
   line-height: 32px;
 }
 .progress-bar i {
@@ -958,8 +958,8 @@ a.button {
   position: relative;
   padding: 0 10px;
   height: 32px;
-  background-color: #eceff3;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -974,7 +974,7 @@ a.button {
 }
 .button.button-dark,
 .button-segment.button-dark {
-  background-color: #dadee1;
+  background-color: rgba(255, 255, 255, 0.05);
   box-shadow: none;
   color: #ffffff;
 }
@@ -1055,7 +1055,7 @@ a.button {
 .button.button-loading.loading,
 .button-segment.button-loading.loading {
   padding: 0 10px 0 32px;
-  color: #cdd1d4;
+  color: rgba(255, 255, 255, 0.05);
   cursor: default;
 }
 .button.button-loading.loading .spinner,
@@ -1080,9 +1080,9 @@ a.button {
 .button.button-disabled,
 .button-segment.button-disabled {
   background-color: transparent;
-  box-shadow: 0 0 0 1px #eceff3 inset;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   cursor: default;
-  color: #dadee1;
+  color: rgba(255, 255, 255, 0.05);
 }
 .button .button-disabled,
 .button-segment .button-disabled {
@@ -1095,7 +1095,7 @@ a.button {
   position: relative;
   height: 32px;
   width: 200px;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
   outline: none;
 }
 .text:focus {
@@ -1138,19 +1138,19 @@ a.button {
   width: 100%;
 }
 .text.text-code {
-  background: #eceff3;
-  box-shadow: 0 0 0 1px #dadee1 inset;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   font-family: monospace;
   font-size: 11pt;
 }
 .text:disabled {
   background-color: transparent;
-  box-shadow: 0 0 0 1px #eceff3 inset;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   cursor: default;
-  color: #dadee1;
+  color: rgba(255, 255, 255, 0.05);
 }
 .text:disabled:focus:after {
-  box-shadow: 0 0 3px 1px #eceff3;
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.05);
 }
 input.text {
   padding: 0 10px;
@@ -1199,8 +1199,8 @@ input.radio + label.radio:before {
   top: 5px;
   width: 16px;
   height: 16px;
-  background-color: #eceff3;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
   cursor: pointer;
 }
 input.checkbox:checked + label:before,
@@ -1211,17 +1211,17 @@ input.radio:checked + label:before {
 input.checkbox:disabled + label,
 input.radio:disabled + label {
   cursor: default;
-  color: #dadee1;
+  color: rgba(255, 255, 255, 0.05);
 }
 input.checkbox:disabled + label:before,
 input.radio:disabled + label:before {
   background-color: transparent;
-  box-shadow: 0 0 0 1px #eceff3 inset;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   cursor: default;
 }
 input.checkbox:disabled:checked + label:before,
 input.radio:disabled:checked + label:before {
-  background-color: #eceff3;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 input.radio + label:before {
   border-radius: 50%;
@@ -1243,7 +1243,7 @@ input.toggle + label.toggle {
   position: relative;
   height: 32px;
   width: 64px;
-  box-shadow: 0 0 0 1px #eceff3 inset;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1261,8 +1261,8 @@ input.toggle + label.toggle i {
   left: 0;
   width: 32px;
   height: 32px;
-  background: #eceff3;
-  box-shadow: 0 0 0 1px #dadee1 inset;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   z-index: 2;
   transition: left 100ms ease-in-out;
 }
@@ -1302,14 +1302,14 @@ input.toggle:disabled + label.toggle i,
 input.toggle:disabled + label.toggle:before,
 input.toggle:disabled + label.toggle:after {
   background-color: transparent;
-  color: #dadee1;
+  color: rgba(255, 255, 255, 0.05);
 }
 input.toggle:disabled + label.toggle i {
-  box-shadow: 0 0 0 1px #eceff3 inset;
-  background-color: #eceff3;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 input.toggle:disabled ~ label.label {
-  color: #dadee1;
+  color: rgba(255, 255, 255, 0.05);
 }
 /*------------------------------------*
     Toggle Group
@@ -1336,8 +1336,8 @@ input.toggle:disabled ~ label.label {
   display: block;
   height: 32px;
   padding: 0 10px;
-  background-color: #eceff3;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
   cursor: pointer;
   outline: none;
   text-align: center;
@@ -1353,8 +1353,8 @@ input.toggle:disabled ~ label.label {
 }
 .toggle-group > div input:disabled + label {
   background-color: transparent;
-  box-shadow: 0 0 0 1px #eceff3 inset;
-  color: #dadee1;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  color: rgba(255, 255, 255, 0.05);
   cursor: default;
 }
 .toggle-group.toggle-group-small {
@@ -1538,12 +1538,12 @@ label.select-current {
   left: 0;
   height: 32px;
   width: 100%;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
   z-index: 6;
 }
 label.select-option {
   display: none;
-  box-shadow: -1px 0 0 0 #dce2e9 inset, 1px 0 0 0 #dce2e9 inset;
+  box-shadow: -1px 0 0 0 rgba(242, 242, 242, 0.05) inset, 1px 0 0 0 rgba(242, 242, 242, 0.05) inset;
 }
 input.select-controller {
   display: none;
@@ -1568,7 +1568,7 @@ label.select-group {
   height: 0;
 }
 label.select-group:last-child label.select-option {
-  box-shadow: -1px -1px 0 0 #dce2e9 inset, 1px 0 0 0 #dce2e9 inset;
+  box-shadow: -1px -1px 0 0 rgba(242, 242, 242, 0.05) inset, 1px 0 0 0 rgba(242, 242, 242, 0.05) inset;
 }
 input.select-option {
   display: none;
@@ -1614,8 +1614,8 @@ label.select-top {
   margin-right: -8px;
   width: 16px;
   height: 32px;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
-  background-color: #eceff3;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
+  background-color: rgba(255, 255, 255, 0.05);
   z-index: 3;
 }
 .slider:before {
@@ -1626,8 +1626,8 @@ label.select-top {
   left: 0;
   width: 100%;
   height: 16px;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
-  background-color: #eceff3;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
+  background-color: rgba(255, 255, 255, 0.05);
   z-index: 1;
 }
 .slider.slider-small {
@@ -1930,14 +1930,14 @@ div.row {
   background-color: #eceff3;
 }
 .panel.panel-dimmed > header {
-  box-shadow: 0 -1px 0 #cdd1d4 inset;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.05) inset;
 }
 .panel.panel-dimmed.panel-header-borderless,
 .panel.panel-dimmed.panel-header-inline {
   box-shadow: none;
 }
 .panel.panel-dimmed .list-block li {
-  box-shadow: 0 -1px 0 #cdd1d4 inset;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.05) inset;
 }
 .panel.panel-dimmed .list-icon .badge {
   box-shadow: 0 0 0 3px #eceff3;
@@ -1946,7 +1946,7 @@ div.row {
   position: relative;
   padding: 0 17px;
   height: 62px;
-  box-shadow: 0 -1px 0 #dadee1 inset;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.05) inset;
   line-height: 62px;
 }
 .panel > header h1 {
@@ -2146,7 +2146,7 @@ div.row {
       -ms-flex-pack: start;
           justify-content: flex-start;
   padding: 17px;
-  box-shadow: 0 -1px 0 #dadee1 inset;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.05) inset;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2290,19 +2290,19 @@ table.table.table-striped tbody tr:nth-child(2n) td {
   background-color: #f4f6f8;
 }
 table.table:not(.table-inline) td {
-  box-shadow: -1px -1px 0 #eceff3 inset;
+  box-shadow: -1px -1px 0 rgba(255, 255, 255, 0.05) inset;
 }
 table.table:not(.table-inline) td:first-child {
-  box-shadow: -1px -1px 0 #eceff3 inset, 1px 0 0 #eceff3 inset;
+  box-shadow: -1px -1px 0 rgba(255, 255, 255, 0.05) inset, 1px 0 0 rgba(255, 255, 255, 0.05) inset;
 }
 table.table:not(.table-inline) tbody tr:first-child td {
-  box-shadow: 0 1px 0 #eceff3 inset, -1px -1px 0 #eceff3 inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, -1px -1px 0 rgba(255, 255, 255, 0.05) inset;
 }
 table.table:not(.table-inline) tbody tr:first-child td:first-child {
-  box-shadow: 0 1px 0 #eceff3 inset, -1px -1px 0 #eceff3 inset, 1px 0 0 #eceff3 inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, -1px -1px 0 rgba(255, 255, 255, 0.05) inset, 1px 0 0 rgba(255, 255, 255, 0.05) inset;
 }
 table.table.table-inline td {
-  box-shadow: 0 -1px 0 #eceff3 inset;
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.05) inset;
 }
 table.table.table-inline tr:last-child td {
   box-shadow: none;
@@ -2326,11 +2326,11 @@ table.table tr.active td {
   color: #ffffff;
 }
 table.table tr.disabled td {
-  color: #dadee1;
+  color: rgba(255, 255, 255, 0.05);
 }
 table.table tr.disabled.active td {
   box-shadow: none !important;
-  background-color: #eceff3 !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
   color: #ffffff;
 }
 /*------------------------------------*
@@ -2355,10 +2355,10 @@ table.table tr.disabled.active td {
 }
 .tab-container.tab-container-vertical .tabs .tab {
   float: none;
-  box-shadow: 1px 1px 0 #dce2e9 inset, -1px 0 0 #dce2e9 inset;
+  box-shadow: 1px 1px 0 rgba(242, 242, 242, 0.05) inset, -1px 0 0 rgba(242, 242, 242, 0.05) inset;
 }
 .tab-container.tab-container-vertical .tabs .tab:last-child {
-  box-shadow: 0 0 0 1px #dce2e9 inset;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
 }
 .tab-container.tab-container-vertical .tabs .tab.active {
   box-shadow: none !important;
@@ -2459,8 +2459,8 @@ table.table tr.disabled.active td {
   position: relative;
   padding: 0 17px;
   height: 32px;
-  background-color: #eceff3;
-  box-shadow: -1px -1px 0 #dce2e9 inset, 0 1px 0 #dce2e9 inset;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: -1px -1px 0 rgba(242, 242, 242, 0.05) inset, 0 1px 0 rgba(242, 242, 242, 0.05) inset;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2475,7 +2475,7 @@ table.table tr.disabled.active td {
   font-weight: 600;
 }
 .tabs .tab:first-child {
-  box-shadow: 0 0 0 1px #dce2e9 inset;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
 }
 .tabs .tab.tab-icon {
   padding: 0;
@@ -2531,7 +2531,7 @@ table.table tr.disabled.active td {
 .tab-groups .tab-group {
   box-sizing: border-box;
   display: none;
-  box-shadow: 0 0 0 1px #dce2e9 inset;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
 }
 .tab-groups .tab-group.tab-group-padded {
   padding: 17px;
@@ -2914,6 +2914,21 @@ body {
   color: #dfdfdf;
   text-transform: uppercase;
   opacity: .65;
+}
+/*------------------------------------*
+    Roster styles
+*------------------------------------*/
+.roster-table th {
+  text-align: left;
+}
+.roster-table th a {
+  cursor: pointer;
+  color: #ffffff;
+  opacity: .65;
+}
+.roster-table th a.active {
+  opacity: 1;
+  text-decoration: underline;
 }
 /*-----------------------------------*/
 /*------------------------------------*
