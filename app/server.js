@@ -10,37 +10,15 @@ var https           = require('https');
 var fs              = require('fs');
 var cookieParser    = require('cookie-parser');
 var session         = require('express-session');
-var BnetStrategy    = require('passport-bnet').Strategy;
-var KEYS            = require('./keys');
-var BNET_ID         = KEYS.key;
-var BNET_SECRET     = KEYS.secret;
+var CONFIG          = require('./config/config');
+var env             = 'dev';
 
 
 /*------------------------------------*
  Passport setup
  *------------------------------------*/
 
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-    done(null, obj);
-});
-
-// Use the BnetStrategy within Passport.
-passport.use(new BnetStrategy({
-        clientID: BNET_ID,
-        clientSecret: BNET_SECRET,
-        scope: 'wow.profile',
-        callbackURL: 'https://wowguild.jordanranson.com:3000/auth/bnet/callback'
-    },
-    function(accessToken, refreshToken, profile, done) {
-        process.nextTick(function () {
-            return done(null, profile);
-        });
-    })
-);
+require('./config/passport')(passport);
 
 
 /*------------------------------------*
@@ -52,7 +30,7 @@ var app = express();
 // configure Express
 app.use(cookieParser());
 app.use(session({
-    secret: 'blizzard',
+    secret: CONFIG[env].sessionSecret,
     saveUninitialized: true,
     resave: true
 }));
@@ -80,107 +58,15 @@ app.use(passport.session());
  Routes
  *------------------------------------*/
 
-// static content
-console.log('Serving static files at', __dirname + '/public/');
-app.use('/public', express.static(__dirname + '/public/'));
-
-// authentication
-app.get('/auth/bnet',           passport.authenticate('bnet') );
-app.get('/auth/bnet/callback',  passport.authenticate('bnet', { failureRedirect: '/' }), function(req, res) {
-      res.redirect('/');
-});
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
-
-// home
-app.get('/', function(req, res) {
-    if(req.isAuthenticated()) {
-        console.log("User: %j", req.user);
-        res.render('home', {
-            user: req.user
-        });
-    } else {
-        res.render('home', {
-            user: null
-        });
-    }
-});
-
-// topics
-app.get('/topics', function(req, res) {
-    if(req.isAuthenticated()) {
-        res.render('topics', {
-            user: req.user
-        });
-    } else {
-        res.render('topics', {
-            user: null
-        });
-    }
-});
-
-// threads
-app.get('/threads', function(req, res) {
-    if(req.isAuthenticated()) {
-        res.render('threads', {
-            user: req.user
-        });
-    } else {
-        res.render('threads', {
-            user: null
-        });
-    }
-});
-
-// thread
-app.get('/thread', function(req, res) {
-    if(req.isAuthenticated()) {
-        res.render('thread', {
-            user: req.user
-        });
-    } else {
-        res.render('thread', {
-            user: null
-        });
-    }
-});
-
-// roster
-app.get('/roster', function(req, res) {
-    if(req.isAuthenticated()) {
-        res.render('roster', {
-            user: req.user
-        });
-    } else {
-        res.render('roster', {
-            user: null
-        });
-    }
-});
-
-// gallery
-app.get('/gallery', function(req, res) {
-    if(req.isAuthenticated()) {
-        res.render('gallery', {
-            user: req.user
-        });
-    } else {
-        res.render('gallery', {
-            user: null
-        });
-    }
-});
-
+require('./config/routes')(app, passport);
 
 
 /*------------------------------------*
  Initialization
  *------------------------------------*/
 
-var key  = fs.readFileSync('./wowguild.jordanranson.com.key', 'utf8');
-var cert = fs.readFileSync('./wowguild.jordanranson.com.cert', 'utf8');
+var key         = fs.readFileSync('./wowguild.jordanranson.com.key',  'utf8');
+var cert        = fs.readFileSync('./wowguild.jordanranson.com.cert', 'utf8');
 var credentials = { key: key, cert: cert }; // ssl
 var server      = https.createServer(credentials, app);
 var http        = express();
@@ -189,7 +75,7 @@ var http        = express();
 http.get('*',function(req,res){
     res.redirect('https://wowguild.jordanranson.com:3000'+req.url)
 });
-http.listen(8080);
+http.listen(80);
 
 // start real server
 server.listen(3000, function() {
