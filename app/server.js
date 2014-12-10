@@ -97,6 +97,7 @@ app.get('/logout', function(req, res) {
 // home
 app.get('/', function(req, res) {
     if(req.isAuthenticated()) {
+        console.log("User: %j", req.user);
         res.render('home', {
             user: req.user
         });
