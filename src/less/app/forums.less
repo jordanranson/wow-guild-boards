@@ -1,0 +1,69 @@
+/*------------------------------------*
+    Forum styles
+*------------------------------------*/
+
+.forum-list {
+    list-style-type: none;
+
+    li {
+        overflow: hidden;
+        border-bottom: solid 1px rgba(255,255,255,.05);
+
+        * {
+            cursor: pointer;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        a {
+            display: block;
+            overflow: hidden;
+
+            border-radius: 3px;
+            padding: @padding 0;
+            color: @textColor;
+        }
+
+        header {
+            float: left;
+
+            h2 {
+                margin: 0;
+                font-size: 120%;
+                font-weight: bold;
+                letter-spacing: -1px;
+            }
+            p {
+                opacity: .65;
+            }
+        }
+
+        footer {
+            float: right;
+        }
+    }
+}
+
+.forum-list-counter {
+    display: inline-block;
+    margin-right: 10px;
+
+    text-align: center;
+
+    strong,
+    small {
+        display: block;
+    }
+
+    strong {
+        font-size: 120%;
+        font-weight: bolder;
+        letter-spacing: -1px;
+    }
+
+    small {
+        opacity: .65;
+    }
+}

@@ -53,10 +53,7 @@ body {
         margin-left: 10px;
 
         color: @pageHeaderColor;
-        font-size: 80%;
-        letter-spacing: 1px;
         text-decoration: none;
-        text-transform: uppercase;
 
         &.nav-button {
             height: 32px;
@@ -64,8 +61,12 @@ body {
             padding: 0 12px;
 
             background: @pageHeaderColor;
-            color: @pageHeaderBackgroundColor;
             border-radius: 3px;
+
+            font-size: 80%;
+            color: @pageHeaderBackgroundColor;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         &.active {
@@ -118,7 +119,7 @@ body {
 }
 
 .page-content {
-    margin: 60px 0;
+    margin-top: 60px;
 }
 
 .page-breadcrumb-nav {
@@ -150,13 +151,43 @@ body {
         letter-spacing: -1px;
         opacity: .35;
     }
+
     h4 {
         font-size: 80%;
         opacity: .2;
         letter-spacing: 1px;
         font-weight: lighter;
     }
+
     a {
         color: @headerColor;
+    }
+}
+
+.section-header {
+    margin-bottom: 60px;
+
+    h1 {
+        font-size: 240%;
+        letter-spacing: -2px;
+        font-weight: bolder;
+    }
+
+    p {
+        max-width: 62%;
+
+        opacity: .65;
+
+        font-size: 140%;
+        font-weight: lighter;
+    }
+ }
+
+.section-content {
+    margin-bottom: 60px;
+    clear: both;
+
+    &.clear {
+        overflow: hidden;
     }
 }
