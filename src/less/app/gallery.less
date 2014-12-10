@@ -1,0 +1,112 @@
+/*------------------------------------*
+    Gallery styles
+*------------------------------------*/
+
+.gallery {
+    width: 100%;
+}
+
+.gallery-item {
+    position: relative;
+    float: left;
+
+    width: 33%;
+    padding-top: 18.5%;
+    cursor: pointer;
+
+    &.feature {
+        width: 66%;
+        padding-top: 37%;
+
+        .gallery-overlay {
+            padding: @paddingThick;
+        }
+
+        .gallery-content {
+            header {
+                max-width: 62%;
+
+                h2 {
+                    font-size: 180%;
+                    margin-bottom: 7px;
+                }
+
+                p {
+                    font-size: 120%;
+
+                    &.timestamp {
+                        font-size: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .gallery-overlay {
+            opacity: 1;
+
+            header {
+                transform: translateY(-50%) scale3d(1, 1, 1);
+            }
+        }
+    }
+}
+
+.gallery-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: @padding;
+    bottom: @padding;
+
+    background-color: @pageNavBackgroundColor;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 4px;
+}
+
+.gallery-overlay {
+    position: absolute;
+    box-sizing: border-box;
+
+    padding: @padding;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    background-color: rgba(28,31,40,0.9);
+    transition: opacity 300ms ease-in-out;
+    border-radius: 4px;
+
+    header {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) scale3d(.975, .975, 1);
+        transition: transform 300ms ease-in-out;
+
+        h2 {
+            margin-bottom: 0;
+
+            color: @headerColor;
+            font-size: 120%;
+            font-weight: bolder;
+            letter-spacing: -1px;
+        }
+
+        p {
+            font-size: 80%;
+            line-height: 1.3em;
+            opacity: .65;
+
+            &.timestamp {
+                margin-top: 3px;
+                opacity: .35;
+            }
+        }
+    }
+}
