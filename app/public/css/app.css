@@ -2668,6 +2668,9 @@ body {
   opacity: 1;
   text-decoration: underline;
 }
+.page-footer {
+  margin-bottom: 60px;
+}
 .page-footer h3 {
   font-size: 180%;
   letter-spacing: -1px;
@@ -2756,7 +2759,7 @@ body {
 }
 .forum-list-counter {
   display: inline-block;
-  margin-top: 4px;
+  margin-top: 5px;
   margin-left: 15px;
   margin-right: 1px;
   text-align: center;
