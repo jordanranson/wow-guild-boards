@@ -50,5 +50,53 @@
 </header>
 
 <section class="section-content">
-    Hello, world!
+
+    <form class="settings-group">
+
+        <li>
+            <label class="settings-label">Character</label>
+            <p class="settings-description">Choose the character that you would like to be identified as.</p>
+            <div class="input-group">
+                <div class="select select-small" style="z-index:100">
+                    <input id="character" type="checkbox" class="select-controller">
+                    <label class="select-current" for="character">
+                        <span class="button-segment">
+                            <span class="inliner arrow-bottom arrow-light"><i></i></span>
+                        </span>
+                    </label>
+
+                    <div class="select-dropdown">
+                        <label class="select-group" for="character">
+                            <input id="character_1" type="radio" class="select-option" value="" name="character" checked="">
+                            <label for="character_1" class="select-option">Avenphire</label>
+                            <label for="character" class="select-top">Avenphire</label>
+                        </label>
+
+                        <label class="select-group" for="character">
+                            <input id="character_2" type="radio" class="select-option" value="" name="character">
+                            <label for="character_2" class="select-option">Lupanar</label>
+                            <label for="character" class="select-top">Lupanar</label>
+                        </label>
+
+                        <label class="select-group" for="character">
+                            <input id="character_3" type="radio" class="select-option" value="" name="character">
+                            <label for="character_3" class="select-option">Naiya</label>
+                            <label for="character" class="select-top">Naiya</label>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+
+        <li>
+            <label class="settings-label">Item Level</label>
+            <p class="settings-description">Enable this to show off your item level on the forums.</p>
+            <div class="input-group input-group-thin">
+                <input id="check2" type="checkbox" class="checkbox" checked="">
+                <label for="check2" class="checkbox">Show Item Level</label>
+            </div>
+        </li>
+
+    </form>
 </section>
