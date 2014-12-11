@@ -90,6 +90,42 @@
         </li>
 
         <li>
+            <label class="settings-label">Role</label>
+            <p class="settings-description">Choose the role that you would like displayed in the guild roster.</p>
+            <div class="input-group">
+                <div class="select select-small" style="z-index:100">
+                    <input id="role" type="checkbox" class="select-controller">
+                    <label class="select-current" for="role">
+                        <span class="button-segment">
+                            <span class="inliner arrow-bottom arrow-light"><i></i></span>
+                        </span>
+                    </label>
+
+                    <div class="select-dropdown">
+                        <label class="select-group" for="role">
+                            <input id="role_1" type="radio" class="select-option" value="damage" name="role" checked="">
+                            <label for="role_1" class="select-option">Damage</label>
+                            <label for="role" class="select-top">Damage</label>
+                        </label>
+
+                        <label class="select-group" for="role">
+                            <input id="role_2" type="radio" class="select-option" value="healer" name="role">
+                            <label for="role_2" class="select-option">Healer</label>
+                            <label for="role" class="select-top">Healer</label>
+                        </label>
+
+                        <label class="select-group" for="role">
+                            <input id="role_3" type="radio" class="select-option" value="tank" name="role">
+                            <label for="role_3" class="select-option">Tank</label>
+                            <label for="role" class="select-top">Tank</label>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+
+        <li>
             <label class="settings-label">Item Level</label>
             <p class="settings-description">Enable this to show off your item level on the forums.</p>
             <div class="input-group input-group-thin">
