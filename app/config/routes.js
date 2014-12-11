@@ -107,10 +107,10 @@ module.exports = function(app, passport) {
         }
     });
 
-    // profile
-    app.get('/profile', function(req, res) {
+    // account
+    app.get('/account', function(req, res) {
         if(req.isAuthenticated()) {
-            res.render('profile', {
+            res.render('account', {
                 user: req.user
             });
         } else {

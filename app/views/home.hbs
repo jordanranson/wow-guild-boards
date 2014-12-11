@@ -8,7 +8,7 @@
     <a href="/roster">Roster</a>
     <i></i>
     {{#if user}}
-        <a href="/account" class="nav-button">Username</a>
+        <a href="/account" class="nav-button">{{user.battletag}}</a>
         <a href="/logout">Sign out</a>
     {{else}}
         <a href="/auth/bnet" class="nav-button">Sign in</a>
@@ -44,6 +44,192 @@
     Main content
 --}}
 
-<section class="section-content">
-    Hello, world!
+<header class="masthead">
+    <div class="logo"><img src="/public/img/logo.svg"></div>
+    <h1>AXION</h1>
+    <h2>Darkspear &middot; Alliance</h2>
+</header>
+
+<section class="section-content clear">
+    <div class="home-feed">
+
+        <i class="stripe"></i>
+
+        <ul class="news-feed thread-list">
+
+            <li>
+                <header>
+                    <h4>
+                        <strong>Lumberjack Lupanar</strong>
+                    </h4>
+                    <span class="timestamp"><a href="">Nov 19, 20:53</a></span>
+                </header>
+                <section>
+                    <p>
+                        Aliquam erat volutpat. Nam accumsan leo ut urna sollicitudin pellentesque.
+                        Aliquam semper metus quis urna aliquam, nec volutpat nibh posuere...
+                    </p>
+                </section>
+                <footer>
+                    <a href="">View Post</a>
+                </footer>
+            </li>
+
+            <li>
+                <div class="gallery-item">
+                    <div class="gallery-content" style="background-image:url('/public/gallery/001.jpg')">
+                        <div class="gallery-overlay">
+                            <header>
+                                <h2>Photo Title</h2>
+                                <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                                <p class="timestamp">Nov 23</p>
+                            </header>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <header>
+                    <h4>
+                        <strong>Lumberjack Lupanar</strong>
+                    </h4>
+                    <span class="timestamp"><a href="">Nov 19, 20:53</a></span>
+                </header>
+                <section>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Etiam dictum nec mi id pulvinar. Nunc vel dictum nisl.
+                        Aliquam erat volutpat. Nam accumsan leo ut urna sollicitudin pellentesque...
+                    </p>
+                </section>
+                <footer>
+                    <a href="">View Post</a>
+                </footer>
+            </li>
+
+            <li>
+                <header>
+                    <h4>
+                        <strong>Lumberjack Lupanar</strong>
+                    </h4>
+                    <span class="timestamp"><a href="">Nov 19, 20:53</a></span>
+                </header>
+                <section>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Etiam dictum nec mi id pulvinar. Nunc vel dictum nisl.
+                    </p>
+                </section>
+                <footer>
+                    <a href="">View Post</a>
+                </footer>
+            </li>
+
+            <li>
+                <div class="gallery-item">
+                    <div class="gallery-content" style="background-image:url('/public/gallery/001.jpg')">
+                        <div class="gallery-overlay">
+                            <header>
+                                <h2>Photo Title</h2>
+                                <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                                <p class="timestamp">Nov 23</p>
+                            </header>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+        <ul class="guild-feed">
+
+            <li>
+                <strong>Lupanar</strong><em> looted </em><span class="epic">[Epic Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Talirarr</strong><em> earned the achievement </em><span class="achievement">[Achievement]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Krhat</strong><em> looted </em><span class="uncommon">[Uncommon Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Sewerman</strong><em> purchased </em><span class="epic">[Epic Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Korath</strong><em> crafted </em><span class="rare">[Rare Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Lupanar</strong><em> looted </em><span class="epic">[Epic Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Talirarr</strong><em> earned the achievement </em><span class="achievement">[Achievement]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Krhat</strong><em> looted </em><span class="uncommon">[Uncommon Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Sewerman</strong><em> purchased </em><span class="epic">[Epic Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Korath</strong><em> crafted </em><span class="rare">[Rare Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Krhat</strong><em> looted </em><span class="uncommon">[Uncommon Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Sewerman</strong><em> purchased </em><span class="epic">[Epic Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Korath</strong><em> crafted </em><span class="rare">[Rare Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Lupanar</strong><em> looted </em><span class="epic">[Epic Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Talirarr</strong><em> earned the achievement </em><span class="achievement">[Achievement]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Sewerman</strong><em> purchased </em><span class="epic">[Epic Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+            <li>
+                <strong>Korath</strong><em> crafted </em><span class="rare">[Rare Item]</span>
+                <br><small>Nov 19, 23:52</small>
+            </li>
+
+        </ul>
+
+    </div>
 </section>

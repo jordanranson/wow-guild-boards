@@ -8,7 +8,7 @@
     <a href="/roster">Roster</a>
     <i></i>
     {{#if user}}
-        <a href="/account" class="nav-button">Username</a>
+        <a href="/account" class="nav-button">{{user.battletag}}</a>
         <a href="/logout">Sign out</a>
     {{else}}
         <a href="/auth/bnet" class="nav-button">Sign in</a>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="content">
                         <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
+                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
                     </div>
                 </header>
                 <footer>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="content">
                         <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
+                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
                     </div>
                 </header>
                 <footer>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="content">
                         <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
+                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
                     </div>
                 </header>
                 <footer>
@@ -137,7 +137,7 @@
                     </div>
                     <div class="content">
                         <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
+                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
                     </div>
                 </header>
                 <footer>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="content">
                         <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>Username</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
+                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
                     </div>
                 </header>
                 <footer>

@@ -8,7 +8,7 @@
     <a href="/roster">Roster</a>
     <i></i>
     {{#if user}}
-        <a href="/account" class="nav-button active">Username</a>
+        <a href="/account" class="nav-button active">{{user.battletag}}</a>
         <a href="/logout">Sign out</a>
     {{else}}
         <a href="/auth/bnet" class="nav-button">Sign in</a>
@@ -22,7 +22,7 @@
 --}}
 
 {{#section 'breadcrumb'}}
-    <span>Profile</span>
+    <span>Your Account</span>
 {{/section}}
 
 {{#section 'breadcrumb_nav'}}
@@ -35,7 +35,7 @@
 --}}
 
 {{#section 'scripts'}}
-    <script src="/js/modules/profile.js"></script>
+    <script src="/js/modules/account.js"></script>
 {{/section}}
 
 
@@ -45,7 +45,7 @@
 --}}
 
 <header class="section-header">
-    <h1>Profile</h1>
+    <h1>Your Account</h1>
     <p>Configure your personal preferences.</p>
 </header>
 

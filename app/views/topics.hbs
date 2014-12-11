@@ -8,7 +8,7 @@
     <a href="/roster">Roster</a>
     <i></i>
     {{#if user}}
-        <a href="/account" class="nav-button">Username</a>
+        <a href="/account" class="nav-button">{{user.battletag}}</a>
         <a href="/logout">Sign out</a>
     {{else}}
         <a href="/auth/bnet" class="nav-button">Sign in</a>
