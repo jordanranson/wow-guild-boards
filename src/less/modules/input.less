@@ -202,11 +202,13 @@ a.button {
     Text input
 *------------------------------------*/
 
-.text {
+.text,
+input.text {
     position: relative;
     height: @inputHeight;
     width: 200px;
 
+    background-color: @inputBackgroundColor;
     box-shadow: 0 0 0 1px darken(@borderColorLight, 5%) inset;
     outline: none;
 
@@ -596,7 +598,7 @@ input.toggle {
 
         width: 100%;
 
-        background-color: @white;
+        background-color: @inputBackgroundColor;
         cursor: pointer;
     }
 

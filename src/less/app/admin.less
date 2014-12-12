@@ -2,7 +2,7 @@
     list-style-type: none;
 
     li {
-        padding: @padding 0;
+        padding: @paddingThick 0;
         border-bottom: solid 1px rgba(255, 255, 255, 0.05);
 
         &:last-child {
@@ -20,4 +20,25 @@
 .settings-description {
     opacity: 0.65;
     margin-bottom: @paddingThin;
+
+    strong {
+        color: @white;
+        font-style: italic;
+    }
+}
+
+.settings-header {
+    font-size: 160%;
+    font-weight: bold;
+    letter-spacing: -1px;
+
+    + p {
+        margin-bottom: @padding;
+        opacity: .65;
+        font-size: 110%;
+    }
+}
+
+.settings-submit {
+    padding-top: @padding;
 }
