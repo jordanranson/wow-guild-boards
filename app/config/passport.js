@@ -20,6 +20,7 @@ module.exports = function(passport) {
                 callbackURL: 'https://wowguild.jordanranson.com:3000/auth/bnet/callback'
             },
             function (accessToken, refreshToken, profile, done) {
+                profile.accessToken = accessToken;
                 process.nextTick(function () {
                     return done(null, profile);
                 });
