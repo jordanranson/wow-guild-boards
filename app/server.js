@@ -75,7 +75,7 @@ var http        = express();
 http.get('*',function(req,res){
     res.redirect('https://wowguild.jordanranson.com:3000'+req.url)
 });
-http.listen(80);
+http.listen(8080);
 
 // start real server
 server.listen(3000, function() {
