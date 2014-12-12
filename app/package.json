@@ -6,9 +6,10 @@
     "express": ">= 0.0.0",
     "express-handlebars": "^1.1.0",
     "express-session": ">= 0.0.0",
+    "lodash": "^2.4.1",
+    "mongoose": "^3.8.20",
     "passport": ">= 0.0.0",
     "passport-bnet": ">= 0.0.0",
-    "passport-github": ">= 0.0.0",
-    "mongoose": "^3.8.20"
+    "passport-github": ">= 0.0.0"
   }
 }

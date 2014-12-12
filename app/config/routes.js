@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
 
     // authentication
     app.get('/auth/bnet',           passport.authenticate('bnet') );
-    app.get('/auth/bnet/callback',  passport.authenticate('bnet', { failureRedirect: '/' }), function(req, res) {
+    app.get('/auth/bnet/callback',  passport.authenticate('bnet', { failureRedirect: '/500' }), function(req, res) {
         res.redirect('/');
     });
 

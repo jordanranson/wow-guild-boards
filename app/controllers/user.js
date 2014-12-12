@@ -33,7 +33,6 @@ module.exports = {
                 for(var i = 0; i < data.characters.length; i++) {
                     characters.push(data.characters[i]);
                 }
-                console.log(characters);
 
                 // user exists
                 if(user) {
