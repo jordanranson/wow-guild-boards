@@ -51,88 +51,87 @@
 
 <section class="section-content">
 
-    <form class="settings-group">
+    <form>
+        <ul class="settings-group">
 
-        <li>
-            <label class="settings-label">Character</label>
-            <p class="settings-description">Choose the character that you would like to be identified as.</p>
-            <div class="input-group">
-                <div class="select select-small" style="z-index:100">
-                    <input id="character" type="checkbox" class="select-controller">
-                    <label class="select-current" for="character">
-                        <span class="button-segment">
-                            <span class="inliner arrow-bottom arrow-light"><i></i></span>
-                        </span>
-                    </label>
+            <li>
+                <label class="settings-label">Character</label>
+                <p class="settings-description">Choose the character that you would like to be identified as.</p>
+                <div class="input-group">
 
-                    <div class="select-dropdown">
-                        <label class="select-group" for="character">
-                            <input id="character_1" type="radio" class="select-option" value="" name="character" checked="">
-                            <label for="character_1" class="select-option">Avenphire</label>
-                            <label for="character" class="select-top">Avenphire</label>
+                    {{!--<div class="select select-small" style="z-index:100">
+                        <input id="character" type="checkbox" class="select-controller">
+                        <label class="select-current" for="character">
+                            <span class="button-segment">
+                                <span class="inliner arrow-bottom arrow-light"><i></i></span>
+                            </span>
                         </label>
 
-                        <label class="select-group" for="character">
-                            <input id="character_2" type="radio" class="select-option" value="" name="character">
-                            <label for="character_2" class="select-option">Lupanar</label>
-                            <label for="character" class="select-top">Lupanar</label>
-                        </label>
+                        <div class="select-dropdown">
+                            {{#each user.characters}}
+                            <label class="select-group" for="character">
+                                <input id="character_{{@index}}" type="radio" class="select-option" value="{{name}}" name="character">
+                                <label for="character_{{@index}}" class="select-option">{{name}}&ndash;{{realm}}</label>
+                                <label for="character" class="select-top">{{name}}&ndash;{{realm}}</label>
+                            </label>
+                            {{/each}}
+                        </div>
+                    </div>--}}
 
-                        <label class="select-group" for="character">
-                            <input id="character_3" type="radio" class="select-option" value="" name="character">
-                            <label for="character_3" class="select-option">Naiya</label>
-                            <label for="character" class="select-top">Naiya</label>
-                        </label>
-                    </div>
+                    <select name="character" class="text">
+                        {{#each user.characters}}
+                        <option value="{{name}},{{realm}}">{{name}}&ndash;{{realm}}</option>
+                        {{/each}}
+                    </select>
                 </div>
+            </li>
 
-            </div>
-        </li>
-
-        <li>
-            <label class="settings-label">Role</label>
-            <p class="settings-description">Choose the role that you would like displayed in the guild roster.</p>
-            <div class="input-group">
-                <div class="select select-small" style="z-index:100">
-                    <input id="role" type="checkbox" class="select-controller">
-                    <label class="select-current" for="role">
-                        <span class="button-segment">
-                            <span class="inliner arrow-bottom arrow-light"><i></i></span>
-                        </span>
-                    </label>
-
-                    <div class="select-dropdown">
-                        <label class="select-group" for="role">
-                            <input id="role_1" type="radio" class="select-option" value="damage" name="role" checked="">
-                            <label for="role_1" class="select-option">Damage</label>
-                            <label for="role" class="select-top">Damage</label>
+            <li>
+                <label class="settings-label">Role</label>
+                <p class="settings-description">Choose the role that you would like displayed in the guild roster.</p>
+                <div class="input-group">
+                    <div class="select select-small" style="z-index:100">
+                        <input id="role" type="checkbox" class="select-controller">
+                        <label class="select-current" for="role">
+                            <span class="button-segment">
+                                <span class="inliner arrow-bottom arrow-light"><i></i></span>
+                            </span>
                         </label>
 
-                        <label class="select-group" for="role">
-                            <input id="role_2" type="radio" class="select-option" value="healer" name="role">
-                            <label for="role_2" class="select-option">Healer</label>
-                            <label for="role" class="select-top">Healer</label>
-                        </label>
+                        <div class="select-dropdown">
+                            <label class="select-group" for="role">
+                                <input id="role_1" type="radio" class="select-option" value="damage" name="role" checked="">
+                                <label for="role_1" class="select-option">Damage</label>
+                                <label for="role" class="select-top">Damage</label>
+                            </label>
 
-                        <label class="select-group" for="role">
-                            <input id="role_3" type="radio" class="select-option" value="tank" name="role">
-                            <label for="role_3" class="select-option">Tank</label>
-                            <label for="role" class="select-top">Tank</label>
-                        </label>
+                            <label class="select-group" for="role">
+                                <input id="role_2" type="radio" class="select-option" value="healer" name="role">
+                                <label for="role_2" class="select-option">Healer</label>
+                                <label for="role" class="select-top">Healer</label>
+                            </label>
+
+                            <label class="select-group" for="role">
+                                <input id="role_3" type="radio" class="select-option" value="tank" name="role">
+                                <label for="role_3" class="select-option">Tank</label>
+                                <label for="role" class="select-top">Tank</label>
+                            </label>
+                        </div>
                     </div>
+
                 </div>
+            </li>
 
-            </div>
-        </li>
+            <li>
+                <label class="settings-label">Item Level</label>
+                <p class="settings-description">Enable this to show off your item level on the forums.</p>
+                <div class="input-group input-group-thin">
+                    <input id="check2" type="checkbox" class="checkbox">
+                    <label for="check2" class="checkbox">Show Item Level</label>
+                </div>
+            </li>
 
-        <li>
-            <label class="settings-label">Item Level</label>
-            <p class="settings-description">Enable this to show off your item level on the forums.</p>
-            <div class="input-group input-group-thin">
-                <input id="check2" type="checkbox" class="checkbox" checked="">
-                <label for="check2" class="checkbox">Show Item Level</label>
-            </div>
-        </li>
-
+        </ul>
     </form>
+
 </section>

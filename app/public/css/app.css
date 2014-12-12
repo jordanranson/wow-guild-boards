@@ -1091,65 +1091,82 @@ a.button {
 /*------------------------------------*
     Text input
 *------------------------------------*/
-.text {
+.text,
+input.text {
   position: relative;
   height: 32px;
   width: 200px;
+  background-color: #313042;
   box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.05) inset;
   outline: none;
 }
-.text:focus {
+.text:focus,
+input.text:focus {
   box-shadow: 0 0 0 1px #967de5 inset;
 }
 .text::-webkit-input-placeholder,
+input.text::-webkit-input-placeholder,
 .text:-moz-placeholder,
+input.text:-moz-placeholder,
 .text::-moz-placeholder,
-.text:-ms-input-placeholder {
+input.text::-moz-placeholder,
+.text:-ms-input-placeholder,
+input.text:-ms-input-placeholder {
   color: #919699;
 }
-.text.text-wide {
+.text.text-wide,
+input.text.text-wide {
   width: 100%;
 }
-.text.text-short {
+.text.text-short,
+input.text.text-short {
   width: 100px;
 }
-.text.text-digit {
+.text.text-digit,
+input.text.text-digit {
   width: 50px;
   text-align: center;
 }
-.text.text-small {
+.text.text-small,
+input.text.text-small {
   padding: 0 8px;
   height: 26px;
   width: 150px;
   font-size: 11pt;
   line-height: 26px;
 }
-.text.text-small.text-wide {
+.text.text-small.text-wide,
+input.text.text-small.text-wide {
   width: 100%;
 }
-.text.text-large {
+.text.text-large,
+input.text.text-large {
   padding: 0 17px;
   height: 44px;
   width: 300px;
   font-size: 15pt;
   line-height: 44px;
 }
-.text.text-large.text-wide {
+.text.text-large.text-wide,
+input.text.text-large.text-wide {
   width: 100%;
 }
-.text.text-code {
+.text.text-code,
+input.text.text-code {
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   font-family: monospace;
   font-size: 11pt;
 }
-.text:disabled {
+.text:disabled,
+input.text:disabled {
   background-color: transparent;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   cursor: default;
   color: rgba(255, 255, 255, 0.05);
 }
-.text:disabled:focus:after {
+.text:disabled:focus:after,
+input.text:disabled:focus:after {
   box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.05);
 }
 input.text {
@@ -1419,7 +1436,7 @@ input.toggle:disabled ~ label.label {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #313042;
   cursor: pointer;
 }
 .select .button-segment {
@@ -2268,7 +2285,7 @@ table.table td {
   line-height: 32px;
 }
 table.table thead th {
-  background-color: #3b3f53;
+  background-color: #313042;
   color: #ffffff;
   font-weight: 600;
 }
@@ -3152,7 +3169,7 @@ body {
   list-style-type: none;
 }
 .settings-group li {
-  padding: 17px 0;
+  padding: 34px 0;
   border-bottom: solid 1px rgba(255, 255, 255, 0.05);
 }
 .settings-group li:last-child {
@@ -3166,6 +3183,23 @@ body {
 .settings-description {
   opacity: 0.65;
   margin-bottom: 10px;
+}
+.settings-description strong {
+  color: #ffffff;
+  font-style: italic;
+}
+.settings-header {
+  font-size: 160%;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+.settings-header + p {
+  margin-bottom: 17px;
+  opacity: .65;
+  font-size: 110%;
+}
+.settings-submit {
+  padding-top: 17px;
 }
 /*-----------------------------------*/
 /*------------------------------------*

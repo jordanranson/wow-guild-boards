@@ -5,6 +5,7 @@
 var express         = require('express');
 var exphbs          = require('express-handlebars');
 var passport        = require('passport');
+var mongoose        = require('mongoose');
 var util            = require('util');
 var https           = require('https');
 var fs              = require('fs');
@@ -12,6 +13,13 @@ var cookieParser    = require('cookie-parser');
 var session         = require('express-session');
 var CONFIG          = require('./config/config');
 var env             = 'dev';
+
+
+/*------------------------------------*
+ Mongoose setup
+ *------------------------------------*/
+
+mongoose.connect('mongodb://localhost:27017/wowguild');
 
 
 /*------------------------------------*
@@ -73,11 +81,11 @@ var http        = express();
 
 // set up a route to redirect http to https (shitty, I need to improve this)
 http.get('*',function(req,res){
-    res.redirect('https://wowguild.jordanranson.com:3000'+req.url)
+    res.redirect('https://wowguild.jordanranson.com:443'+req.url)
 });
-http.listen(8080);
+http.listen(80);
 
 // start real server
-server.listen(3000, function() {
+server.listen(443, function() {
     console.log('Listening on port %d', server.address().port);
 });

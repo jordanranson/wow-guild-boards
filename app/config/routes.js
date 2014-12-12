@@ -1,4 +1,6 @@
 var express = require('express');
+var User    = require('../models/user');
+var userController = require('../controllers/user');
 
 module.exports = function(app, passport) {
 
@@ -20,7 +22,6 @@ module.exports = function(app, passport) {
     // home
     app.get('/', function(req, res) {
         if(req.isAuthenticated()) {
-            console.log("User: %j", req.user);
             res.render('home', {
                 user: req.user
             });
@@ -110,6 +111,9 @@ module.exports = function(app, passport) {
     // account
     app.get('/account', function(req, res) {
         if(req.isAuthenticated()) {
+
+            console.log(req.user.characters);
+
             res.render('account', {
                 user: req.user
             });
@@ -128,13 +132,13 @@ module.exports = function(app, passport) {
         }
     });
 
-    // 404
-    app.use(function(req, res) {
+    // 404 error handler
+    app.use(function(req, res, next) {
         res.status(404);
         res.render('404', { title: 'Page not found.' });
     });
 
-    // 500
+    // 500 error handler
     app.use(function(error, req, res, next) {
         res.status(500);
         res.render('500', { title: 'Internal server error.', error: error });
