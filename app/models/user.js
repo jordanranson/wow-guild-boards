@@ -18,9 +18,13 @@ var Schema = mongoose.Schema({
         achievementPoints: Number,
         thumbnail: String
     }],
-    mainCharacter: String,
+    mainCharacter: {
+        name: String,
+        realm: String
+    },
 
     // site settings
+    showBattletag: Boolean,
     characterRole: String,
     showItemLevel: Boolean
 

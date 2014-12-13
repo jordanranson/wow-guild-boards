@@ -111,9 +111,6 @@ module.exports = function(app, passport) {
     // account
     app.get('/account', function(req, res) {
         if(req.isAuthenticated()) {
-
-            console.log(req.user.characters);
-
             res.render('account', {
                 user: req.user
             });

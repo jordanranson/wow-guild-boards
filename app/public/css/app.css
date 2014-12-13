@@ -1,4 +1,4 @@
-/*! wow-guild-boards - v0.0.1 - 2014-12-11
+/*! wow-guild-boards - v0.0.1 - 2014-12-12
 * https://github.com/jordanranson/wow-guild-boards
 * Copyright (c) 2014 Jordan Ranson; Licensed under the Apache2 license */
 /*------------------------------------*
@@ -2736,6 +2736,22 @@ body {
 }
 .section-content.clear {
   overflow: hidden;
+}
+select.text {
+  width: auto !important;
+  min-width: 120px;
+  line-height: 26px;
+  letter-spacing: 0;
+  font-weight: lighter;
+  font-family: 'Source Sans Pro';
+}
+.button,
+.text,
+.checkbox:before {
+  border-radius: 2px;
+}
+.button-large {
+  border-radius: 3px;
 }
 /*------------------------------------*
     WoW class colors
