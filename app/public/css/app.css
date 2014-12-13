@@ -2670,7 +2670,7 @@ body {
   color: #ffffff;
 }
 .page-content {
-  margin-top: 60px;
+  margin-top: 80px;
 }
 .page-breadcrumb-nav {
   float: right;
@@ -2691,6 +2691,7 @@ body {
   text-decoration: underline;
 }
 .page-footer {
+  padding-top: 20px;
   margin-bottom: 60px;
 }
 .page-footer h3 {
@@ -3069,6 +3070,43 @@ select.text {
   color: #dfdfdf;
   text-transform: uppercase;
   opacity: .65;
+}
+.post-editor h2 {
+  font-size: 180%;
+  font-weight: bolder;
+  margin-bottom: 34px;
+  letter-spacing: -1px;
+}
+.post-editor h3 {
+  font-size: 120%;
+  font-weight: bolder;
+  letter-spacing: -1px;
+}
+.post-editor .legend {
+  padding-bottom: 17px;
+  font-size: 70%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.post-editor .legend var {
+  background-color: #313042;
+  padding: 2px 5px;
+  font-weight: bolder;
+  margin-right: 3px;
+}
+.post-editor .legend a {
+  color: #dfdfdf;
+  opacity: .65;
+}
+.post-editor input.text {
+  width: 68%;
+  min-width: 220px;
+  margin-bottom: 10px;
+}
+.post-editor textarea {
+  width: 100%;
+  height: 10em;
+  margin-bottom: 17px;
 }
 /*------------------------------------*
     Gallery styles

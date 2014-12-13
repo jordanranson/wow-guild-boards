@@ -54,7 +54,7 @@
     <ul class="forum-list">
 
         <li class="topic-item">
-            <a href="">
+            <a href="/threads/announcements">
                 <header>
                     <h2>Announcements</h2>
                     <p><span>The latest happenings of AXION.</span></p>
@@ -68,8 +68,9 @@
             </a>
         </li>
 
+        {{#if user}}
         <li class="topic-item">
-            <a href="">
+            <a href="/threads/general">
                 <header>
                     <h2>General Discussion</h2>
                     <p><span>For all your off topic discussion.</span></p>
@@ -84,9 +85,9 @@
         </li>
 
         <li class="topic-item">
-            <a href="">
+            <a href="threads/pve">
                 <header>
-                    <h2>PvP, PvE &amp; Raids</h2>
+                    <h2>PvP, Dungeons &amp; Raids</h2>
                     <p><span>Discuss strategies and plan groups.</span></p>
                 </header>
                 <footer>
@@ -97,6 +98,7 @@
                 </footer>
             </a>
         </li>
+        {{/if}}
 
     </ul>
 

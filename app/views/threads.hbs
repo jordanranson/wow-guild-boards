@@ -27,9 +27,9 @@
 {{/section}}
 
 {{#section 'breadcrumb_nav'}}
-    <a class="active">Replies</a>
+    <!-- <a class="active">Replies</a>
     <a>Views</a>
-    <a>Newest</a>
+    <a>Newest</a>-->
 {{/section}}
 
 
@@ -49,134 +49,80 @@
 --}}
 
 <header class="section-header">
-    <h1>Announcements</h1>
-    <p>The latest happenings of AXION.</p>
+    <h1 style="text-transform:capitalize">{{topicTitle}}</h1>
+    <p>{{topicDescription}}</p>
 </header>
 
 <section class="section-content clear">
 
     <ul class="forum-list">
 
+        {{#if threads.length}}
+        {{#each threads}}
         <li class="thread-item">
-            <a href="">
+            <a href="/thread/{{_id}}">
                 <header>
                     <div class="gutter">
-                        <img src="//placehold.it/54x54">
+                        <img src="//placehold.it/54x54/#313042/#313042" style="border-radius:3px">
                     </div>
                     <div class="content">
-                        <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
+                        <h2>{{title}}</h2>
+                        <p>
+                            <span>Created by </span>
+                            <strong>
+                                {{#if author.mainCharacter.name}}
+                                    {{author.mainCharacter.name}}
+                                {{else}}
+                                    {{author.battletag}}
+                                {{/if}}
+                            </strong>
+                            <span> on </span>
+                            <strong>{{created}}</strong>
+                            <span>.</span>
+                        </p>
                     </div>
                 </header>
                 <footer>
                     <div class="forum-list-counter">
-                        <strong>99999</strong>
+                        <strong>{{views}}</strong>
                         <small>Views</small>
                     </div>
                     <div class="forum-list-counter">
-                        <strong>99999</strong>
+                        <strong>{{replies}}</strong>
                         <small>Replies</small>
                     </div>
                 </footer>
             </a>
         </li>
-
-        <li class="thread-item">
-            <a href="">
-                <header>
-                    <div class="gutter">
-                        <img src="//placehold.it/54x54">
-                    </div>
-                    <div class="content">
-                        <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
-                    </div>
-                </header>
-                <footer>
-                    <div class="forum-list-counter">
-                        <strong>99999</strong>
-                        <small>Views</small>
-                    </div>
-                    <div class="forum-list-counter">
-                        <strong>99999</strong>
-                        <small>Replies</small>
-                    </div>
-                </footer>
-            </a>
+        {{/each}}
+        {{else}}
+        <li class="empty-list-item">
+            <p><em>This topic has no threads :(</em></p>
         </li>
-
-        <li class="thread-item">
-            <a href="">
-                <header>
-                    <div class="gutter">
-                        <img src="//placehold.it/54x54">
-                    </div>
-                    <div class="content">
-                        <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
-                    </div>
-                </header>
-                <footer>
-                    <div class="forum-list-counter">
-                        <strong>99999</strong>
-                        <small>Views</small>
-                    </div>
-                    <div class="forum-list-counter">
-                        <strong>99999</strong>
-                        <small>Replies</small>
-                    </div>
-                </footer>
-            </a>
-        </li>
-
-        <li class="thread-item">
-            <a href="">
-                <header>
-                    <div class="gutter">
-                        <img src="//placehold.it/54x54">
-                    </div>
-                    <div class="content">
-                        <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
-                    </div>
-                </header>
-                <footer>
-                    <div class="forum-list-counter">
-                        <strong>99999</strong>
-                        <small>Views</small>
-                    </div>
-                    <div class="forum-list-counter">
-                        <strong>99999</strong>
-                        <small>Replies</small>
-                    </div>
-                </footer>
-            </a>
-        </li>
-
-        <li class="thread-item">
-            <a href="">
-                <header>
-                    <div class="gutter">
-                        <img src="//placehold.it/54x54">
-                    </div>
-                    <div class="content">
-                        <h2>Thread Title</h2>
-                        <p><span>Created by </span><strong>{{user.battletag}}</strong><span> on </span><strong>Nov 19</strong><span>.</span></p>
-                    </div>
-                </header>
-                <footer>
-                    <div class="forum-list-counter">
-                        <strong>99999</strong>
-                        <small>Views</small>
-                    </div>
-                    <div class="forum-list-counter">
-                        <strong>99999</strong>
-                        <small>Replies</small>
-                    </div>
-                </footer>
-            </a>
-        </li>
+        {{/if}}
 
     </ul>
+
+    {{#if user}}
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+
+        <div class="post-editor">
+            <form action="/threads/create/{{topic}}" method="post">
+                <h2>Create New Thread</h2>
+
+                <h3>Posting as {{#if user.mainCharacter.name}}{{user.mainCharacter.name}}{{else}}{{user.battletag}}{{/if}}</h3>
+                <p class="legend"><var>MD</var> <a href="" target="_blank">Format your posts using Markdown</a>.</p>
+
+                <input id="title" type="text" class="text text-large" name="title">
+                <textarea class="text" name="content"></textarea>
+
+                <button class="button button-primary button-large">Submit Post</button>
+            </form>
+        </div>
+    {{/if}}
 
 </section>

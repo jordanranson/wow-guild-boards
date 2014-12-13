@@ -181,3 +181,49 @@
         }
     }
 }
+
+.post-editor {
+    h2 {
+        font-size: 180%;
+        font-weight: bolder;
+        margin-bottom: @paddingThick;
+        letter-spacing: -1px;
+    }
+
+    h3 {
+        font-size: 120%;
+        font-weight: bolder;
+        letter-spacing: -1px;
+    }
+
+    .legend {
+        padding-bottom: @padding;
+        font-size: 70%;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        var {
+            background-color: @inputBackgroundColor;
+            padding: 2px 5px;
+            font-weight: bolder;
+            margin-right: 3px;
+        }
+
+        a {
+            color: @textColor;
+            opacity: .65;
+        }
+    }
+
+    input.text {
+        width: 68%;
+        min-width: 220px;
+        margin-bottom: @paddingThin;
+    }
+
+    textarea {
+        width: 100%;
+        height: 10em;
+        margin-bottom: @padding;
+    }
+}

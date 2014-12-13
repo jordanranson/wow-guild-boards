@@ -1,5 +1,4 @@
 var User    = require('../models/user');
-var Keys    = require('../config/keys');
 var request = require('../request');
 var __      = require('lodash');
 
