@@ -106,8 +106,15 @@
             <form action="/thread/create/{{topic}}" method="post">
                 <h2>Create New Thread</h2>
 
-                <h3>Posting as {{username user}}</h3>
-                <p class="legend"><var>MD</var> <a href="" target="_blank">Format your posts using Markdown</a>.</p>
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
+                    </div>
+                    <hgroup>
+                        <h3>Posting as {{username user}}</h3>
+                        <p class="legend"><var>MD</var> <a href="" target="_blank">Format your posts using Markdown</a>.</p>
+                    </hgroup>
+                </div>
 
                 <input id="title" type="text" class="text text-large" name="title">
                 <textarea class="text" name="content"></textarea>

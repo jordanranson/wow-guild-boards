@@ -104,10 +104,17 @@
         <li>
             <header>
                 <h4>
-                    <strong>{{username author}}</strong><br>
-                    <small>
-                        <em class="{{classSelector author.characters.[0].class}}">{{className author.characters.[0].class}}</em>
-                    </small>
+                    <div class="avatar-container">
+                        <div class="avatar">
+                            <img src="//us.battle.net/static-render/us/{{author.characters.[0].thumbnail}}">
+                        </div>
+                        <hgroup>
+                            <strong>{{username author}}</strong><br>
+                            <small>
+                                <em class="{{classSelector author.characters.[0].class}}">{{className author.characters.[0].class}}</em>
+                            </small>
+                        </hgroup>
+                    </div>
                 </h4>
                 <span class="timestamp">
                     <a href="/post/{{_id}}" name="{{_id}}">
@@ -117,7 +124,7 @@
                 </span>
             </header>
             <section>
-                <p class="pre-wrap">{{decode content}}</p>
+                {{{markdown content}}}
             </section>
             <footer>
                 <a href="/thread/{{../thread._id}}/#reply">Reply</a>
@@ -139,8 +146,15 @@
             <a name="reply"></a>
             <h2>Reply</h2>
 
-            <h3>Posting as {{username user}}</h3>
-            <p class="legend"><var>MD</var> <a href="" target="_blank">Format your posts using Markdown</a>.</p>
+            <div class="avatar-container">
+                <div class="avatar">
+                    <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
+                </div>
+                <hgroup>
+                    <h3>Posting as {{username user}}</h3>
+                    <p class="legend"><var>MD</var> <a href="" target="_blank">Format your posts using Markdown</a>.</p>
+                </hgroup>
+            </div>
 
             <textarea class="text" name="content"></textarea>
 

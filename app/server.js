@@ -14,7 +14,7 @@ var session         = require('express-session');
 var CONFIG          = require('./config/config');
 var bodyParser      = require('body-parser');
 var moment          = require('moment');
-var markdown        = require('markdown');
+var markdown        = require('markdown').markdown;
 var env             = 'dev';
 
 
@@ -107,6 +107,28 @@ app.engine('.hbs', exphbs({
                 case 10: return 'monk';
                 case 11: return 'druid';
             }
+        },
+        markdown: function(body) {
+            var text = decodeURIComponent(body);
+            var tree = markdown.parse(text);
+            var html = markdown.renderJsonML(markdown.toHTMLTree(tree));
+
+            html = html.replace(
+            /\[(.*)\]\[(.*)\]/g,
+            function(match, url, method, offset, string) {
+                url = url.replace('http://',  '//');
+                url = url.replace('https://', '//');
+
+                switch(method) {
+                    case 'image':
+                        return '<div class="post-image" style="background-image:url('+url+')"></div>';
+                    case 'video':
+                        url = url.replace('watch?v=', 'embed/');
+                        return '<div class="post-video"><iframe src="'+url+'" seamless frameborder="0" allowfullscreen></iframe></div>';
+                }
+            });
+
+            return html;
         }
     }
 }));
