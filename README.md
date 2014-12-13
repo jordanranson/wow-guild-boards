@@ -1,25 +1,27 @@
-Version 0.1 Roadmap
-===================
-- [ ] Front Page
-    - [ ] Announcements + Guild News/Achieves + Gallery
+Roadmap
+=======
+
+## Version 0.1
 - [ ] Forums
-    - [ ] Types of boards
+    - [ ] Default boards
        - [ ] Announcements
-       - [ ] Gallery
        - [ ] General discussion
-    - [ ] Threaded discussion
+       - [ ] PvP, PvE &amp; Raiding
 - [ ] Users
     - [ ] Display name, class, rank, title
+- [x] Battle.net authentication
+
+## Version 0.2
+- [ ] Guild News & Achievements
+- [ ] Sticky threads
 - [ ] Authentication & Permissions
     - [ ] Admin
     - [ ] Guild Master
     - [ ] Officer
     - [ ] Member
-- [x] Battle.net authentication
-- [ ] Guild News & Achievements
+- [ ] Gallery
 
-Version 0.2 Roadmap
-===================
+## Version 0.2 Roadmap
 - [ ] Wowhead tooltips
 - [ ] Guild Roster
 - [ ] Forum Sub-categories
