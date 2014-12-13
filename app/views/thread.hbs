@@ -110,16 +110,14 @@
                     </small>
                 </h4>
                 <span class="timestamp">
-                    <a href="/post/{{_id}}">
+                    <a href="/post/{{_id}}" name="{{_id}}">
                         {{formatDate created 'MMM Do, hh:mm, YY'}}
                         <span>#{{plusOne @index}}</span>
                     </a>
                 </span>
             </header>
             <section>
-                <p>
-                    {{decode content}}
-                </p>
+                <p class="pre-wrap">{{decode content}}</p>
             </section>
             <footer>
                 <a href="/thread/{{../thread._id}}/#reply">Reply</a>
@@ -137,7 +135,7 @@
     <br>
 
     <div class="post-editor">
-        <form action="/thread/reply/{{topic}}/{{thread._id}}">
+        <form action="/thread/reply/{{thread._id}}" method="post">
             <a name="reply"></a>
             <h2>Reply</h2>
 

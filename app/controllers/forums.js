@@ -177,7 +177,22 @@ module.exports = {
 
     deleteThread: function() {},
 
-    createPost: function() {},
+    createPost: function(req, res) {
+        var user   = req.user;
+        var body   = req.body;
+        var post   = new Post();
+        var thread = req.params.id;
+
+        post.created = new Date().getTime();
+        post.author  = user._id;
+        post.thread  = thread;
+        post.content = encodeURIComponent(body.content);
+
+        post.save(function (err) {
+            if (err) throw err;
+            res.redirect('/thread/' + thread + '/#' + post._id);
+        });
+    },
 
     getPost: function(req, res) {
         Post
