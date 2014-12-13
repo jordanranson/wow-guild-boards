@@ -8,7 +8,7 @@ Roadmap
        - [ ] General discussion
        - [ ] PvP, PvE &amp; Raiding
 - [ ] Users
-    - [ ] Display name, class, rank, title
+    - [x] Display name, class, rank, title
 - [x] Battle.net authentication
 
 ## Version 0.2
@@ -21,7 +21,7 @@ Roadmap
     - [ ] Member
 - [ ] Gallery
 
-## Version 0.2 Roadmap
+## Version 0.3
 - [ ] Wowhead tooltips
 - [ ] Guild Roster
 - [ ] Forum Sub-categories
