@@ -56,7 +56,7 @@ function login(data, profile, err, user, done) {
         // save the user
         newUser.save(function (err) {
             if (err) throw err;
-            return done(null, user);
+            return done(null, newUser);
         });
     }
 }
