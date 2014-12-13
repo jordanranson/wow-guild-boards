@@ -63,22 +63,14 @@
             <a href="/thread/{{_id}}">
                 <header>
                     <div class="gutter">
-                        <img src="//placehold.it/54x54/#313042/#313042" style="border-radius:3px">
+                        <img src="//placehold.it/54x54/313042/313042" style="border-radius:3px">
                     </div>
                     <div class="content">
                         <h2>{{title}}</h2>
                         <p>
                             <span>Created by </span>
-                            <strong>
-                                {{#if author.mainCharacter.name}}
-                                    {{author.mainCharacter.name}}
-                                {{else}}
-                                    {{author.battletag}}
-                                {{/if}}
-                            </strong>
-                            <span> on </span>
-                            <strong>{{created}}</strong>
-                            <span>.</span>
+                            <strong>{{username author}}</strong>
+                            <span>{{timeSince created}}.</span>
                         </p>
                     </div>
                 </header>
@@ -111,10 +103,10 @@
         <br>
 
         <div class="post-editor">
-            <form action="/threads/create/{{topic}}" method="post">
+            <form action="/thread/create/{{topic}}" method="post">
                 <h2>Create New Thread</h2>
 
-                <h3>Posting as {{#if user.mainCharacter.name}}{{user.mainCharacter.name}}{{else}}{{user.battletag}}{{/if}}</h3>
+                <h3>Posting as {{username user}}</h3>
                 <p class="legend"><var>MD</var> <a href="" target="_blank">Format your posts using Markdown</a>.</p>
 
                 <input id="title" type="text" class="text text-large" name="title">

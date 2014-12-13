@@ -22,8 +22,8 @@
 --}}
 
 {{#section 'breadcrumb'}}
-    <a href="/topics">{{topic}}</a> <i>&rsaquo;</i>
-    <span>Thread Title</span>
+    <a href="/topics">{{topicTitle}}</a> <i>&rsaquo;</i>
+    <span>{{thread.title}}</span>
 {{/section}}
 
 {{#section 'breadcrumb_nav'}}
@@ -51,15 +51,15 @@
 --}}
 
 <header class="section-header">
-    <h1>Thread Title</h1>
+    <h1>{{thread.title}}</h1>
     <p class="subject">
         <span>Created by </span>
-        <strong>Lupanar</strong>
+        <strong>{{username thread.author}}</strong>
         <span> on </span>
-        <strong>Nov 19</strong>
+        <strong>{{formatDate thread.created 'MMMM Do, YYYY'}}</strong>
         <span> in </span>
-        <strong>Announcements</strong>
-        <span>.</span></p>
+        <strong>{{topicTitle}}</strong><span>.</span
+    </p>
 </header>
 
 <section class="section-content clear">
@@ -100,46 +100,48 @@
             </footer>
         </li>-->
 
+        {{#each posts}}
         <li>
             <header>
                 <h4>
-                    <strong>Lupanar</strong><br>
+                    <strong>{{username author}}</strong><br>
                     <small>
-                        <em class="deathknight">Death Knight</em>
+                        <em class="{{classSelector author.characters.[0].class}}">{{className author.characters.[0].class}}</em>
                     </small>
                 </h4>
-                <span class="timestamp"><a href="">Nov 19, 20:53 <span>#1</span></a></span>
+                <span class="timestamp">
+                    <a href="/post/{{_id}}">
+                        {{formatDate created 'MMM Do, hh:mm, YY'}}
+                        <span>#{{plusOne @index}}</span>
+                    </a>
+                </span>
             </header>
             <section>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam dictum nec mi id pulvinar. Nunc vel dictum nisl.
-                    Aliquam erat volutpat. Nam accumsan leo ut urna sollicitudin pellentesque.
-                    Aliquam semper metus quis urna aliquam, nec volutpat nibh posuere.
+                    {{decode content}}
                 </p>
             </section>
             <footer>
-                <a href="">Reply</a>
-                <a href="">Quote</a>
+                <a href="/thread/{{../thread._id}}/#reply">Reply</a>
+                <!--<a href="">Quote</a>
                 <a href="">Edit</a>
-                <a href="">Remove</a>
+                <a href="">Remove</a>-->
             </footer>
         </li>
+        {{/each}}
 
     </ul>
 
     {{#if user}}
     <br>
     <br>
-    <hr>
-    <br>
-    <br>
 
     <div class="post-editor">
         <form action="/thread/reply/{{topic}}/{{thread._id}}">
+            <a name="reply"></a>
             <h2>Reply</h2>
 
-            <h3>Posting as {{#if user.mainCharacter.name}}{{user.mainCharacter.name}}{{else}}{{user.battletag}}{{/if}}</h3>
+            <h3>Posting as {{username user}}</h3>
             <p class="legend"><var>MD</var> <a href="" target="_blank">Format your posts using Markdown</a>.</p>
 
             <textarea class="text" name="content"></textarea>

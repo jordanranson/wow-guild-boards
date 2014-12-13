@@ -12,6 +12,9 @@ var fs              = require('fs');
 var cookieParser    = require('cookie-parser');
 var session         = require('express-session');
 var CONFIG          = require('./config/config');
+var bodyParser      = require('body-parser');
+var moment          = require('moment');
+var markdown        = require('markdown');
 var env             = 'dev';
 
 
@@ -43,6 +46,10 @@ app.use(session({
     resave: true
 }));
 
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
+    extended: true
+}));
 
 app.engine('.hbs', exphbs({
     defaultLayout: 'master',
@@ -52,6 +59,54 @@ app.engine('.hbs', exphbs({
             if(!this._sections) this._sections = {};
             this._sections[name] = options.fn(this);
             return null;
+        },
+        timeSince: function(date) {
+            return moment(date).fromNow();
+        },
+        formatDate: function(date, format) {
+            return moment(date).format(format);
+        },
+        plusOne: function(value) {
+            return Number(value) + 1;
+        },
+        username: function(user) {
+            if(user.mainCharacter.name === null) {
+                return user.battletag;
+            }
+            return user.mainCharacter.name;
+        },
+        decode: function(body) {
+            return decodeURIComponent(body);
+        },
+        className: function(classId) {
+            switch(classId) {
+                case 1:  return 'Warrior';
+                case 2:  return 'Paladin';
+                case 3:  return 'Hunter';
+                case 4:  return 'Rogue';
+                case 5:  return 'Priest';
+                case 6:  return 'Death Knight';
+                case 7:  return 'Shaman';
+                case 8:  return 'Mage';
+                case 9:  return 'Warlock';
+                case 10: return 'Monk';
+                case 11: return 'Druid';
+            }
+        },
+        classSelector: function(classId) {
+            switch(classId) {
+                case 1:  return 'warrior';
+                case 2:  return 'paladin';
+                case 3:  return 'hunter';
+                case 4:  return 'rogue';
+                case 5:  return 'priest';
+                case 6:  return 'deathknight';
+                case 7:  return 'shaman';
+                case 8:  return 'mage';
+                case 9:  return 'warlock';
+                case 10: return 'monk';
+                case 11: return 'druid';
+            }
         }
     }
 }));

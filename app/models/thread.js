@@ -4,7 +4,7 @@ var ObjectId = mongoose.Schema.ObjectId;
 var Schema = mongoose.Schema({
 
     created : Date,
-    author  : Number,
+    author  : { type: ObjectId, ref: 'User' },
     title   : String,
     topic   : String,
     views   : Number,

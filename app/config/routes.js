@@ -39,142 +39,27 @@ module.exports = function(app, passport) {
         }
     });
 
-    // topics
-    app.get('/topics', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.render('topics', {
-                user: req.user
-            });
-        } else {
-            res.render('topics', {
-                user: null
-            });
-        }
-    });
 
-    // threads
-    app.get('/threads/:topic', function(req, res) {
-        var topic = req.params.topic;
+    /*
+     * Forums
+     */
 
-        var description = '';
-        var guildName = 'AXION';
+    // view threads & topics
+    app.get('/topics',         forumsController.getTopics);
+    app.get('/threads/:topic', forumsController.getThreads);
+    app.get('/thread/:id',     forumsController.getThread);
+    app.get('/post/:id',       forumsController.getPost);
 
-        if(topic === undefined) {
-            res.redirect('/topics');
-            return;
-        }
+    // thread api
+    app.post('/thread/create/:topic', forumsController.createThread);
+    app.post('/thread/update/:topic', forumsController.updateThread);
+    app.post('/thread/delete/:topic', forumsController.deleteThread);
 
-        switch(topic) {
-            case 'announcements':
-                title       = 'Announcements';
-                description = 'The latest happenings of ' + guildName + '.';
-                break;
-            case 'general':
-                title       = 'General Discussion';
-                description = 'For all your off topic discussion.';
-                break;
-            case 'pve':
-                title       = 'PvP, Dungeons, &amp; Raids';
-                description = 'Discuss strategies and plan groups.';
-                break;
-            case 'pvp':
-                title       = 'Player Versus Player';
-                description = 'Form teams, talk strategies, get rekt.';
-                break;
-            case 'officer':
-                title       = 'Officer';
-                description = 'Officer only threads. Hidden to non-officers.';
-                break;
-        }
+    // post api
+    app.post('/post/reply/:topic',  forumsController.createPost);
+    app.post('/post/update/:topic', forumsController.updatePost);
+    app.post('/post/delete/:topic', forumsController.deletePost);
 
-        var threads = [{
-            created : new Date().getTime() - 36000,
-            author  : 12345,
-            title   : 'Thread Title',
-            topic   : 'announcements',
-            views   : 999,
-            sticky  : false,
-            locked  : false,
-            replies : 999
-        }];
-        threads = [];
-
-        if(topic === 'announcements') {
-            if(req.isAuthenticated()) {
-                res.render('threads', {
-                    user: req.user,
-                    topic: topic,
-                    topicTitle: title,
-                    topicDescription: description,
-                    threads: threads
-                });
-            } else {
-                res.render('threads', {
-                    user: null,
-                    topic: topic,
-                    topicTitle: title,
-                    topicDescription: description,
-                    threads: threads
-                });
-            }
-        }
-
-        if(topic === 'general') {
-            if(req.isAuthenticated()) {
-                res.render('threads', {
-                    user: req.user,
-                    topic: topic,
-                    topicTitle: title,
-                    topicDescription: description,
-                    threads: threads
-                });
-            } else {
-                res.redirect('/unauthorized');
-            }
-        }
-
-        if(topic === 'pve' || topic === 'pvp') {
-            if(req.isAuthenticated()) {
-                res.render('threads', {
-                    user: req.user,
-                    topic: topic,
-                    topicTitle: title,
-                    topicDescription: description,
-                    threads: threads
-                });
-            } else {
-                res.redirect('/unauthorized');
-            }
-        }
-    });
-
-    // create thread
-    app.post('/thread/create/:topic', function(req, res) {
-        var topic = req.params.topic;
-        var data  = req.query;
-
-        if(req.isAuthenticated()) {
-            res.render('thread', {
-                user: req.user
-            });
-        } else {
-            res.status('403');
-            res.redirect('/unauthorized');
-        }
-    });
-
-    // thread
-    app.get('/thread', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.render('thread', {
-                user: req.user
-            });
-        } else {
-            res.render('thread', {
-                user: null
-            });
-        }
-    });
 
     // roster
     app.get('/roster', function(req, res) {
@@ -224,25 +109,26 @@ module.exports = function(app, passport) {
         }
     });
 
-    // 403
+
+    /*
+     * Error pages
+     */
+
+    // 403 unauthorized
     app.get('/unauthorized', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.redirect('/');
-        } else {
-            res.status(403);
-            res.render('unauthorized', { title: 'You do not have permission to access this page.' });
-        }
+        res.status(403);
+        res.render('unauthorized', { message: 'You do not have permission to access this page.' });
     });
 
-    // 404 error handler
+    // 404 page not found
     app.use(function(req, res, next) {
         res.status(404);
-        res.render('404', { title: 'Page not found.' });
+        res.render('404', { message: 'Page not found.' });
     });
 
-    // 500 error handler
+    // 500 server error
     app.use(function(error, req, res, next) {
         res.status(500);
-        res.render('500', { title: 'Internal server error.', error: error });
+        res.render('500', { message: 'Internal server error.', error: error });
     });
 };

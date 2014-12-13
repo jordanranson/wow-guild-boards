@@ -4,8 +4,8 @@ var ObjectId = mongoose.Schema.ObjectId;
 var Schema = mongoose.Schema({
 
     created : Date,
-    author  : Number,
-    thread  : ObjectId,
+    author  : { type: ObjectId, ref: 'User' },
+    thread  : { type: ObjectId, ref: 'Thread' },
     content : String
 
 });
