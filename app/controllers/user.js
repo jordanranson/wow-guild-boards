@@ -51,6 +51,7 @@ function login(data, profile, err, user, done) {
         }
 
         // site settings
+        newUser.characterRole = 'damage';
         newUser.showItemLevel = false;
 
         Guild.findOne({}, function(err, guild) {
@@ -89,7 +90,7 @@ function login(data, profile, err, user, done) {
             // save the user
             newUser.save(function (err) {
                if (err) throw err;
-               return done(null, user);
+               return done(null, newUser);
             });
        });
     }

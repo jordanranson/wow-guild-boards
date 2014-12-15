@@ -18,7 +18,7 @@ function getTopic(topic, guildName) {
             description = 'For all your off topic discussion.';
             break;
         case 'pve':
-            title       = 'PvP, Dungeons, &amp; Raids';
+            title       = 'PvP, Dungeons, & Raids';
             description = 'Discuss strategies and plan groups.';
             break;
         case 'pvp':
@@ -93,6 +93,7 @@ module.exports = {
 
                 res.render('thread', {
                     user: req.user,
+                    topic: thread.topic,
                     topicTitle: topicData.title,
                     thread: thread,
                     posts: posts
