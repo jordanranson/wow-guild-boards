@@ -1,6 +1,8 @@
 var express = require('express');
 var Thread  = require('../models/thread');
 var Post    = require('../models/post');
+var Guild   = require('../models/guild');
+var __      = require('lodash');
 var forumsController = require('../controllers/forums');
 
 module.exports = function(app, passport) {
@@ -63,15 +65,31 @@ module.exports = function(app, passport) {
 
     // roster
     app.get('/roster', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.render('roster', {
-                user: req.user
+        Guild.findOne({}, function(err, guild) {
+            if(err) throw err;
+
+            guild.members =
+            __.filter(
+            __.sortBy(guild.members,
+                function(member) {
+                    return [member.rank, member.character.class, member.character.spec, member.character.name];
+                }),
+            function(member) {
+                return member.character.level >= 100 && member.rank <= 5;
             });
-        } else {
-            res.render('roster', {
-                user: null
-            });
-        }
+
+            if (req.isAuthenticated()) {
+                res.render('roster', {
+                    user: req.user,
+                    guild: guild
+                });
+            } else {
+                res.render('roster', {
+                    user: null,
+                    guild: guild
+                });
+            }
+        });
     });
 
     // gallery

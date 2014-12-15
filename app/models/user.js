@@ -25,8 +25,12 @@ var Schema = mongoose.Schema({
 
     // site settings
     showBattletag : Boolean,
-    characterRole : String,
-    showItemLevel : Boolean
+
+    // permissions
+    role          : {
+        officer   : Boolean,
+        admin     : Boolean
+    }
 
 });
 

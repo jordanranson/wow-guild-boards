@@ -126,12 +126,14 @@
             <section>
                 {{{markdown content}}}
             </section>
+            {{#if user}}
             <footer>
                 <a href="/thread/{{../thread._id}}/#reply">Reply</a>
                 <!--<a href="">Quote</a>
                 <a href="">Edit</a>
                 <a href="">Remove</a>-->
             </footer>
+            {{/if}}
         </li>
         {{/each}}
 

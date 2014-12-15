@@ -1,4 +1,5 @@
 var User    = require('../models/user');
+var Guild   = require('../models/guild');
 var request = require('../request');
 var __      = require('lodash');
 
@@ -50,14 +51,47 @@ function login(data, profile, err, user, done) {
         }
 
         // site settings
-        newUser.characterRole = 'damage';
         newUser.showItemLevel = false;
 
-        // save the user
-        newUser.save(function (err) {
-            if (err) throw err;
-            return done(null, user);
-        });
+        Guild.findOne({}, function(err, guild) {
+            if(err) throw err;
+            
+            var officer = false;
+            var admin   = false;
+
+            // figure out if you're an officer
+            for(var i = 0; i < guild.members.length; i++) {
+                for(var k = 0; k < characters.length; k++) {
+                    var member    = guild.members[i];
+                    var character = characters[k];
+
+                    if(
+                    member.character.name  === character.name &&
+                    member.character.realm === character.realm ) {
+                       if(member.rank <= 2) {
+                           officer = true;
+                           break;
+                       }
+                    }
+                }
+            }
+
+            // or if you're an admin
+            if(profile.battletag === 'Lup#1749') {
+               admin = true;
+            }
+
+            newUser.role = {
+               officer: officer,
+               admin: admin
+            };
+
+            // save the user
+            newUser.save(function (err) {
+               if (err) throw err;
+               return done(null, user);
+            });
+       });
     }
 }
 

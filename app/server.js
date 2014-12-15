@@ -15,6 +15,8 @@ var CONFIG          = require('./config/config');
 var bodyParser      = require('body-parser');
 var moment          = require('moment');
 var markdown        = require('markdown').markdown;
+var Guild           = require('./models/guild');
+var request         = require('./request');
 var env             = 'dev';
 
 
@@ -129,6 +131,17 @@ app.engine('.hbs', exphbs({
             });
 
             return html;
+        },
+        rankName: function(rankId) {
+            switch(rankId) {
+                case 0: return 'Guild Master';
+                case 1: return 'Assistant GM';
+                case 2: return 'Officer';
+                case 3: return 'Raider';
+                case 4: return 'PvP';
+                case 5: return 'Social/Friend';
+                case 6: return 'Alternate';
+            }
         }
     }
 }));
@@ -165,4 +178,43 @@ http.listen(80);
 // start real server
 server.listen(443, function() {
     console.log('Listening on port %d', server.address().port);
+
+    Guild.findOne({}, function(err, guild) {
+        request.bnet(
+            'us.battle.net',
+            '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members',
+            function(data) {
+                var lastUpdated = new Date().getTime();
+                if(guild !== null) {
+                    for(var key in data) {
+                        guild[key] = data[key];
+                    }
+
+                    guild.lastUpdated = lastUpdated;
+                    guild.settings = {
+                        webAdminBattletag: ''
+                    };
+
+                    guild.save(function(err) {
+                        if(err) throw err;
+                    });
+                }
+                else {
+                    var newGuild = new Guild();
+                    for(var key in data) {
+                        newGuild[key] = data[key];
+                    }
+
+                    newGuild.lastUpdated = lastUpdated;
+                    newGuild.settings = {
+                        webAdminBattletag: ''
+                    };
+
+                    newGuild.save(function(err) {
+                        if(err) throw err;
+                    });
+                }
+            }
+        );
+    });
 });

@@ -57,28 +57,16 @@
                 <th><a class="active">Name</a></th>
                 <th><a>Specialization</a></th>
                 <th><a>Guild Rank</a></th>
-                <th><a>Item Level</a></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="deathknight">Lupanar</td>
-                <td>Blood, Unholy</td>
-                <td>Raider</td>
-                <td>636</td>
+            {{#each guild.members}}
+            <tr data-rank="{{rank}}" data-name="{{character.name}}" data-spec="{{character.spec}}">
+                <td class="{{classSelector character.class}}">{{character.name}}</td>
+                <td>{{character.spec.name}}</td>
+                <td>{{rankName rank}}</td>
             </tr>
-            <tr>
-                <td class="druid">Talirarr</td>
-                <td>Restoration, Feral</td>
-                <td>Officer</td>
-                <td>632</td>
-            </tr>
-            <tr>
-                <td class="mage">Krhat</td>
-                <td>Frost, Arcane</td>
-                <td>Raider</td>
-                <td>625</td>
-            </tr>
+            {{/each}}
         </tbody>
     </table>
 </section>

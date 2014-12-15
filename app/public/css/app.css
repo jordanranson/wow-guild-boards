@@ -1,4 +1,4 @@
-/*! wow-guild-boards - v0.0.1 - 2014-12-13
+/*! wow-guild-boards - v0.0.1 - 2014-12-14
 * https://github.com/jordanranson/wow-guild-boards
 * Copyright (c) 2014 Jordan Ranson; Licensed under the Apache2 license */
 /*------------------------------------*
@@ -3002,7 +3002,6 @@ select.text {
 }
 .thread-list > li {
   padding: 40px 0;
-  opacity: .5;
   border-bottom: solid 1px rgba(255, 255, 255, 0.05);
   transition: opacity 300ms ease-in-out;
 }
