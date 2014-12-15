@@ -1,5 +1,6 @@
 var Thread   = require('../models/thread');
 var Post     = require('../models/post');
+var Guild    = require('../models/guild');
 var request  = require('../request');
 var __       = require('lodash');
 var color    = require('colors');
@@ -39,40 +40,55 @@ function getTopic(topic, guildName) {
 module.exports = {
 
     createThread: function(req, res) {
-        if(req.isAuthenticated()) {
-            var user  = req.user;
-            var topic = req.params.topic;
-            var body  = req.body;
-
-            var thread = new Thread();
-
-            thread.created = new Date().getTime();
-            thread.author  = user._id;
-            thread.title   = body.title;
-            thread.topic   = topic;
-            thread.views   = 1;
-            thread.sticky  = false;
-            thread.locked  = false;
-
-            thread.save(function (err) {
-                if (err) throw err;
-
-                var post = new Post();
-
-                post.created = new Date().getTime();
-                post.author  = user._id;
-                post.thread  = thread._id;
-                post.content = encodeURIComponent(body.content);
-
-                post.save(function (err) {
-                    if (err) throw err;
-                    res.redirect('/thread/' + thread._id);
-                });
-            });
-        }
-        else {
+        if (!req.isAuthenticated()) {
             res.redirect('/unauthorized');
+            return;
         }
+
+        var user  = req.user;
+        var topic = req.params.topic;
+        var body  = req.body;
+
+        // permissions
+        switch(topic) {
+            case 'announcements':
+                if(!user.role.officer) res.redirect('/unauthorized');
+                return;
+            case 'officer':
+                if(!user.role.officer) res.redirect('/unauthorized');
+                return;
+            case 'general':
+            case 'pve':
+            case 'pvp':
+                if(!user.role.member) res.redirect('/unauthorized');
+                return;
+        }
+
+        var thread = new Thread();
+
+        thread.created = new Date().getTime();
+        thread.author  = user._id;
+        thread.title   = body.title;
+        thread.topic   = topic;
+        thread.views   = 1;
+        thread.sticky  = false;
+        thread.locked  = false;
+
+        thread.save(function (err) {
+            if (err) throw err;
+
+            var post = new Post();
+
+            post.created = new Date().getTime();
+            post.author  = user._id;
+            post.thread  = thread._id;
+            post.content = encodeURIComponent(body.content);
+
+            post.save(function (err) {
+                if (err) throw err;
+                res.redirect('/thread/' + thread._id);
+            });
+        });
     },
 
     getThread: function(req, res) {
@@ -81,6 +97,22 @@ module.exports = {
         .populate('author')
         .exec(function(err, thread) {
             if(err) throw err;
+
+            // permissions
+            var auth = req.isAuthenticated();
+            switch(thread.topic) {
+                case 'announcements':
+                    break;
+                case 'officer':
+                    if(!auth || !user.role.officer) res.redirect('/unauthorized');
+                    return;
+                case 'general':
+                    if(!auth) res.redirect('/unauthorized');
+                case 'pve':
+                case 'pvp':
+                    if(!auth || !user.role.member) res.redirect('/unauthorized');
+                    return;
+            }
 
             Post
             .find({ 'thread': req.params.id })
@@ -112,7 +144,6 @@ module.exports = {
         }
 
         var topicData = getTopic(topic, guildName);
-
         if(topicData === false) {
             res.redirect('/404');
             return;
@@ -123,6 +154,22 @@ module.exports = {
         .populate('author')
         .exec(function(err, threads) {
             if(err) throw err;
+
+            // permissions
+            var auth = req.isAuthenticated();
+            switch(topic) {
+                case 'announcements':
+                    break;
+                case 'officer':
+                    if(!auth || !user.role.officer) res.redirect('/unauthorized');
+                    return;
+                case 'general':
+                    if(!auth) res.redirect('/unauthorized');
+                case 'pve':
+                case 'pvp':
+                    if(!auth || !user.role.member) res.redirect('/unauthorized');
+                    return;
+            }
 
             if(topic === 'announcements') {
                 if(req.isAuthenticated()) {
@@ -179,23 +226,50 @@ module.exports = {
     deleteThread: function() {},
 
     createPost: function(req, res) {
+        if (!req.isAuthenticated()) {
+            res.redirect('/unauthorized');
+            return;
+        }
+
         var user   = req.user;
         var body   = req.body;
         var post   = new Post();
         var thread = req.params.id;
 
-        post.created = new Date().getTime();
-        post.author  = user._id;
-        post.thread  = thread;
-        post.content = encodeURIComponent(body.content);
-
-        post.save(function (err) {
+        Thread.findOne({ '_id' : thread }, function(err, thread) {
             if (err) throw err;
-            res.redirect('/thread/' + thread + '/#' + post._id);
+
+            // permissions
+            switch (thread.topic) {
+                case 'announcements':
+                    if (!user.role.officer) res.redirect('/unauthorized');
+                    return;
+                case 'officer':
+                    if (!user.role.officer) res.redirect('/unauthorized');
+                    return;
+                case 'general':
+                    break;
+                case 'pve':
+                case 'pvp':
+                    if (!user.role.member) res.redirect('/unauthorized');
+                    return;
+            }
+
+            post.created = new Date().getTime();
+            post.author  = user._id;
+            post.thread  = thread;
+            post.content = encodeURIComponent(body.content);
+
+            post.save(function (err) {
+                if (err) throw err;
+                res.redirect('/thread/' + thread + '/#' + post._id);
+            });
         });
     },
 
     getPost: function(req, res) {
+        var user = req.user;
+
         Post
         .findOne({ '_id': req.params.id })
         .populate('author')
@@ -210,6 +284,23 @@ module.exports = {
 
                 var guildName = 'AXION';
                 var topicData = getTopic(thread.topic, guildName);
+
+                // permissions
+                var auth = req.isAuthenticated();
+                switch (thread.topic) {
+                    case 'announcements':
+                        break;
+                    case 'officer':
+                        if (!auth || !user.role.officer) res.redirect('/unauthorized');
+                        return;
+                    case 'general':
+                        if (!auth) res.redirect('/unauthorized');
+                        return;
+                    case 'pve':
+                    case 'pvp':
+                        if (!auth || !user.role.member) res.redirect('/unauthorized');
+                        return;
+                }
 
                 res.render('post', {
                     user: req.user,

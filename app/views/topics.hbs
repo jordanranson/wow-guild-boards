@@ -69,6 +69,24 @@
         </li>
 
         {{#if user}}
+
+        {{#if user.role.officer}}
+        <li class="topic-item">
+            <a href="/threads/officer">
+                <header>
+                    <h2>Officer</h2>
+                    <p><span>Officer only boards. Only officers can view and post here.</span></p>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>99999</strong>
+                        <small>Threads</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+        {{/if}}
+
         <li class="topic-item">
             <a href="/threads/general">
                 <header>
@@ -84,6 +102,7 @@
             </a>
         </li>
 
+        {{#if user.role.member}}
         <li class="topic-item">
             <a href="threads/pve">
                 <header>
@@ -98,6 +117,8 @@
                 </footer>
             </a>
         </li>
+        {{/if}}
+
         {{/if}}
 
     </ul>

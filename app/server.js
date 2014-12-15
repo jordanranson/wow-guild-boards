@@ -72,10 +72,15 @@ app.engine('.hbs', exphbs({
             return Number(value) + 1;
         },
         username: function(user) {
-            if(user.mainCharacter.name === null) {
+            if(user.showBattletag) {
                 return user.battletag;
             }
-            return user.mainCharacter.name;
+            else {
+                if (user.mainCharacter.name === null) {
+                    return user.battletag;
+                }
+                return user.mainCharacter.name;
+            }
         },
         decode: function(body) {
             return decodeURIComponent(body);

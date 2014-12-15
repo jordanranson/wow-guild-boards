@@ -29,6 +29,7 @@ var Schema = mongoose.Schema({
     // permissions
     role          : {
         officer   : Boolean,
+        member    : Boolean,
         admin     : Boolean
     }
 

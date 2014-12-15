@@ -57,10 +57,11 @@ function login(data, profile, err, user, done) {
         Guild.findOne({}, function(err, guild) {
             if(err) throw err;
             
-            var officer = false;
-            var admin   = false;
+            var isOfficer = false;
+            var isMember  = false;
+            var isAdmin   = false;
 
-            // figure out if you're an officer
+            // figure out if you're an officer or member
             for(var i = 0; i < guild.members.length; i++) {
                 for(var k = 0; k < characters.length; k++) {
                     var member    = guild.members[i];
@@ -69,22 +70,24 @@ function login(data, profile, err, user, done) {
                     if(
                     member.character.name  === character.name &&
                     member.character.realm === character.realm ) {
-                       if(member.rank <= 2) {
-                           officer = true;
-                           break;
-                       }
+                        isMember = true;
+                        if(member.rank <= 2) {
+                            isOfficer = true;
+                            break;
+                        }
                     }
                 }
             }
 
             // or if you're an admin
             if(profile.battletag === 'Lup#1749') {
-               admin = true;
+                isAdmin = true;
             }
 
             newUser.role = {
-               officer: officer,
-               admin: admin
+               officer : isOfficer,
+               member  : isMember,
+               admin   : isAdmin
             };
 
             // save the user
@@ -110,7 +113,46 @@ module.exports = {
         );
     },
 
-    update: function() {
+    update: function(req, res) {
+        var body = req.body;
 
+        var mainCharacter = body.mainCharacter.split(':');
+        var name      = mainCharacter[0];
+        var realm     = mainCharacter[1];
+        var isOfficer = false;
+        var isMember  = false;
+
+        Guild.findOne({}, function(err, guild) {
+            if(err) throw err;
+
+            // figure out if you're an officer
+            for (var i = 0; i < guild.members.length; i++) {
+                var member = guild.members[i];
+
+                if(
+                member.character.name  === name &&
+                member.character.realm === realm) {
+                    isMember = true;
+                    if (member.rank <= 2) {
+                        isOfficer = true;
+                        break;
+                    }
+                }
+            }
+
+            User.findOne({ 'bnetId': req.user.bnetId }, function (err, user) {
+                if(err) throw err;
+
+                user.mainCharacter.name  = name;
+                user.mainCharacter.realm = realm;
+                user.role.officer        = isOfficer;
+                user.role.member         = isMember;
+
+                user.save(function (err) {
+                    if (err) throw err;
+                    res.redirect('/thread/' + thread + '/#' + post._id);
+                });
+            });
+        });
     }
 };
