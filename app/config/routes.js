@@ -1,9 +1,12 @@
 var express = require('express');
 var Thread  = require('../models/thread');
 var Post    = require('../models/post');
-var Guild   = require('../models/guild');
 var __      = require('lodash');
-var forumsController = require('../controllers/forums');
+
+var forumsController   = require('../controllers/forums');
+var rosterController   = require('../controllers/roster');
+var galleryController  = require('../controllers/gallery');
+var settingsController = require('../controllers/settings');
 
 module.exports = function(app, passport) {
 
@@ -13,9 +16,6 @@ module.exports = function(app, passport) {
     // authentication
     app.get('/auth/bnet',           passport.authenticate('bnet') );
 
-    // This always fails to authenticate for new users, I'm not sure why.
-    // The user is successfully created, however, and signing in thereafter
-    // works as expected. ¯\_(ツ)_/¯
     app.get('/auth/bnet/callback',  passport.authenticate('bnet', {
         failureRedirect: '/500' }),
         function(req, res) {
@@ -28,17 +28,11 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
-    // home
+    // home/index
     app.get('/', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.render('home', {
-                user: req.user
-            });
-        } else {
-            res.render('home', {
-                user: null
-            });
-        }
+        res.render('home', {
+            user: req.isAuthenticated() ? req.user : null
+        });
     });
 
 
@@ -63,69 +57,21 @@ module.exports = function(app, passport) {
     app.post('/post/delete/:topic',  forumsController.deletePost);
 
 
+    /*
+     * Site
+     */
+
     // roster
-    app.get('/roster', function(req, res) {
-        Guild.findOne({}, function(err, guild) {
-            if(err) throw err;
-
-            guild.members =
-            __.filter(
-            __.sortBy(guild.members,
-                function(member) {
-                    return [member.rank, member.character.class, member.character.spec, member.character.name];
-                }),
-            function(member) {
-                return member.character.level >= 100 && member.rank <= 5;
-            });
-
-            if (req.isAuthenticated()) {
-                res.render('roster', {
-                    user: req.user,
-                    guild: guild
-                });
-            } else {
-                res.render('roster', {
-                    user: null,
-                    guild: guild
-                });
-            }
-        });
-    });
+    app.get('/roster', rosterController.getRoster);
 
     // gallery
-    app.get('/gallery', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.render('gallery', {
-                user: req.user
-            });
-        } else {
-            res.render('gallery', {
-                user: null
-            });
-        }
-    });
+    app.get('/gallery', galleryController.getGallery);
 
     // admin
-    app.get('/admin', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.render('admin', {
-                user: req.user
-            });
-        } else {
-            res.redirect('/unauthorized');
-        }
-    });
+    app.get('/admin', settingsController.getAdmin);
 
     // account
-    app.get('/account', function(req, res) {
-        if(req.isAuthenticated()) {
-            res.render('account', {
-                user: req.user
-            });
-        } else {
-            res.redirect('/unauthorized');
-        }
-    });
+    app.get('/account', settingsController.getAccount);
 
 
     /*
@@ -146,6 +92,8 @@ module.exports = function(app, passport) {
 
     // 500 server error
     app.use(function(error, req, res, next) {
+        console.log(error.stack);
+
         res.status(500);
         res.render('500', { message: 'Internal server error.', error: error });
     });

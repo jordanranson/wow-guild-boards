@@ -8,6 +8,7 @@ var Schema = mongoose.Schema({
     title   : String,
     topic   : String,
     views   : Number,
+    replies : Number,
     sticky  : Boolean,
     locked  : Boolean
 

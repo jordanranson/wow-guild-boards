@@ -96,6 +96,7 @@
     </ul>
 
     {{#if user}}
+    {{#canCreateThread topic user}}
         <br>
         <br>
         <hr>
@@ -122,6 +123,7 @@
                 <button class="button button-primary button-large">Submit Post</button>
             </form>
         </div>
+    {{/canCreateThread}}
     {{/if}}
 
 </section>

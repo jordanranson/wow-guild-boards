@@ -23,7 +23,7 @@
 
 {{#section 'breadcrumb'}}
     <a href="/topics">Topics</a> <i>&rsaquo;</i>
-    <a href="/{{topic}}">{{topicTitle}}</a> <i>&rsaquo;</i>
+    <a href="/threads/{{topic}}">{{topicTitle}}</a> <i>&rsaquo;</i>
     <span>{{thread.title}}</span>
 {{/section}}
 
@@ -141,6 +141,7 @@
     </ul>
 
     {{#if user}}
+    {{#canReply topic user}}
     <br>
     <br>
 
@@ -164,6 +165,7 @@
             <button class="button button-primary button-large">Submit Post</button>
         </form>
     </div>
+    {{/canReply}}
     {{/if}}
 
 </section>
