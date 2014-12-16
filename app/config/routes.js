@@ -7,6 +7,7 @@ var forumsController   = require('../controllers/forums');
 var rosterController   = require('../controllers/roster');
 var galleryController  = require('../controllers/gallery');
 var settingsController = require('../controllers/settings');
+var userController     = require('../controllers/user');
 
 module.exports = function(app, passport) {
 
@@ -67,11 +68,17 @@ module.exports = function(app, passport) {
     // gallery
     app.get('/gallery', galleryController.getGallery);
 
+
+    /*
+     * Settings
+     */
+
     // admin
     app.get('/admin', settingsController.getAdmin);
 
     // account
-    app.get('/account', settingsController.getAccount);
+    app.get( '/account',        settingsController.getAccount);
+    app.post('/account/update', userController.updateUser);
 
 
     /*

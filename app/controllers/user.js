@@ -113,7 +113,7 @@ module.exports = {
         );
     },
 
-    update: function(req, res) {
+    updateUser: function(req, res) {
         var body = req.body;
 
         var mainCharacter = body.mainCharacter.split(':');
@@ -145,12 +145,13 @@ module.exports = {
 
                 user.mainCharacter.name  = name;
                 user.mainCharacter.realm = realm;
+                user.role.admin          = req.user.battletag === 'Lup#1749';
                 user.role.officer        = isOfficer;
                 user.role.member         = isMember;
 
                 user.save(function (err) {
                     if (err) throw err;
-                    res.redirect('/thread/' + thread + '/#' + post._id);
+                    res.redirect('/account');
                 });
             });
         });
