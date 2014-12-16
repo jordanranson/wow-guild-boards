@@ -6,7 +6,12 @@ var Schema = mongoose.Schema({
     created : Date,
     author  : { type: ObjectId, ref: 'User' },
     thread  : { type: ObjectId, ref: 'Thread' },
-    content : String
+    content : String,
+    edited  : {
+        user : { type: ObjectId, ref: 'User' },
+        date : Date
+    },
+    deleted : false
 
 });
 

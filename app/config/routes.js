@@ -54,8 +54,8 @@ module.exports = function(app, passport) {
     app.post('/thread/reply/:id',     forumsController.createPost);
 
     // post api
-    app.post('/post/update/:topic',  forumsController.updatePost);
-    app.post('/post/delete/:topic',  forumsController.deletePost);
+    app.post('/post/update',  forumsController.updatePost);
+    app.post('/post/delete',  forumsController.deletePost);
 
 
     /*

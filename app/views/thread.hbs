@@ -42,7 +42,7 @@
 --}}
 
 {{#section 'scripts'}}
-    <script src="/js/modules/forums.js"></script>
+    <script src="/public/js/modules/forums.js"></script>
 {{/section}}
 
 
@@ -61,6 +61,13 @@
         <span> in </span>
         <strong>{{topicTitle}}</strong><span>.</span
     </p>
+    {{!-- #canModerate user thread.author}}
+    <p class="edit-thread">
+        <a href="#" class="x-edit-thread">Edit Thread</a>
+        &nbsp;
+        <a href="#" class="x-delete-thread">Delete Thread</a>
+    </p>
+    {{/canModerate --}}
 </header>
 
 <section class="section-content clear">
@@ -102,7 +109,7 @@
         </li>-->
 
         {{#each posts}}
-        <li>
+        <li data-id="{{_id}}" data-markdown="{{content}}">
             <header>
                 <h4>
                     <div class="avatar-container">
@@ -125,14 +132,26 @@
                 </span>
             </header>
             <section>
+                {{#unless deleted}}
                 {{{markdown content}}}
+                {{#if edited.user}}
+                <p class="edited">
+                    Edited by {{username edited.user}} on {{formatDate created 'MMM Do'}}.
+                </p>
+                {{/if}}
+                {{else}}
+                <p>
+                    <em class="deleted">Deleted.</em>
+                </p>
+                {{/unless}}
             </section>
-            {{#if user}}
+            {{#if ../user}}
             <footer>
-                <a href="/thread/{{../thread._id}}/#reply">Reply</a>
-                <!--<a href="">Quote</a>
-                <a href="">Edit</a>
-                <a href="">Remove</a>-->
+                <a href="#" class="x-reply">Reply</a>
+                {{#canModerate ../../user author}}
+                <a href="#" class="x-edit" data-for="{{_id}}">Edit</a>
+                <!--<a href="#" class="x-remove" data-for="{{_id}}">Remove</a>-->
+                {{/canModerate}}
             </footer>
             {{/if}}
         </li>
@@ -141,11 +160,12 @@
     </ul>
 
     {{#if user}}
-    {{#canReply topic user}}
-    <br>
-    <br>
+    <div class="x-post-editor"></div>
 
-    <div class="post-editor">
+    {{#canReply topic user}}
+    <div class="post-editor x-create-post">
+        <br>
+        <br>
         <form action="/thread/reply/{{thread._id}}" method="post">
             <a name="reply"></a>
             <h2>Reply</h2>
@@ -162,10 +182,64 @@
 
             <textarea class="text" name="content"></textarea>
 
-            <button class="button button-primary button-large">Submit Post</button>
+            <button type="submit" class="button button-primary button-large">Submit Post</button>
         </form>
     </div>
     {{/canReply}}
+    <div class="post-editor x-update-post" style="display:none">
+        <br>
+        <br>
+        <form action="/post/update" method="post">
+            <a name="reply"></a>
+            <h2>Edit Post</h2>
+
+            <input type="hidden" name="id" value="" class="x-post-id">
+
+            <div class="avatar-container">
+                <div class="avatar">
+                    <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
+                </div>
+                <hgroup>
+                    <h3>Editing as {{username user}}</h3>
+                    <p class="legend"><var>MD</var> <a href="" target="_blank">Format your posts using Markdown</a>.</p>
+                </hgroup>
+            </div>
+
+            <textarea class="text x-edit-content" name="content"></textarea>
+
+            <button type="submit" class="button button-primary button-large">Update Post</button>
+            &nbsp;
+            &nbsp;
+            <button class="button button-large x-cancel">Cancel</button>
+        </form>
+    </div>
+    <div class="post-editor x-update-thread" style="display:none">
+        <br>
+        <br>
+        <form action="/thread/update" method="post">
+            <h2>Edit Thread</h2>
+
+            <input type="hidden" name="id" value="{{thread._id}}">
+
+            <div class="avatar-container">
+                <div class="avatar">
+                    <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
+                </div>
+                <hgroup>
+                    <h3>Editing as {{username user}}</h3>
+                    <p class="legend">&nbsp;</p>
+                </hgroup>
+            </div>
+
+            <input id="title" type="text" class="text text-large" name="title" value="{{thread.title}}">
+            <br><br>
+
+            <button type="submit" class="button button-large">Update Thread</button>
+            &nbsp;
+            &nbsp;
+            <button class="button button-large x-cancel">Cancel</button>
+        </form>
+    </div>
     {{/if}}
 
 </section>

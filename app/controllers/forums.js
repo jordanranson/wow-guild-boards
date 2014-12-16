@@ -96,11 +96,14 @@ module.exports = {
             Post
             .find({ 'thread': req.params.id })
             .populate('author')
+            .populate('edited.user')
             .exec(function (err, posts) {
                 if(err) throw err;
 
                 var guildName = 'AXION';
                 var topicData = getTopic(thread.topic, guildName);
+
+                posts = __.sortBy(posts, 'created');
 
                 res.render('thread', {
                     user: req.user,
@@ -153,9 +156,13 @@ module.exports = {
         });
     },
 
-    updateThread: function() {},
+    updateThread: function() {
 
-    deleteThread: function() {},
+    },
+
+    deleteThread: function() {
+
+    },
 
     createPost: function(req, res) {
         var user     = req.user;
@@ -227,9 +234,43 @@ module.exports = {
         });
     },
 
-    updatePost: function() {},
+    updatePost: function(req, res) {
+        Post
+        .findOne({ '_id': req.body.id })
+        .populate('author')
+        .exec(function (err, post) {
+            if(err) throw err;
+            if(post === null) res.redirect('/500');
 
-    deletePost: function() {},
+            post.content = req.body.content;
+            post.edited  = {
+                user: req.user._id,
+                date: new Date().getTime()
+            };
+
+            post.save(function(err) {
+                if(err) throw err;
+                res.redirect('/thread/' + post.thread + '/#' + post._id);
+            })
+        });
+    },
+
+    deletePost: function(req, res) {
+        Post
+        .findOne({ '_id': req.body.id })
+        .populate('author')
+        .exec(function (err, post) {
+            if(err) throw err;
+            if(post === null) res.redirect('/500');
+
+            post.deleted = true;
+
+            post.save(function(err) {
+                if(err) throw err;
+                res.redirect('/thread/' + post.thread + '/#' + post._id);
+            })
+        });
+    },
 
     getTopics: function(req, res) {
         res.render('topics', {

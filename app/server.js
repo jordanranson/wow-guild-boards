@@ -178,6 +178,16 @@ app.engine('.hbs', exphbs({
             }
 
             return b;
+        },
+        canModerate: function(user, author, options) {
+            var a = options.fn(this);
+            var b = options.inverse(this);
+            var role = user.role;
+
+            if(author._id === user._id) return a;
+            if(role.admin) return a;
+
+            return b;
         }
     }
 }));
