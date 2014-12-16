@@ -2656,6 +2656,11 @@ body {
 }
 .page-breadcrumb h2 span {
   opacity: .65;
+  display: inline-block;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .page-breadcrumb h2 i {
   font-style: normal;
@@ -2667,6 +2672,8 @@ body {
   vertical-align: top;
 }
 .page-breadcrumb h2 a {
+  display: inline-block;
+  vertical-align: top;
   color: #ffffff;
 }
 .page-content {
@@ -2714,6 +2721,7 @@ body {
 .section-header h1 {
   font-size: 240%;
   letter-spacing: -2px;
+  line-height: 1;
   font-weight: bolder;
 }
 .section-header p {
@@ -3056,7 +3064,7 @@ select.text {
   margin-bottom: 17px;
 }
 .thread-list section p {
-  margin-bottom: 10px;
+  margin-bottom: 17px;
 }
 .thread-list section p:last-child {
   margin-bottom: 0;

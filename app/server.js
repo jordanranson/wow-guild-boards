@@ -209,8 +209,8 @@ require('./config/routes')(app, passport);
  Initialization
  *------------------------------------*/
 
-var key         = fs.readFileSync('./_.guild-boards.com.key',  'utf8');
-var cert        = fs.readFileSync('./_.guild-boards.com.cert', 'utf8');
+var key         = fs.readFileSync('./axion.guild-boards.com.key',  'utf8');
+var cert        = fs.readFileSync('./axion.guild-boards.com.cert', 'utf8');
 var credentials = { key: key, cert: cert }; // ssl
 var server      = https.createServer(credentials, app);
 var http        = express();

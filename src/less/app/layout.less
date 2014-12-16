@@ -114,6 +114,11 @@ body {
 
         span {
             opacity: .65;
+            display: inline-block;
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         i {
@@ -127,6 +132,8 @@ body {
         }
 
         a {
+            display: inline-block;
+            vertical-align: top;
             color: @pageHeaderColor;
         }
     }
@@ -187,6 +194,7 @@ body {
     h1 {
         font-size: 240%;
         letter-spacing: -2px;
+        line-height: 1;
         font-weight: bolder;
     }
 

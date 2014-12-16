@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
     app.get('/auth/bnet/callback',  passport.authenticate('bnet', {
         failureRedirect: '/500' }),
         function(req, res) {
-            res.redirect('/');
+            res.redirect('/account');
     });
 
     // logout
