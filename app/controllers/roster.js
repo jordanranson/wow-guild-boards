@@ -17,7 +17,7 @@ module.exports = {
                     });
 
             res.render('roster', {
-                user: req.isAuthenticated() ? req.user : null,
+                user: req.user,
                 guild: guild
             });
         });
