@@ -4,6 +4,7 @@ var BNET_SECRET     = Keys.secret;
 var BnetStrategy    = require('passport-bnet').Strategy;
 var User            = require('../models/user');
 var userController  = require('../controllers/user');
+var CONFIG          = require('./config');
 
 module.exports = function(passport) {
     passport.serializeUser(function(user, done) {
@@ -21,7 +22,7 @@ module.exports = function(passport) {
             clientID: BNET_ID,
             clientSecret: BNET_SECRET,
             scope: 'wow.profile',
-            callbackURL: 'https://wowguild.jordanranson.com:443/auth/bnet/callback'
+            callbackURL: 'https://'+CONFIG.guild.toLowerCase()+'.guild-boards.com/auth/bnet/callback'
         },
         function (accessToken, refreshToken, profile, done) {
 

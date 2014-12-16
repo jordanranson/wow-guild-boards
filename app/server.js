@@ -17,6 +17,7 @@ var moment          = require('moment');
 var markdown        = require('markdown').markdown;
 var Guild           = require('./models/guild');
 var request         = require('./request');
+var KEYS            = require('./config/keys');
 var env             = 'dev';
 
 
@@ -43,7 +44,7 @@ var app = express();
 // configure Express
 app.use(cookieParser());
 app.use(session({
-    secret: CONFIG[env].sessionSecret,
+    secret: KEYS.sessionSecret,
     saveUninitialized: true,
     resave: true
 }));
@@ -198,15 +199,15 @@ require('./config/routes')(app, passport);
  Initialization
  *------------------------------------*/
 
-var key         = fs.readFileSync('./wowguild.jordanranson.com.key',  'utf8');
-var cert        = fs.readFileSync('./wowguild.jordanranson.com.cert', 'utf8');
+var key         = fs.readFileSync('./_.guild-boards.com.key',  'utf8');
+var cert        = fs.readFileSync('./_.guild-boards.com.cert', 'utf8');
 var credentials = { key: key, cert: cert }; // ssl
 var server      = https.createServer(credentials, app);
 var http        = express();
 
-// set up a route to redirect http to https (shitty, I need to improve this)
+// set up a route to redirect http to https
 http.get('*',function(req,res){
-    res.redirect('https://wowguild.jordanranson.com:443'+req.url)
+    res.redirect('https://'+CONFIG.guild.toLowerCase()+'.guild-boards.com'+req.url);
 });
 http.listen(80);
 

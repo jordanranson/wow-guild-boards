@@ -98,7 +98,6 @@ module.exports = {
             .populate('author')
             .exec(function (err, posts) {
                 if(err) throw err;
-                if(posts === null || posts.length === 0) res.redirect('/500');
 
                 var guildName = 'AXION';
                 var topicData = getTopic(thread.topic, guildName);
@@ -143,7 +142,6 @@ module.exports = {
         .populate('author')
         .exec(function(err, threads) {
             if(err) throw err;
-            if(threads === null || threads.length === 0) res.redirect('/500');
 
             res.render('threads', {
                 user: req.isAuthenticated() ? req.user : null,
