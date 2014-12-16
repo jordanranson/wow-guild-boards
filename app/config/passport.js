@@ -6,12 +6,14 @@ var User            = require('../models/user');
 var userController  = require('../controllers/user');
 
 module.exports = function(passport) {
-    passport.serializeUser(function (user, done) {
-        done(null, user);
+    passport.serializeUser(function(user, done) {
+        done(null, user._id);
     });
 
-    passport.deserializeUser(function (user, done) {
-        done(null, user);
+    passport.deserializeUser(function(id, done) {
+        User.findOne({ '_id' : id }, function(err, user) {
+            done(err, user);
+        });
     });
 
     // Use the BnetStrategy within Passport.
