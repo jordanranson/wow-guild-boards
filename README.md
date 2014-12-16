@@ -1,7 +1,7 @@
-Roadmap
+Alpha Roadmap
 =======
 
-## Version 0.1
+## Alpha 0.1
 - [x] Forums
     - [x] Default boards
        - [x] Announcements
@@ -16,7 +16,7 @@ Roadmap
     - [x] Officer
     - [x] Member
 
-## Version 0.2
+## Alpha 0.2
 - [ ] Guild News & achievements
 - [ ] Sticky and sticky threads
 - [ ] Forum pagination
@@ -24,7 +24,7 @@ Roadmap
 - [ ] Authentication & Permissions
     - [ ] Guild master rank
 
-## Version 0.3
+## Alpha 0.3
 - [ ] Wowhead tooltips
 - [ ] Option to split PvE board into PvE and PvP
 - [ ] Authentication & Permissions
@@ -34,9 +34,13 @@ Roadmap
     - [ ] Display character profile
     - [ ] Display item level
 
-## Future
+Beta Roadmap
+=======
 - [ ] Polls
+- [ ] Calendar
+- [ ] Custom pages
 - [ ] Custom permissions/guild ranks
 - [ ] Character titles
 - [ ] Rep/karma system
+- [ ] Mobile support
 
