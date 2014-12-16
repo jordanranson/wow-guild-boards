@@ -147,6 +147,36 @@ app.engine('.hbs', exphbs({
                 case 5: return 'Social/Friend';
                 case 6: return 'Alternate';
             }
+        },
+        canCreateThread: function(topic, user, options) {
+            var a = options.fn(this);
+            var b = options.inverse(this);
+            var role = user.role;
+
+            switch(topic) {
+                case 'announcements' : return role.officer ? a : b;
+                case 'officer'       : return role.officer ? a : b;
+                case 'general'       : return a;
+                case 'pve'           :
+                case 'pvp'           : return role.member  ? a : b;
+            }
+
+            return b;
+        },
+        canReply: function(topic, user, options) {
+            var a = options.fn(this);
+            var b = options.inverse(this);
+            var role = user.role;
+
+            switch(topic) {
+                case 'announcements' : return role.member  ? a : b;
+                case 'officer'       : return role.officer ? a : b;
+                case 'general'       : return a;
+                case 'pve'           :
+                case 'pvp'           : return role.member  ? a : b;
+            }
+
+            return b;
         }
     }
 }));
