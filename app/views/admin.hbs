@@ -51,7 +51,7 @@
 
 <section class="section-content">
 
-    <form>
+    <form action="/admin/update" method="post">
 
         <!--<h2 class="settings-header">Guild Information</h2>
 
@@ -96,6 +96,14 @@
         <ul class="settings-group">
 
             <li>
+                <label class="settings-label">Guild Data</label>
+                <p class="settings-description">
+                    <strong>Last updated</strong> &mdash;
+                    {{timeSince guild.lastUpdated}} ({{formatDate thread.created 'MMMM Do, hh:mm:ss'}})
+                </p>
+            </li>
+
+            <li>
                 <label class="settings-label">Web Admin Battletag</label>
                 <p class="settings-description">
                     Enter the the Battletag of the web administrator.
@@ -106,7 +114,7 @@
                     <strong>Please enter the Battletag exactly as it appears</strong>.
                 </p>
                 <div class="input-group">
-                    <input type="text" class="text" name="web_admin_battletag" placeholder="Battletag#1234">
+                    <input type="text" class="text" name="webAdminBattletag" placeholder="Battletag#1234" value="{{guild.settings.webAdminBattletag}}">
                 </div>
             </li>
 

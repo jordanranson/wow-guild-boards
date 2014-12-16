@@ -74,7 +74,8 @@ module.exports = function(app, passport) {
      */
 
     // admin
-    app.get('/admin', settingsController.getAdmin);
+    app.get( '/admin', settingsController.getAdmin);
+    app.post('/admin/update', settingsController.updateAdmin);
 
     // account
     app.get( '/account',        settingsController.getAccount);
