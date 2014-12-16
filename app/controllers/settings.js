@@ -33,7 +33,7 @@ module.exports = {
             Guild.findOne({}, function(err, guild) {
                 if(err) throw err;
                 if(guild === null) res.redirect('/500');
-                
+
                 request.bnet(
                     'us.battle.net',
                     '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members',
