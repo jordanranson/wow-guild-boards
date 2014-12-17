@@ -273,8 +273,30 @@ module.exports = {
     },
 
     getTopics: function(req, res) {
-        res.render('topics', {
-            user: req.isAuthenticated() ? req.user : null
+        Thread.aggregate([
+        { $group: { '_id' : "$topic", count : { $sum: 1 }}}
+        ], function(err, groups) {
+            if(err) throw err;
+
+            var topics = {
+                announcements: 0,
+                officer: 0,
+                general: 0,
+                pve: 0,
+                pvp: 0
+            };
+
+            for(var i = 0; i < groups.length; i++) {
+                for(var key in topics) {
+                    if(groups[i]._id === key) topics[key] = groups[i].count;
+                }
+            }
+            console.log(groups, topics);
+
+            res.render('topics', {
+                user: req.user,
+                threadCount: topics
+            });
         });
     }
 

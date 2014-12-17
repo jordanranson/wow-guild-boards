@@ -157,7 +157,7 @@ app.engine('.hbs', exphbs({
             switch(topic) {
                 case 'announcements' : return role.officer ? a : b;
                 case 'officer'       : return role.officer ? a : b;
-                case 'general'       : return a;
+                case 'general'       : return role.member  ? a : b;
                 case 'pve'           :
                 case 'pvp'           : return role.member  ? a : b;
             }
