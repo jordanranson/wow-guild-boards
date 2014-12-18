@@ -291,7 +291,6 @@ module.exports = {
                     if(groups[i]._id === key) topics[key] = groups[i].count;
                 }
             }
-            console.log(groups, topics);
 
             res.render('topics', {
                 user: req.user,

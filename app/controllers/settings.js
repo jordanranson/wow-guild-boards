@@ -1,5 +1,6 @@
 var CONFIG  = require('../config/config');
 var Guild   = require('../models/guild');
+var User    = require('../models/user');
 var request = require('../request');
 
 module.exports = {
@@ -51,7 +52,39 @@ module.exports = {
 
                         guild.save(function(err) {
                             if(err) throw err;
-                            res.redirect('/admin');
+
+                            User.find({}, function (err, users) {
+                                if(err) throw err;
+
+                                var user;
+                                for(var k = 0; k < users.length; k++) {
+                                    var isMember  = false;
+                                    var isOfficer = false;
+                                    user = users[k];
+
+                                    // figure out if you're an officer
+                                    for (var i = 0; i < guild.members.length; i++) {
+                                        var member = guild.members[i];
+                                        if (
+                                            member.character.name  === user.mainCharacter.name &&
+                                            member.character.realm === user.mainCharacter.realm) {
+                                            isMember = true;
+                                            if (member.rank <= 2) {
+                                                isOfficer = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    user.role.admin   = user.battletag === 'Lup#1749'; // this is temporary, don't worry!
+                                    user.role.officer = isOfficer;
+                                    user.role.member  = isMember;
+
+                                    user.save();
+                                }
+                                
+                                res.redirect('/admin');
+                            });
                         });
                     }
                 );
