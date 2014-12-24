@@ -82,7 +82,7 @@ module.exports = {
 
                                     user.save();
                                 }
-                                
+
                                 res.redirect('/admin');
                             });
                         });
