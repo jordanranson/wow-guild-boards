@@ -22,7 +22,7 @@ module.exports = function(passport) {
             clientID: BNET_ID,
             clientSecret: BNET_SECRET,
             scope: 'wow.profile',
-            callbackURL: 'https://'+CONFIG.guild.toLowerCase()+'.guild-boards.com/auth/bnet/callback'
+            callbackURL: 'https://'+CONFIG.guild.toLowerCase()+'.'+CONFIG.hostName+'/auth/bnet/callback'
         },
         function (accessToken, refreshToken, profile, done) {
 

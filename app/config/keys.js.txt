@@ -1,4 +1,5 @@
 module.exports = {
     key: '{{KEY}}',
-    secret: '{{SECRET}}'
+    secret: '{{SECRET}}',
+    sessionSecret: '{{UNIQUE KEY}}'
 };
