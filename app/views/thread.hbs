@@ -61,13 +61,25 @@
         <span> in </span>
         <strong>{{topicTitle}}</strong><span>.</span
     </p>
-    {{!-- #canModerate user thread.author}}
+
+    {{#stickyOrLocked thread}}
+    <p style="margin-top: 5px">
+        {{#if thread.sticky}}
+        <strong class="tag">Sticky</strong>&nbsp;
+        {{/if}}
+        {{#if thread.locked}}
+        <strong class="tag">Locked</strong>&nbsp;
+        {{/if}}
+    </p>
+    {{/stickyOrLocked}}
+
+    {{#canModerate user thread.author}}
     <p class="edit-thread">
         <a href="#" class="x-edit-thread">Edit Thread</a>
         &nbsp;
-        <a href="#" class="x-delete-thread">Delete Thread</a>
+        <!--<a href="#" class="x-delete-thread">Delete Thread</a>-->
     </p>
-    {{/canModerate --}}
+    {{/canModerate}}
 </header>
 
 <section class="section-content clear">
@@ -162,7 +174,7 @@
     {{#if user}}
     <div class="x-post-editor"></div>
 
-    {{#canReply topic user}}
+    {{#canReply thread user}}
     <div class="post-editor x-create-post">
         <br>
         <br>
@@ -232,9 +244,21 @@
             </div>
 
             <input id="title" type="text" class="text text-large" name="title" value="{{thread.title}}">
+            {{#canModerateGlobal user}}
+            <div>
+                <div class="input-group input-group-thin" style="float: left">
+                    <input id="threadSticky" value="1" name="sticky" type="checkbox" class="checkbox" {{#if thread.sticky}}checked{{/if}}>
+                    <label for="threadSticky" class="checkbox">Sticky</label>
+                </div>
+                <div class="input-group input-group-thin" style="float: left; margin-left: 34px">
+                    <input id="threadLocked" value="1" name="locked" type="checkbox" class="checkbox" {{#if thread.locked}}checked{{/if}}>
+                    <label for="threadLocked" class="checkbox">Locked</label>
+                </div>
+            </div>
             <br><br>
+            {{/canModerateGlobal}}
 
-            <button type="submit" class="button button-large">Update Thread</button>
+            <button type="submit" class="button button-primary button-large">Update Thread</button>
             &nbsp;
             &nbsp;
             <button class="button button-large x-cancel">Cancel</button>

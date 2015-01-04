@@ -60,8 +60,8 @@ module.exports = {
         thread.topic   = topic;
         thread.views   = 1;
         thread.replies = 0;
-        thread.sticky  = false;
-        thread.locked  = false;
+        thread.sticky  = body.sticky == 1;
+        thread.locked  = body.locked == 1;
 
         thread.save(function (err) {
             if (err) throw err;
@@ -162,6 +162,7 @@ module.exports = {
         Thread
         .find({ 'topic' : topic })
         .populate('author')
+        .sort({ sticky: -1, created: -1 })
         .exec(function(err, threads) {
             if(err) throw err;
 
@@ -175,7 +176,7 @@ module.exports = {
                 });
             };
 
-            if(req.isAuthenticated) {
+            if(req.isAuthenticated()) {
                 Read
                 .find({ 'author': req.user._id })
                 .exec(function (err, reads) {
@@ -198,8 +199,22 @@ module.exports = {
         });
     },
 
-    updateThread: function() {
+    updateThread: function(req, res) {
+        Thread
+        .findOne({ '_id': req.body.id })
+        .exec(function (err, thread) {
+            if(err) throw err;
+            if(thread === null) res.redirect('/500');
 
+            thread.title  = req.body.title;
+            thread.sticky = req.body.sticky == 1;
+            thread.locked = req.body.locked == 1;
+
+            thread.save(function(err) {
+                if(err) throw err;
+                res.redirect('/thread/'+thread._id)
+            });
+        });
     },
 
     deleteThread: function() {

@@ -62,11 +62,24 @@
         <li class="thread-item" {{#if read}}style="opacity:.5"{{/if}}>
             <a href="/thread/{{_id}}">
                 <header>
-                    <div class="gutter">
-                        <img src="//placehold.it/54x54/313042/313042" style="border-radius:3px">
-                    </div>
+                    <!--<div class="gutter">-->
+                        <!--<img src="//placehold.it/54x54/313042/313042" style="border-radius:3px">-->
+                    <!--</div>-->
                     <div class="content" style="margin-left: 0">
-                        <h2>{{title}}</h2>
+                        <h2>
+                            {{#stickyOrLocked this}}
+                                {{#if sticky}}
+                                <img src="/public/img/thread-sticky.svg" style="width:26px;height:26px;border-radius:3px;vertical-align: bottom">
+                                {{/if}}
+                                {{#if locked}}
+                                <img src="/public/img/thread-locked.svg" style="width:26px;height:26px;border-radius:3px;vertical-align: bottom">
+                                {{/if}}
+                            {{else}}
+                                <img src="/public/img/thread.svg" style="width:26px;height:26px;border-radius:3px;vertical-align: bottom">
+                            {{/stickyOrLocked}}
+
+                            &nbsp;{{title}}
+                        </h2>
                         <p style="white-space:nowrap">
                             <span>Created by </span>
                             <strong>{{username author}}</strong>
@@ -119,6 +132,20 @@
 
                 <input id="title" type="text" class="text text-large" name="title">
                 <textarea class="text" name="content"></textarea>
+
+                {{#canModerateGlobal user}}
+                <div>
+                    <div class="input-group input-group-thin" style="float: left;">
+                        <input value="1" id="threadSticky" name="sticky" type="checkbox" class="checkbox">
+                        <label for="threadSticky" class="checkbox">Sticky</label>
+                    </div>
+                    <div class="input-group input-group-thin" style="float: left; margin-left: 34px">
+                        <input value="1" id="threadLocked" name="locked" type="checkbox" class="checkbox">
+                        <label for="threadLocked" class="checkbox">Locked</label>
+                    </div>
+                </div>
+                <br><br>
+                {{/canModerateGlobal}}
 
                 <button class="button button-primary button-large">Submit Post</button>
             </form>

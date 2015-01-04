@@ -44,7 +44,7 @@ module.exports = function(app, passport) {
 
             if(guild !== null && guild.lastUpdated.getTime() < new Date().getTime() - (1*60*60*1000)) {
                 console.log('updating guild');
-                
+
                 request.bnet(
                     'us.battle.net',
                     '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members',
@@ -110,9 +110,9 @@ module.exports = function(app, passport) {
 
     // thread api
     app.post('/thread/create/:topic', forumsController.createThread);
-    app.post('/thread/update/:id',    forumsController.updateThread);
-    app.post('/thread/delete/:id',    forumsController.deleteThread);
     app.post('/thread/reply/:id',     forumsController.createPost);
+    app.post('/thread/update',    forumsController.updateThread);
+    app.post('/thread/delete',    forumsController.deleteThread);
 
     // post api
     app.post('/post/update',  forumsController.updatePost);
