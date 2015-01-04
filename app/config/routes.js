@@ -1,6 +1,10 @@
 var express = require('express');
+var CONFIG  = require('../config/config');
+var request = require('../request');
 var Thread  = require('../models/thread');
 var Post    = require('../models/post');
+var User    = require('../models/user');
+var Guild   = require('../models/guild');
 var __      = require('lodash');
 
 var forumsController   = require('../controllers/forums');
@@ -33,6 +37,63 @@ module.exports = function(app, passport) {
     app.get('/', function(req, res) {
         res.render('home', {
             user: req.isAuthenticated() ? req.user : null
+        });
+
+        Guild.findOne({}, function(err, guild) {
+            if(err) throw err;
+
+            if(guild !== null && guild.lastUpdated.getTime() < new Date().getTime() - (1*60*60*1000)) {
+                console.log('updating guild');
+                
+                request.bnet(
+                    'us.battle.net',
+                    '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members',
+                    function(data) {
+                        var lastUpdated = new Date().getTime();
+
+                        for(var key in data) {
+                            guild[key] = data[key];
+                        }
+
+                        guild.lastUpdated = lastUpdated;
+
+                        guild.save(function(err) {
+                            if(err) throw err;
+
+                            User.find({}, function (err, users) {
+                                if(err) throw err;
+
+                                var user;
+                                for(var k = 0; k < users.length; k++) {
+                                    var isMember  = false;
+                                    var isOfficer = false;
+                                    user = users[k];
+
+                                    // figure out if you're an officer
+                                    for (var i = 0; i < guild.members.length; i++) {
+                                        var member = guild.members[i];
+                                        if (
+                                            member.character.name  === user.mainCharacter.name &&
+                                            member.character.realm === user.mainCharacter.realm) {
+                                            isMember = true;
+                                            if (member.rank <= 2) {
+                                                isOfficer = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    user.role.admin   = user.battletag === 'Lup#1749'; // this is temporary, don't worry!
+                                    user.role.officer = isOfficer;
+                                    user.role.member  = isMember;
+
+                                    user.save();
+                                }
+                            });
+                        });
+                    }
+                );
+            }
         });
     });
 
