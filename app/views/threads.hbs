@@ -59,15 +59,15 @@
 
         {{#if threads.length}}
         {{#each threads}}
-        <li class="thread-item">
+        <li class="thread-item" {{#if read}}style="opacity:.5"{{/if}}>
             <a href="/thread/{{_id}}">
                 <header>
-                    <!--<div class="gutter">
+                    <div class="gutter">
                         <img src="//placehold.it/54x54/313042/313042" style="border-radius:3px">
-                    </div>-->
+                    </div>
                     <div class="content" style="margin-left: 0">
                         <h2>{{title}}</h2>
-                        <p>
+                        <p style="white-space:nowrap">
                             <span>Created by </span>
                             <strong>{{username author}}</strong>
                             <span>{{timeSince created}}.</span>

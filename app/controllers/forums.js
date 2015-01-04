@@ -1,5 +1,6 @@
 var Thread     = require('../models/thread');
 var Post       = require('../models/post');
+var Read       = require('../models/read');
 var Guild      = require('../models/guild');
 var request    = require('../request');
 var __         = require('lodash');
@@ -74,7 +75,16 @@ module.exports = {
 
             post.save(function (err) {
                 if (err) throw err;
-                res.redirect('/thread/' + thread._id);
+
+                var read = new Read(); // mark thread as read
+
+                read.thread = thread._id;
+                read.author = user._id;
+
+                read.save(function(err) {
+                    if(err) throw err;
+                    res.redirect('/thread/' + thread._id);
+                });
             });
         });
     },
@@ -115,6 +125,15 @@ module.exports = {
 
                 thread.views++;
                 thread.save();
+
+                var read = new Read(); // mark thread as read
+
+                read.thread = thread._id;
+                read.author = req.user._id;
+
+                read.save(function (err) {
+                    if(err) throw err;
+                });
             });
         });
     },
@@ -146,13 +165,36 @@ module.exports = {
         .exec(function(err, threads) {
             if(err) throw err;
 
-            res.render('threads', {
-                user: req.isAuthenticated() ? req.user : null,
-                topic: topic,
-                topicTitle: topicData.title,
-                topicDescription: topicData.description,
-                threads: threads
-            });
+            var _render = function() {
+                res.render('threads', {
+                    user: req.isAuthenticated() ? req.user : null,
+                    topic: topic,
+                    topicTitle: topicData.title,
+                    topicDescription: topicData.description,
+                    threads: threads
+                });
+            };
+
+            if(req.isAuthenticated) {
+                Read
+                .find({ 'author': req.user._id })
+                .exec(function (err, reads) {
+                    if (err) throw err;
+
+                    for (var x = 0; x < threads.length; x++) {
+                        for (var y = 0; y < reads.length; y++) {
+                            if (threads[x]._id.equals(reads[y].thread)) {
+                                threads[x].read = reads[y];
+                            }
+                        }
+                    }
+
+                    _render();
+                });
+            }
+            else {
+                _render();
+            }
         });
     },
 
@@ -192,7 +234,20 @@ module.exports = {
 
                 post.save(function (err) {
                     if (err) throw err;
-                    res.redirect('/thread/' + threadId + '/#' + post._id);
+
+                    Read
+                    .find({ 'thread': thread._id })
+                    .remove();
+
+                    var read = new Read(); // mark thread as read
+
+                    read.thread = thread._id;
+                    read.author = user._id;
+
+                    read.save(function (err) {
+                        if (err) throw err;
+                        res.redirect('/thread/' + threadId + '/#' + post._id);
+                    });
                 });
             });
         });
