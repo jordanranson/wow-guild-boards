@@ -1,3 +1,4 @@
+
 {{!--
     Main nav
 --}}
@@ -35,7 +36,7 @@
 --}}
 
 {{#section 'scripts'}}
-    <script src="/js/modules/gallery.js"></script>
+    <script src="public/js/modules/gallery.js"></script>
 {{/section}}
 
 
@@ -53,30 +54,8 @@
 
     <div class="gallery">
 
-        <div class="gallery-item feature">
-            <div class="gallery-content" style="background-image:url('/public/gallery/002.jpg')">
-                <div class="gallery-overlay">
-                    <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
-                    </header>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-item">
-            <div class="gallery-content" style="background-image:url('/public/gallery/001.jpg')">
-                <div class="gallery-overlay">
-                    <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
-                    </header>
-                </div>
-            </div>
-        </div>
-
+        {{#if images.length}}
+        {{#each images}}
         <div class="gallery-item">
             <div class="gallery-content" style="background-image:url('/public/gallery/002.jpg')">
                 <div class="gallery-overlay">
@@ -88,79 +67,38 @@
                 </div>
             </div>
         </div>
-
-        <div class="gallery-item">
-            <div class="gallery-content" style="background-image:url('/public/gallery/003.jpg')">
-                <div class="gallery-overlay">
-                    <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
-                    </header>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-item">
-            <div class="gallery-content" style="background-image:url('/public/gallery/002.jpg')">
-                <div class="gallery-overlay">
-                    <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
-                    </header>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-item">
-            <div class="gallery-content" style="background-image:url('/public/gallery/001.jpg')">
-                <div class="gallery-overlay">
-                    <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
-                    </header>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-item">
-            <div class="gallery-content" style="background-image:url('/public/gallery/003.jpg')">
-                <div class="gallery-overlay">
-                    <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
-                    </header>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-item">
-            <div class="gallery-content" style="background-image:url('/public/gallery/001.jpg')">
-                <div class="gallery-overlay">
-                    <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
-                    </header>
-                </div>
-            </div>
-        </div>
-
-        <div class="gallery-item">
-            <div class="gallery-content" style="background-image:url('/public/gallery/002.jpg')">
-                <div class="gallery-overlay">
-                    <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
-                    </header>
-                </div>
-            </div>
-        </div>
+        {{/each}}
+        {{else}}
+        <p><em>No images :(</em></p>
+        {{/if}}
 
     </div>
+
+    {{#canModerateGlobal user}}
+    <div class="post-editor" style="clear: both">
+        <br>
+        <br>
+        <br>
+
+        <h2>Upload Image</h2>
+
+        <form action="/gallery/upload" method="post">
+            <div class="gallery-upload x-gallery-upload">
+                <div class="upload-group">
+                    <input type="hidden" name="imageData">
+                    <div class="input-group"><input class="text" type="text" placeholder="Title" name="title" style="width:38%"></div>
+                    <div class="input-group"><input class="text" type="text" placeholder="Description" name="description" style="width:38%"></div>
+                    <div class="input-group">
+                        <button class="button button-primary x-submit" type="submit">Upload</button>
+                        &nbsp;<button class="button x-reset" type="reset">Reset</button>
+                    </div>
+                </div>
+                <div class="upload-here">
+                    <p class="x-instructions">Drag (or paste) image here</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    {{/canModerateGlobal}}
 
 </section>

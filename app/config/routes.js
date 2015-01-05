@@ -128,6 +128,9 @@ module.exports = function(app, passport) {
 
     // gallery
     app.get('/gallery', galleryController.getGallery);
+    app.post('/gallery/upload', galleryController.uploadImage);
+    app.post('/gallery/update', galleryController.updateImage);
+    app.post('/gallery/delete', galleryController.deleteImage);
 
 
     /*

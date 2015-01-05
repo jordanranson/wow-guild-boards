@@ -112,3 +112,69 @@
         }
     }
 }
+
+.gallery-upload {
+    box-sizing: border-box;
+    position: relative;
+    padding: @paddingThick*2 @paddingThick;
+
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.15) inset;
+
+    width: 480px;
+    height: 270px;
+
+    background-color: @bodyColor;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    &.over {
+        box-shadow: 0 0 0 3px rgba(255,255,255,0.35) inset;
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: 0;
+
+        background: @bodyColor;
+        opacity: .7;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .upload-group {
+        position: absolute;
+        z-index: 2;
+
+        left: @paddingThick;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 35%;
+        height: 108px;
+    }
+
+    .upload-here {
+        position: absolute;
+        z-index: 1;
+
+        right: @paddingThick;
+        top: 50%;
+        margin-top: -54px;
+        width: 50%;
+        height: 108px;
+
+        font-size: 80%;
+        text-align: right;
+        line-height: 108px;
+        opacity: .35;
+
+        pointer-events: none;
+    }
+}

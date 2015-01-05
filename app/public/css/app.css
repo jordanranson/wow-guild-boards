@@ -1,4 +1,4 @@
-/*! wow-guild-boards - v0.0.1 - 2015-01-02
+/*! wow-guild-boards - v0.0.1 - 2015-01-04
 * https://github.com/jordanranson/wow-guild-boards
 * Copyright (c) 2015 Jordan Ranson; Licensed under the Apache2 license */
 /*------------------------------------*
@@ -3352,6 +3352,58 @@ select.text {
 .gallery-overlay header p.timestamp {
   margin-top: 3px;
   opacity: .35;
+}
+.gallery-upload {
+  box-sizing: border-box;
+  position: relative;
+  padding: 68px 34px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15) inset;
+  width: 480px;
+  height: 270px;
+  background-color: #252734;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.gallery-upload.over {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35) inset;
+}
+.gallery-upload:after {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 0;
+  background: #252734;
+  opacity: .7;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.gallery-upload .upload-group {
+  position: absolute;
+  z-index: 2;
+  left: 34px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 35%;
+  height: 108px;
+}
+.gallery-upload .upload-here {
+  position: absolute;
+  z-index: 1;
+  right: 34px;
+  top: 50%;
+  margin-top: -54px;
+  width: 50%;
+  height: 108px;
+  font-size: 80%;
+  text-align: right;
+  line-height: 108px;
+  opacity: .35;
+  pointer-events: none;
 }
 /*------------------------------------*
     Roster styles
