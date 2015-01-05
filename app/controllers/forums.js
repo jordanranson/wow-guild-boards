@@ -252,16 +252,22 @@ module.exports = {
 
                     Read
                     .find({ 'thread': thread._id })
-                    .remove();
+                    .exec(function(err, reads) {
 
-                    var read = new Read(); // mark thread as read
+                        // remove all read records for this thread
+                        for(var i = 0; i < reads.length; i++) {
+                            reads[i].remove();
+                        }
 
-                    read.thread = thread._id;
-                    read.author = user._id;
+                        var read = new Read(); // mark thread as read
 
-                    read.save(function (err) {
-                        if (err) throw err;
-                        res.redirect('/thread/' + threadId + '/#' + post._id);
+                        read.thread = thread._id;
+                        read.author = user._id;
+
+                        read.save(function (err) {
+                            if (err) throw err;
+                            res.redirect('/thread/' + threadId + '/#' + post._id);
+                        });
                     });
                 });
             });
