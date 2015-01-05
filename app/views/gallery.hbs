@@ -57,12 +57,12 @@
         {{#if images.length}}
         {{#each images}}
         <div class="gallery-item">
-            <div class="gallery-content" style="background-image:url('/public/gallery/002.jpg')">
+            <div class="gallery-content" style="background-image:url('/public/gallery/{{_id}}.png')">
                 <div class="gallery-overlay">
                     <header>
-                        <h2>Photo Title</h2>
-                        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
-                        <p class="timestamp">Nov 23</p>
+                        <h2>{{title}}</h2>
+                        <p>{{description}}</p>
+                        <p class="timestamp">{{created}}</p>
                     </header>
                 </div>
             </div>
@@ -74,6 +74,7 @@
 
     </div>
 
+    {{#if user}}
     {{#canModerateGlobal user}}
     <div class="post-editor" style="clear: both">
         <br>
@@ -100,5 +101,6 @@
         </form>
     </div>
     {{/canModerateGlobal}}
+    {{/if}}
 
 </section>

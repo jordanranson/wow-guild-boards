@@ -8,23 +8,23 @@ $(function() {
 
     function onReset() {
         $galleryUpload.css('background-image', 'none');
-        $('[name="imageData"]').val('');
+        $('input[name="imageData"]').val('');
     }
 
     function onSubmit(e) {
-        if($('[name="imageData"]').val() === '') {
+        if($('input[name="imageData"]').val() === '') {
             e.preventDefault();
             alert('No image selected!');
 
             return false;
         }
-        if($('[name="title"]').val() === '') {
+        if($('input[name="title"]').val() === '') {
             e.preventDefault();
             alert("Title can't be empty!");
 
             return false;
         }
-        if($('[name="description"]').val() === '') {
+        if($('input[name="description"]').val() === '') {
             e.preventDefault();
             alert("Description can't be empty!");
 
@@ -83,7 +83,7 @@ $(function() {
                 imageData = cvs;
 
                 $galleryUpload.css('background-image', 'url(' + cvs.toDataURL('image/png') + ')');
-                $galleryUpload.find('[name="imageData"]').val(cvs.toDataURL('image/png'));
+                $galleryUpload.find('input[name="imageData"]').val(cvs.toDataURL('image/png'));
             };
             image.src = event.target.result;
         };
@@ -101,5 +101,5 @@ $(function() {
 
     $galleryUpload.on('dragover', onDragOver);
     $galleryUpload.on('dragend',  onDragEnd);
-    $galleryUpload[0].addEventListener('drop', onDrop);
+    if($galleryUpload.length) $galleryUpload[0].addEventListener('drop', onDrop);
 });

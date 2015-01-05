@@ -1,5 +1,6 @@
 var fs = require('fs');
 var Image = require('../models/image');
+var path = require('path');
 
 module.exports = {
     getGallery: function(req, res) {
@@ -19,12 +20,14 @@ module.exports = {
         var imageData = req.body.imageData.replace(/^data:image\/png;base64,/, "");
 
         var image         = new Image();
+
         image.title       = req.body.title;
         image.description = req.body.description;
+        image.created     = new Date().getTime();
 
         image.save(function(err) {
             if(err) throw err;
-            fs.writeFile('../public/gallery/'+image._id+'.png', imageData, 'base64', function(err) {
+            fs.writeFile(path.resolve(__dirname, '../public/gallery/'+image._id+'.png'), imageData, 'base64', function(err) {
                 if(err) throw err;
                 res.redirect('/gallery');
             });
