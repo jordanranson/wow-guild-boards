@@ -223,6 +223,8 @@ app.engine('.hbs', exphbs({
         canModerate: function (user, author, options) {
             var a = options.fn(this);
             var b = options.inverse(this);
+            if(!user) return b;
+
             var role = user.role;
 
             if (author._id === user._id || role.admin) return a;
@@ -233,6 +235,8 @@ app.engine('.hbs', exphbs({
         canModerateGlobal: function (user, options) {
             var a = options.fn(this);
             var b = options.inverse(this);
+            if(!user) return b;
+
             var role = user.role;
 
             if (role.admin || role.officer) return a;

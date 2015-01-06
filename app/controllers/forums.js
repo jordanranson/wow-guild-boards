@@ -127,14 +127,17 @@ module.exports = {
                 thread.views++;
                 thread.save();
 
-                var read = new Read(); // mark thread as read
+                console.log(req.user);
+                if(req.user) {
+                    var read = new Read(); // mark thread as read
 
-                read.thread = thread._id;
-                read.author = req.user._id;
+                    read.thread = thread._id;
+                    read.author = req.user._id;
 
-                read.save(function (err) {
-                    if(err) throw err;
-                });
+                    read.save(function (err) {
+                        if (err) throw err;
+                    });
+                }
             });
         });
     },

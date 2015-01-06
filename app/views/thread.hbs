@@ -244,6 +244,7 @@
             </div>
 
             <input id="title" type="text" class="text text-large" name="title" value="{{thread.title}}">
+            {{#if user}}
             {{#canModerateGlobal user}}
             <div>
                 <div class="input-group input-group-thin" style="float: left">
@@ -257,6 +258,7 @@
             </div>
             <br><br>
             {{/canModerateGlobal}}
+            {{/if}}
 
             <button type="submit" class="button button-primary button-large">Update Thread</button>
             &nbsp;
