@@ -1,4 +1,4 @@
-/*! wow-guild-boards - v0.0.1 - 2015-01-04
+/*! wow-guild-boards - v0.0.1 - 2015-01-05
 * https://github.com/jordanranson/wow-guild-boards
 * Copyright (c) 2015 Jordan Ranson; Licensed under the Apache2 license */
 /*------------------------------------*
@@ -3276,6 +3276,12 @@ select.text {
   padding-top: 18.5%;
   cursor: pointer;
 }
+.gallery-item.edit .gallery-edit {
+  display: block;
+}
+.gallery-item.edit .gallery-overlay {
+  display: none;
+}
 .gallery-item.feature {
   width: 66%;
   padding-top: 37%;
@@ -3315,9 +3321,11 @@ select.text {
   background-size: cover;
   border-radius: 4px;
 }
-.gallery-overlay {
+.gallery-overlay,
+.gallery-edit {
   position: absolute;
   box-sizing: border-box;
+  overflow: hidden;
   padding: 17px;
   top: 0;
   left: 0;
@@ -3328,30 +3336,52 @@ select.text {
   transition: opacity 300ms ease-in-out;
   border-radius: 4px;
 }
-.gallery-overlay header {
+.gallery-overlay header,
+.gallery-edit header {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.gallery-overlay header,
+.gallery-edit header {
   position: absolute;
   top: 50%;
   max-width: 80%;
-  -webkit-transform: translateY(-50%) scale3d(0.975, 0.975, 1);
-          transform: translateY(-50%) scale3d(0.975, 0.975, 1);
-  transition: -webkit-transform 300ms ease-in-out;
-  transition: transform 300ms ease-in-out;
 }
-.gallery-overlay header h2 {
+.gallery-overlay header h2,
+.gallery-edit header h2 {
   margin-bottom: 0;
   color: #ffffff;
   font-size: 120%;
   font-weight: bolder;
   letter-spacing: -1px;
 }
-.gallery-overlay header p {
+.gallery-overlay header p,
+.gallery-edit header p {
   font-size: 80%;
   line-height: 1.3em;
   opacity: .65;
 }
-.gallery-overlay header p.timestamp {
+.gallery-overlay header p.timestamp,
+.gallery-edit header p.timestamp {
   margin-top: 3px;
   opacity: .35;
+}
+.gallery-edit {
+  display: none;
+  z-index: 1;
+  opacity: 1 !important;
+  background-color: #1c1f28 !important;
+}
+.gallery-edit .text {
+  margin-top: 2px;
+}
+.gallery-edit .button {
+  margin-top: 4px;
+}
+.gallery-edit header {
+  -webkit-transform: translateY(-50%) scale3d(1, 1, 1) !important;
+          transform: translateY(-50%) scale3d(1, 1, 1) !important;
+  transition: none !important;
 }
 .gallery-upload {
   box-sizing: border-box;

@@ -6,6 +6,35 @@ $(function() {
     var $galleryUpload = $('.x-gallery-upload');
     var imageData = null;
 
+    function onEdit(e) {
+        e.preventDefault();
+
+        var $item = $(e.target).closest('.gallery-item');
+        $item.addClass('edit');
+    }
+
+    function onDelete(e) {
+        e.preventDefault();
+
+        var $form = $(e.target).closest('.x-delete-form');
+        $form.submit();
+    }
+
+    function onCancelEdit(e) {
+        e.preventDefault();
+
+        var $item = $(e.target).closest('.gallery-item');
+        $item.removeClass('edit');
+
+        var $elem;
+
+        $elem = $item.find('[name="title"]');
+        $elem.val($elem.attr('data-original'));
+
+        $elem = $item.find('[name="description"]');
+        $elem.val($elem.attr('data-original'));
+    }
+
     function onReset() {
         $galleryUpload.css('background-image', 'none');
         $('input[name="imageData"]').val('');
@@ -98,6 +127,9 @@ $(function() {
     var $body = $('body');
     $body.on('click', '.x-reset',  onReset);
     $body.on('click', '.x-submit', onSubmit);
+    $body.on('click', '.x-cancel-edit', onCancelEdit);
+    $body.on('click', '.x-edit-image',  onEdit);
+    $body.on('click', '.x-delete-image',  onDelete);
 
     $galleryUpload.on('dragover', onDragOver);
     $galleryUpload.on('dragend',  onDragEnd);

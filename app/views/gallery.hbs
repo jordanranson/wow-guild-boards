@@ -54,7 +54,11 @@
 
     <div class="gallery">
 
+
         {{#if images.length}}
+
+        {{#if user}}
+        {{#canModerateGlobal user}}
         {{#each images}}
         <div class="gallery-item">
             <div class="gallery-content" style="background-image:url('/public/gallery/{{_id}}.png')">
@@ -62,15 +66,51 @@
                     <header>
                         <h2>{{title}}</h2>
                         <p>{{description}}</p>
-                        <p class="timestamp">{{created}}</p>
+                        <p class="timestamp">{{formatDate created 'MMM Do'}}</p>
+                        <p style="margin-top:7px"><a class="x-edit-image" href="#">Edit</a></p>
+                    </header>
+                </div>
+                <div class="gallery-edit">
+                    <header>
+                        <form action="/gallery/update" method="post">
+                            <input type="hidden" name="id" value="{{_id}}">
+                            <p><input type="text" class="text text-small" data-original="{{title}}" name="title" value="{{title}}"></p>
+                            <p><input type="text" class="text text-small" data-original="{{description}}"  name="description" value="{{description}}"></p>
+                            <p>
+                                <button type="submit" class="button button-small button-primary">Save</button>
+                                <button class="x-cancel-edit button button-small">Cancel</button>
+                            </p>
+                        </form>
+                        <form action="/gallery/delete" method="post" class="x-delete-form">
+                            <input type="hidden" name="id" value="{{_id}}">
+                            <p style="margin-top:4px"><a href="#" class="x-delete-image">Delete</a></p>
+                        </form>
                     </header>
                 </div>
             </div>
         </div>
         {{/each}}
+        {{/canModerateGlobal}}
+
+        {{else}}
+            <div class="gallery-item">
+                <div class="gallery-content" style="background-image:url('/public/gallery/{{_id}}.png')">
+                    <div class="gallery-overlay">
+                        <header>
+                            <h2>{{title}}</h2>
+                            <p>{{description}}</p>
+                            <p class="timestamp">{{created}}</p>
+                        </header>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+
         {{else}}
         <p><em>No images :(</em></p>
         {{/if}}
+
+
 
     </div>
 

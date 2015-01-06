@@ -34,7 +34,29 @@ module.exports = {
         });
     },
 
-    updateImage: function(req,res) {},
+    updateImage: function(req, res) {
+        Image.findOne({ '_id': req.body.id }, function(err, image) {
+            if(err) throw err;
 
-    deleteImage: function(req,res) {}
+            image.title       = req.body.title;
+            image.description = req.body.description;
+
+            image.save(function(err) {
+                if(err) throw err;
+                res.redirect('/gallery');
+            });
+        });
+    },
+
+    deleteImage: function(req,res) {
+        Image.findOne({ '_id': req.body.id }, function(err, image) {
+            if (err) throw err;
+            image.remove(function(err) {
+                if(err) throw err;
+
+                fs.unlink(path.resolve(__dirname, '../public/gallery/'+image._id+'.png'));
+                res.redirect('/gallery');
+            })
+        });
+    }
 };
