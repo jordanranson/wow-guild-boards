@@ -107,6 +107,7 @@ module.exports = {
             .find({ 'thread': req.params.id })
             .populate('author')
             .populate('edited.user')
+            .sort({ 'created': 1 })
             .exec(function (err, posts) {
                 if(err) throw err;
 
@@ -162,7 +163,7 @@ module.exports = {
         Thread
         .find({ 'topic' : topic })
         .populate('author')
-        .sort({ sticky: -1, created: -1 })
+        .sort({ 'sticky': -1, 'created': -1 })
         .exec(function(err, threads) {
             if(err) throw err;
 

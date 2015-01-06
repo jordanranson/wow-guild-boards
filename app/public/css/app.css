@@ -3270,6 +3270,7 @@ select.text {
   width: 100%;
 }
 .gallery-item {
+  display: block;
   position: relative;
   float: left;
   width: 33%;
@@ -3333,7 +3334,7 @@ select.text {
   height: 100%;
   opacity: 0;
   background-color: rgba(28, 31, 40, 0.9);
-  transition: opacity 300ms ease-in-out;
+  transition: opacity 150ms ease-in-out;
   border-radius: 4px;
 }
 .gallery-overlay header,
@@ -3382,6 +3383,9 @@ select.text {
   -webkit-transform: translateY(-50%) scale3d(1, 1, 1) !important;
           transform: translateY(-50%) scale3d(1, 1, 1) !important;
   transition: none !important;
+}
+.gallery-edit header p {
+  opacity: 1 !important;
 }
 .gallery-upload {
   box-sizing: border-box;
@@ -3434,6 +3438,54 @@ select.text {
   line-height: 108px;
   opacity: .35;
   pointer-events: none;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  cursor: pointer;
+}
+.modal .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 19, 25, 0.95);
+}
+.modal .close {
+  position: absolute;
+  top: 34px;
+  right: 34px;
+  font-size: 50px;
+  color: #afadc4;
+}
+.modal .content {
+  position: absolute;
+  top: 34px;
+  left: 34px;
+  right: 34px;
+  bottom: 34px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.modal .loading {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  opacity: .5;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  font-size: 80%;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 /*------------------------------------*
     Roster styles

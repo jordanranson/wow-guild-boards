@@ -45,6 +45,14 @@
     Main content
 --}}
 
+<div class="x-modal modal">
+    <div class="overlay">
+        <span class="loading">Loading...</span>
+        <div class="close">&times;</div>
+        <div class="content"></div>
+    </div>
+</div>
+
 <header class="section-header">
     <h1>Gallery</h1>
     <p>A screenshot is worth a thousand words.</p>
@@ -59,9 +67,14 @@
 
         {{#if user}}
         {{#canModerateGlobal user}}
-        {{#each images}}
-        <div class="gallery-item">
+        {{#foreach images}}
+        {{#if $first}}
+        <div data-src="/public/gallery/{{_id}}.png" class="gallery-item feature x-item">
             <div class="gallery-content" style="background-image:url('/public/gallery/{{_id}}.png')">
+        {{else}}
+        <div data-src="/public/gallery/{{_id}}.png" class="gallery-item x-item">
+            <div class="gallery-content" style="background-image:url('/public/gallery/{{_id}}_thumb.png')">
+        {{/if}}
                 <div class="gallery-overlay">
                     <header>
                         <h2>{{title}}</h2>
@@ -89,21 +102,28 @@
                 </div>
             </div>
         </div>
-        {{/each}}
+        {{/foreach}}
         {{/canModerateGlobal}}
 
         {{else}}
-            <div class="gallery-item">
+            {{#foreach images}}
+            {{#if $first}}
+            <div data-src="/public/gallery/{{_id}}.png" class="gallery-item feature x-item">
                 <div class="gallery-content" style="background-image:url('/public/gallery/{{_id}}.png')">
+            {{else}}
+            <div data-src="/public/gallery/{{_id}}.png" class="gallery-item x-item">
+                <div class="gallery-content" style="background-image:url('/public/gallery/{{_id}}_thumb.png')">
+            {{/if}}
                     <div class="gallery-overlay">
                         <header>
                             <h2>{{title}}</h2>
                             <p>{{description}}</p>
-                            <p class="timestamp">{{created}}</p>
+                            <p class="timestamp">{{formatDate created 'MMM Do'}}</p>
                         </header>
                     </div>
                 </div>
             </div>
+            {{/foreach}}
         {{/if}}
 
         {{else}}
@@ -127,6 +147,7 @@
             <div class="gallery-upload x-gallery-upload">
                 <div class="upload-group">
                     <input type="hidden" name="imageData">
+                    <input type="hidden" name="imageThumb">
                     <div class="input-group"><input class="text" type="text" placeholder="Title" name="title" style="width:38%"></div>
                     <div class="input-group"><input class="text" type="text" placeholder="Description" name="description" style="width:38%"></div>
                     <div class="input-group">

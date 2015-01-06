@@ -6,6 +6,7 @@ module.exports = {
     getGallery: function(req, res) {
         Image
         .find({})
+        .sort({ 'created': -1 })
         .exec(function(err, images) {
             if(err) throw err;
 
@@ -17,7 +18,8 @@ module.exports = {
     },
 
     uploadImage: function(req, res) {
-        var imageData = req.body.imageData.replace(/^data:image\/png;base64,/, "");
+        var imageData  = req.body.imageData.replace(/^data:image\/png;base64,/, "");
+        var imageThumb = req.body.imageThumb.replace(/^data:image\/png;base64,/, "");
 
         var image         = new Image();
 
@@ -29,7 +31,10 @@ module.exports = {
             if(err) throw err;
             fs.writeFile(path.resolve(__dirname, '../public/gallery/'+image._id+'.png'), imageData, 'base64', function(err) {
                 if(err) throw err;
-                res.redirect('/gallery');
+                fs.writeFile(path.resolve(__dirname, '../public/gallery/'+image._id+'_thumb.png'), imageThumb, 'base64', function(err) {
+                    if(err) throw err;
+                    res.redirect('/gallery');
+                });
             });
         });
     },

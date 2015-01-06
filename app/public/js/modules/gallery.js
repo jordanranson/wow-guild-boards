@@ -4,7 +4,20 @@
 
 $(function() {
     var $galleryUpload = $('.x-gallery-upload');
-    var imageData = null;
+
+    function onViewImage(e) {
+        if($(e.target).hasClass('button') || $(e.target).hasClass('x-edit-image')) return;
+
+        var $item = $(e.target).closest('.x-item');
+        var $modal = $('.x-modal');
+
+        $modal.find('.content').css('background-image', 'url("'+$item.attr('data-src')+'")');
+        $modal.show();
+    }
+
+    function onCloseModal(e) {
+        $('.x-modal').hide();
+    }
 
     function onEdit(e) {
         e.preventDefault();
@@ -81,42 +94,56 @@ $(function() {
         var file = e.dataTransfer.files[0];
         var reader = new FileReader();
         reader.onload = function (event) {
-            console.log(event.target);
-
             var image = new Image();
             var cvs   = document.createElement('canvas');
             var ctx   = cvs.getContext('2d');
+            var tcvs  = document.createElement('canvas');
+            var tctx  = tcvs.getContext('2d');
+
             image.onload = function() {
+                // resize image to max size
+                _maxSize = function(maxSize) {
+                    var w, h;
 
-                var aspect = image.width/image.height;
-                var maxSize = 1920;
-                var w, h;
+                    if(image.width > image.height) {
+                        w = image.width  > maxSize ? maxSize : image.width;
+                        h = image.width  > maxSize ? image.height * (maxSize/image.width) : image.height;
+                    }
+                    else if(image.width < image.height) {
+                        w = image.height > maxSize ? image.width * (maxSize/image.height) : image.width;
+                        h = image.height > maxSize ? maxSize : image.height;
+                    }
+                    else {
+                        w = image.width  > maxSize ? maxSize : image.width;
+                        h = image.height > maxSize ? maxSize : image.height;
+                    }
 
-                if(image.width > image.height) {
-                    w = image.width  > maxSize ? maxSize : image.width;
-                    h = image.width  > maxSize ? image.height * (maxSize/image.width) : image.height;
-                }
-                else if(image.width < image.height) {
-                    w = image.height > maxSize ? image.width * (maxSize/image.height) : image.width;
-                    h = image.height > maxSize ? maxSize : image.height;
-                }
-                else {
-                    w = image.width  > maxSize ? maxSize : image.width;
-                    h = image.height > maxSize ? maxSize : image.height;
-                }
+                    return [w, h];
+                };
 
-                cvs.width  = w;
-                cvs.height = h;
+                // resized image
+                var max = _maxSize(1920);
+                cvs.width  = max[0];
+                cvs.height = max[1];
+                ctx.drawImage(image, 0, 0, max[0], max[1]);
 
-                ctx.drawImage(image, 0, 0, w, h);
-                imageData = cvs;
+                // thumbnail
+                max = _maxSize(480);
+                tcvs.width  = max[0];
+                tcvs.height = max[1];
+                tctx.drawImage(image, 0, 0, max[0], max[1]);
 
-                $galleryUpload.css('background-image', 'url(' + cvs.toDataURL('image/png') + ')');
+                // set preview
+                console.log(cvs.toDataURL('image/png'));
+                console.log(tcvs.toDataURL('image/png'));
+                $galleryUpload.css('background-image', 'url(' + tcvs.toDataURL('image/png') + ')');
+
+                // set data
                 $galleryUpload.find('input[name="imageData"]').val(cvs.toDataURL('image/png'));
+                $galleryUpload.find('input[name="imageThumb"]').val(tcvs.toDataURL('image/png'));
             };
             image.src = event.target.result;
         };
-        console.log(file);
         reader.readAsDataURL(file);
     }
 
@@ -125,11 +152,16 @@ $(function() {
     }
 
     var $body = $('body');
-    $body.on('click', '.x-reset',  onReset);
+    $body.on('click', '.x-reset', onReset);
     $body.on('click', '.x-submit', onSubmit);
     $body.on('click', '.x-cancel-edit', onCancelEdit);
-    $body.on('click', '.x-edit-image',  onEdit);
-    $body.on('click', '.x-delete-image',  onDelete);
+    $body.on('click', '.x-edit-image', onEdit);
+    $body.on('click', '.x-delete-image', onDelete);
+    $body.on('click', '.x-item', onViewImage);
+    $body.on('click', '.x-modal', onCloseModal);
+
+    var $modal = $('.modal');
+    $modal.hide();
 
     $galleryUpload.on('dragover', onDragOver);
     $galleryUpload.on('dragend',  onDragEnd);
