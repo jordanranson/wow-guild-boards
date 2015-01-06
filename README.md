@@ -18,7 +18,7 @@ Alpha Roadmap
 
 ## Alpha 0.2
 - [ ] Guild News & achievements
-- [x] Sticky and sticky threads
+- [x] Locked and sticky threads
 - [ ] Forum pagination
 - [x] Gallery
 - [ ] Authentication & Permissions
