@@ -37,7 +37,7 @@ module.exports = {
 
                 request.bnet(
                     'us.battle.net',
-                    '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members',
+                    '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members,news',
                     function(data) {
                         var lastUpdated = new Date().getTime();
 
@@ -46,6 +46,7 @@ module.exports = {
                         }
 
                         guild.lastUpdated = lastUpdated;
+                        guild.news = data.news;
                         guild.settings = {
                             webAdminBattletag: req.body.webAdminBattletag
                         };

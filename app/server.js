@@ -259,6 +259,15 @@ app.engine('.hbs', exphbs({
                 item.$last  = index === arr.length-1;
                 return options.fn(item);
             }).join('');
+        },
+        equals: function(lvalue, rvalue, options) {
+            if (arguments.length < 3)
+                throw new Error("Handlebars Helper equal needs 2 parameters");
+            if( lvalue!=rvalue ) {
+                return options.inverse(this);
+            } else {
+                return options.fn(this);
+            }
         }
     }
 }));
@@ -299,7 +308,7 @@ server.listen(443, function() {
     Guild.findOne({}, function(err, guild) {
         request.bnet(
             'us.battle.net',
-            '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members',
+            '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members,news',
             function(data) {
                 var lastUpdated = new Date().getTime();
                 if(guild !== null) {
@@ -308,6 +317,7 @@ server.listen(443, function() {
                     }
 
                     guild.lastUpdated = lastUpdated;
+                    guild.news = data.news;
                     guild.settings = {
                         webAdminBattletag: ''
                     };

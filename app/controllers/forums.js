@@ -6,6 +6,7 @@ var request    = require('../request');
 var __         = require('lodash');
 var color      = require('colors');
 var permission = require('../permissions');
+var CONFIG     = require('../config/config');
 
 function getTopic(topic, guildName) {
     var title       = '';
@@ -111,7 +112,7 @@ module.exports = {
             .exec(function (err, posts) {
                 if(err) throw err;
 
-                var guildName = 'AXION';
+                var guildName = CONFIG.guild;
                 var topicData = getTopic(thread.topic, guildName);
 
                 posts = __.sortBy(posts, 'created');
@@ -127,7 +128,6 @@ module.exports = {
                 thread.views++;
                 thread.save();
 
-                console.log(req.user);
                 if(req.user) {
                     var read = new Read(); // mark thread as read
 
@@ -144,7 +144,7 @@ module.exports = {
 
     getThreads: function(req, res) {
         var topic     = req.params.topic;
-        var guildName = 'AXION';
+        var guildName = CONFIG.guild;
 
         if(topic === undefined) {
             res.redirect('/topics');
@@ -295,7 +295,7 @@ module.exports = {
                 if (err) throw err;
                 if(thread === null) res.redirect('/500');
 
-                var guildName = 'AXION';
+                var guildName = CONFIG.guild;
                 var topicData = getTopic(thread.topic, guildName);
 
                 // permissions
@@ -374,7 +374,8 @@ module.exports = {
 
             res.render('topics', {
                 user: req.user,
-                threadCount: topics
+                threadCount: topics,
+                guild: CONFIG.guild
             });
         });
     }

@@ -2887,6 +2887,26 @@ select.text {
   text-transform: uppercase;
   letter-spacing: .1em;
 }
+.masthead blockquote {
+  margin-top: 2vw;
+  opacity: .65;
+  font-size: 2vw;
+  line-height: 1;
+  font-weight: lighter;
+  font-style: italic;
+  letter-spacing: -1px;
+  font-family: 'Helvetic Neue Light', sans-serif;
+}
+.masthead blockquote i {
+  display: inline-block;
+  margin-bottom: 2.1vw;
+  padding: 0 0.2vw;
+  height: 0.05vw;
+  font-size: 140%;
+  font-family: 'Georgia', serif;
+  vertical-align: bottom;
+  opacity: .65;
+}
 .home-feed {
   overflow: hidden;
   clear: both;
@@ -2895,23 +2915,28 @@ select.text {
   width: 80%;
   margin: 0 auto;
 }
-.home-feed .stripe {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -1px;
-  width: 2px;
-  border-radius: 2px;
-  background: #ffffff;
-  opacity: .15;
+.home-feed h2 {
+  font-size: 180%;
+  letter-spacing: -2px;
+  line-height: 1;
+  font-weight: bolder;
+  margin-bottom: 17px;
+}
+.home-feed .row {
+  margin-bottom: 34px;
+}
+.home-feed .col {
+  margin-right: 34px;
+}
+.home-feed .col:last-child {
+  margin-right: 0;
+}
+.news-feed,
+.guild-feed {
+  margin-bottom: 34px;
 }
 .news-feed {
   box-sizing: border-box;
-  float: left;
-  width: 50%;
-  padding-right: 34px;
-  text-align: right;
 }
 .news-feed li {
   padding-top: 0 !important;
@@ -2938,14 +2963,8 @@ select.text {
   right: 0;
   bottom: 0;
 }
-.news-feed .gallery-overlay header {
-  right: 17px;
-}
 .guild-feed {
   box-sizing: border-box;
-  float: right;
-  width: 50%;
-  padding-left: 34px;
   list-style-type: none;
 }
 .guild-feed li {
@@ -2958,6 +2977,9 @@ select.text {
 .guild-feed li small {
   opacity: .65;
   font-size: 80%;
+}
+.guild-feed li a {
+  color: #dfdfdf;
 }
 /*------------------------------------*
     Forum styles

@@ -44,6 +44,23 @@ var Schema = mongoose.Schema({
         rank: Number
     }],
 
+    news: [{
+        achievement: {
+            accountWide: Boolean,
+            criteria: [],
+            description: String,
+            icon: String,
+            id: Number,
+            points: Number,
+            rewardItems: [],
+            title: String
+        },
+        character: String,
+        timestamp: Number,
+        type: { type: String },
+        itemId: Number
+    }],
+
     name: String,
     realm: String,
     side: Number

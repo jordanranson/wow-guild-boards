@@ -66,8 +66,6 @@ $(function() {
             e.preventDefault();
             alert("Title can't be empty!");
 
-            console.log($('input[name="title"]'))
-
             return false;
         }
         if($form.find('input[name="description"]').val() === '') {
