@@ -20,7 +20,7 @@ Alpha Roadmap
 - [ ] Guild News & achievements
 - [ ] Better markdown support and user experience
 - [x] Locked and sticky threads
-- [ ] Wowhead tooltips
+- [x] Wowhead tooltips
 - [x] Gallery
 - [ ] Authentication & Permissions
     - [ ] Banned
