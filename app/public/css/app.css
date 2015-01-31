@@ -1,4 +1,4 @@
-/*! wow-guild-boards - v0.0.1 - 2015-01-05
+/*! wow-guild-boards - v0.0.1 - 2015-01-30
 * https://github.com/jordanranson/wow-guild-boards
 * Copyright (c) 2015 Jordan Ranson; Licensed under the Apache2 license */
 /*------------------------------------*
@@ -2850,13 +2850,13 @@ select.text {
   margin: 0;
 }
 .masthead h1 {
-  font-size: 9vw;
+  font-size: 5vw;
   font-weight: bolder;
   letter-spacing: -0.05em;
   color: #ffffff;
 }
 .masthead h2 {
-  font-size: 3.5vw;
+  font-size: 2.5vw;
   opacity: .65;
   font-weight: lighter;
   text-transform: uppercase;

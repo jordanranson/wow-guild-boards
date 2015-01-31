@@ -6,7 +6,7 @@ $(function() {
     var $galleryUpload = $('.x-gallery-upload');
 
     function onViewImage(e) {
-        if($(e.target).hasClass('button') || $(e.target).hasClass('x-edit-image')) return;
+        if($(e.target).hasClass('button') || $(e.target).hasClass('text') || $(e.target).hasClass('x-edit-image')) return;
 
         var $item = $(e.target).closest('.x-item');
         var $modal = $('.x-modal');
