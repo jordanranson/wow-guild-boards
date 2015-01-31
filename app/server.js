@@ -288,7 +288,7 @@ var http        = express();
 
 // set up a route to redirect http to https
 http.get('*',function(req,res){
-    res.redirect('https://'+CONFIG.guild.toLowerCase()+'.'+CONFIG.hostName+req.url);
+    res.redirect('https://'+CONFIG.prefix+'.'+CONFIG.hostName+req.url);
 });
 http.listen(80);
 

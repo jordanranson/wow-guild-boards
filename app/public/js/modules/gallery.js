@@ -54,19 +54,23 @@ $(function() {
     }
 
     function onSubmit(e) {
-        if($('input[name="imageData"]').val() === '') {
+        var $form = $(e.target).closest('form');
+
+        if($form.find('input[name="imageData"]').val() === '') {
             e.preventDefault();
             alert('No image selected!');
 
             return false;
         }
-        if($('input[name="title"]').val() === '') {
+        if($form.find('input[name="title"]').val() === '') {
             e.preventDefault();
             alert("Title can't be empty!");
 
+            console.log($('input[name="title"]'))
+
             return false;
         }
-        if($('input[name="description"]').val() === '') {
+        if($form.find('input[name="description"]').val() === '') {
             e.preventDefault();
             alert("Description can't be empty!");
 
@@ -134,13 +138,11 @@ $(function() {
                 tctx.drawImage(image, 0, 0, max[0], max[1]);
 
                 // set preview
-                console.log(cvs.toDataURL('image/png'));
-                console.log(tcvs.toDataURL('image/png'));
-                $galleryUpload.css('background-image', 'url(' + tcvs.toDataURL('image/png') + ')');
+                $galleryUpload.css('background-image', 'url(' + tcvs.toDataURL('image/jpeg', .8) + ')');
 
                 // set data
-                $galleryUpload.find('input[name="imageData"]').val(cvs.toDataURL('image/png'));
-                $galleryUpload.find('input[name="imageThumb"]').val(tcvs.toDataURL('image/png'));
+                $galleryUpload.find('input[name="imageData"]').val(cvs.toDataURL('image/jpeg', .8));
+                $galleryUpload.find('input[name="imageThumb"]').val(tcvs.toDataURL('image/jpeg', .8));
             };
             image.src = event.target.result;
         };

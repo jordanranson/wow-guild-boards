@@ -18,8 +18,8 @@ module.exports = {
     },
 
     uploadImage: function(req, res) {
-        var imageData  = req.body.imageData.replace(/^data:image\/png;base64,/, "");
-        var imageThumb = req.body.imageThumb.replace(/^data:image\/png;base64,/, "");
+        var imageData  = req.body.imageData.replace(/^data:image\/jpeg;base64,/, "");
+        var imageThumb = req.body.imageThumb.replace(/^data:image\/jpeg;base64,/, "");
 
         var image         = new Image();
 
@@ -29,9 +29,9 @@ module.exports = {
 
         image.save(function(err) {
             if(err) throw err;
-            fs.writeFile(path.resolve(__dirname, '../public/gallery/'+image._id+'.png'), imageData, 'base64', function(err) {
+            fs.writeFile(path.resolve(__dirname, '../public/gallery/'+image._id+'.jpg'), imageData, 'base64', function(err) {
                 if(err) throw err;
-                fs.writeFile(path.resolve(__dirname, '../public/gallery/'+image._id+'_thumb.png'), imageThumb, 'base64', function(err) {
+                fs.writeFile(path.resolve(__dirname, '../public/gallery/'+image._id+'_thumb.jpg'), imageThumb, 'base64', function(err) {
                     if(err) throw err;
                     res.redirect('/gallery');
                 });
@@ -59,7 +59,7 @@ module.exports = {
             image.remove(function(err) {
                 if(err) throw err;
 
-                fs.unlink(path.resolve(__dirname, '../public/gallery/'+image._id+'.png'));
+                fs.unlink(path.resolve(__dirname, '../public/gallery/'+image._id+'.jpg'));
                 res.redirect('/gallery');
             })
         });
