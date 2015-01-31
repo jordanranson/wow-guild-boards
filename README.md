@@ -18,11 +18,12 @@ Alpha Roadmap
 
 ## Alpha 0.2
 - [ ] Guild News & achievements
-- [ ] Sticky and sticky threads
+- [x] Locked and sticky threads
 - [ ] Forum pagination
-- [ ] Gallery
+- [x] Gallery
 - [ ] Authentication & Permissions
     - [ ] Guild master rank
+    - [ ] Custom guild rank names and permissions
 
 ## Alpha 0.3
 - [ ] Wowhead tooltips
