@@ -18,22 +18,29 @@ Alpha Roadmap
 
 ## Alpha 0.2
 - [ ] Guild News & achievements
+- [ ] Better markdown support and user experience
 - [x] Locked and sticky threads
-- [ ] Forum pagination
+- [ ] Wowhead tooltips
 - [x] Gallery
 - [ ] Authentication & Permissions
-    - [ ] Guild master rank
-    - [ ] Custom guild rank names and permissions
-
-## Alpha 0.3
-- [ ] Wowhead tooltips
-- [ ] Option to split PvE board into PvE and PvP
-- [ ] Authentication & Permissions
-    - [ ] Guest
     - [ ] Banned
 - [ ] Users
     - [ ] Display character profile
+
+## Alpha 0.3 
+- [ ] Calendar
+    - [ ] Import iCal format
+
+## Alpha 0.4
+- [ ] Forum pagination
+- [ ] Option to split PvE board into PvE and PvP
+- [ ] Authentication & Permissions
+    - [ ] Guest
+    - [ ] Guild master rank
+    - [ ] Custom guild rank names and permissions
+- [ ] Users
     - [ ] Display item level
+
 
 Beta Roadmap
 =======
