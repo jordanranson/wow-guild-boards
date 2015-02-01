@@ -57,15 +57,8 @@ $(function() {
         var query = $(e.target).closest('.x-insert').attr('data-str');
         var text = $textarea.val();
 
-        console.log(selectedText);
-        console.log(query);
-        console.log(text);
-
         var result = query.replace('$1', selectedText);
-            result = query.replace('$1', selectedText);
-
-        console.log(result);
-        console.log('-------------------------------');
+            result = result.replace('$1', selectedText);
 
         $textarea.val(text.replace(selectedText, result))
     }
