@@ -78,7 +78,7 @@ module.exports = {
             if(guild !== null) {
 
                 // Find latest forum posts
-                var numPosts = 5;
+                var numPosts = 3;
                 Post
                     .find()
                     .populate([{path: 'author'}, {path: 'thread'}])
