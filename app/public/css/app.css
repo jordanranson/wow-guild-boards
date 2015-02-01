@@ -3276,6 +3276,8 @@ select.text {
   margin-bottom: 17px;
   background-color: #1a1c25;
   background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
   border-radius: 3px;
 }
 .post-image {

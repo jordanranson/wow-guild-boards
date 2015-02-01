@@ -5,6 +5,7 @@ var Post   = require('../models/post');
 var Guild  = require('../models/guild');
 var Thread = require('../models/thread');
 var CONFIG = require('../config/config');
+var request = require('../request');
 var path   = require('path');
 var __     = require('lodash');
 
