@@ -187,12 +187,24 @@
             <h2>Reply</h2>
 
             <div class="avatar-container">
-                <div class="avatar">
+                <div class="avatar" style="margin-top:15px">
                     <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
                 </div>
                 <hgroup>
                     <h3>Posting as {{username user}}</h3>
-                    <p class="legend"><var>MD</var> <a href="//github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Format your posts using Markdown</a>.</p>
+                    <p style="padding-bottom:0" class="legend"><var>MD</var> <a href="//github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Format your posts using Markdown</a>.</p>
+                    <p class="legend">
+                        <span class="button button-quick x-insert" data-str="# $1 #">H1</span>
+                        <span class="button button-quick x-insert" data-str="## $1 ##">H2</span>
+                        <span class="button button-quick x-insert" data-str="### $1 ###">H2</span>
+                        <span class="button button-quick x-insert" data-str="1. $1">1.</span>
+                        <span class="button button-quick x-insert" data-str="* $1">o.</span>
+                        <span class="button button-quick x-insert" data-str="**$1**">Bold</span>
+                        <span class="button button-quick x-insert" data-str="_$1_">Italic</span>
+                        <span class="button button-quick x-insert" data-str="[$1]($1)">Link</span>
+                        <span class="button button-quick x-insert" data-str="[$1][image]">Image</span>
+                        <span class="button button-quick x-insert" data-str="[$1][video]">YouTube</span>
+                    </p>
                 </hgroup>
             </div>
 
@@ -212,12 +224,24 @@
             <input type="hidden" name="id" value="" class="x-post-id">
 
             <div class="avatar-container">
-                <div class="avatar">
+                <div class="avatar" style="margin-top:15px">
                     <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
                 </div>
                 <hgroup>
                     <h3>Editing as {{username user}}</h3>
-                    <p class="legend"><var>MD</var> <a href="//github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Format your posts using Markdown</a>.</p>
+                    <p style="padding-bottom:0" class="legend"><var>MD</var> <a href="//github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Format your posts using Markdown</a>.</p>
+                    <p class="legend">
+                        <span class="button button-quick x-insert" data-str="# $1 #">H1</span>
+                        <span class="button button-quick x-insert" data-str="## $1 ##">H2</span>
+                        <span class="button button-quick x-insert" data-str="### $1 ###">H2</span>
+                        <span class="button button-quick x-insert" data-str="1. $1">1.</span>
+                        <span class="button button-quick x-insert" data-str="* $1">o.</span>
+                        <span class="button button-quick x-insert" data-str="**$1**">Bold</span>
+                        <span class="button button-quick x-insert" data-str="_$1_">Italic</span>
+                        <span class="button button-quick x-insert" data-str="[$1]($1)">Link</span>
+                        <span class="button button-quick x-insert" data-str="[$1][image]">Image</span>
+                        <span class="button button-quick x-insert" data-str="[$1][video]">YouTube</span>
+                    </p>
                 </hgroup>
             </div>
 
