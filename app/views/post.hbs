@@ -64,10 +64,21 @@
         <li>
             <header>
                 <h4>
-                    <strong>{{username post.author}}</strong><br>
-                    <small>
-                        <em class="{{classSelector post.author.characters.[0].class}}">{{className post.author.characters.[0].class}}</em>
-                    </small>
+                    <div class="avatar-container">
+                        <div class="avatar">
+                            <img src="//us.battle.net/static-render/us/{{post.author.characters.[0].thumbnail}}">
+                        </div>
+                        <hgroup>
+                            <strong>{{username post.author}}</strong><br>
+                            <small>
+                                <em class="{{classSelector post.author.characters.[0].class}}">
+                                    <a href="http://us.battle.net/wow/en/character/{{post.author.mainCharacter.realm}}/{{post.author.mainCharacter.name}}/advanced" target="_blank">
+                                        {{className post.author.characters.[0].class}}
+                                    </a>
+                                </em>
+                            </small>
+                        </hgroup>
+                    </div>
                 </h4>
             <span class="timestamp">
                 <a href="/post/{{post._id}}">
@@ -77,7 +88,7 @@
             </header>
             <section>
                 <p>
-                    {{decode post.content}}
+                    {{{markdown post.content}}}
                 </p>
             </section>
         </li>

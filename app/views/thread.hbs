@@ -131,7 +131,11 @@
                         <hgroup>
                             <strong>{{username author}}</strong><br>
                             <small>
-                                <em class="{{classSelector author.characters.[0].class}}">{{className author.characters.[0].class}}</em>
+                                <em class="{{classSelector author.characters.[0].class}}">
+                                    <a href="http://us.battle.net/wow/en/character/{{author.mainCharacter.realm}}/{{author.mainCharacter.name}}/advanced" target="_blank">
+                                        {{className author.characters.[0].class}}
+                                    </a>
+                                </em>
                             </small>
                         </hgroup>
                     </div>

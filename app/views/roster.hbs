@@ -62,7 +62,11 @@
         <tbody>
             {{#each guild.members}}
             <tr data-rank="{{rank}}" data-name="{{character.name}}" data-spec="{{character.spec}}">
-                <td class="{{classSelector character.class}}">{{character.name}}</td>
+                <td class="{{classSelector character.class}}">
+                    <a href="http://us.battle.net/wow/en/character/{{character.realm}}/{{character.name}}/advanced" target="_blank">
+                        {{character.name}}
+                    </a>
+                </td>
                 <td>{{character.spec.name}}</td>
                 <td>{{rankName rank}}</td>
             </tr>
