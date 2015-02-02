@@ -227,7 +227,7 @@ app.engine('.hbs', exphbs({
 
             var role = user.role;
 
-            if (author._id === user._id || role.admin) return a;
+            if (author._id.toString() == user._id.toString() || role.admin) return a;
             if (role.admin) return a;
 
             return b;
