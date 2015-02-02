@@ -126,14 +126,14 @@
                 <h4>
                     <div class="avatar-container">
                         <div class="avatar">
-                            <img src="//us.battle.net/static-render/us/{{author.characters.[0].thumbnail}}">
+                            <img src="//us.battle.net/static-render/us/{{author.mainCharacter.thumb}}">
                         </div>
                         <hgroup>
                             <strong>{{username author}}</strong><br>
                             <small>
-                                <em class="{{classSelector author.characters.[0].class}}">
+                                <em class="{{classSelector author.mainCharacter.classNum}}">
                                     <a href="http://us.battle.net/wow/en/character/{{author.mainCharacter.realm}}/{{author.mainCharacter.name}}/advanced" target="_blank">
-                                        {{className author.characters.[0].class}}
+                                        {{className author.mainCharacter.classNum}}
                                     </a>
                                 </em>
                             </small>
@@ -188,7 +188,7 @@
 
             <div class="avatar-container">
                 <div class="avatar" style="margin-top:15px">
-                    <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
+                    <img src="//us.battle.net/static-render/us/{{user.mainCharacter.thumb}}">
                 </div>
                 <hgroup>
                     <h3>Posting as {{username user}}</h3>
@@ -225,7 +225,7 @@
 
             <div class="avatar-container">
                 <div class="avatar" style="margin-top:15px">
-                    <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
+                    <img src="//us.battle.net/static-render/us/{{user.mainCharacter.thumb}}">
                 </div>
                 <hgroup>
                     <h3>Editing as {{username user}}</h3>
@@ -263,7 +263,7 @@
 
             <div class="avatar-container">
                 <div class="avatar">
-                    <img src="//us.battle.net/static-render/us/{{user.characters.[0].thumbnail}}">
+                    <img src="//us.battle.net/static-render/us/{{user.mainCharacter.thumb}}">
                 </div>
                 <hgroup>
                     <h3>Editing as {{username user}}</h3>

@@ -87,6 +87,9 @@ module.exports = {
                     .limit(numPosts)
                     .exec(function (err, posts) {
                         if (err) throw err;
+                        if(posts === null || posts.length === 0) {
+                            posts = [];
+                        }
 
                         posts = __.sortBy(posts, 'created');
 
@@ -96,6 +99,9 @@ module.exports = {
                             .sort({ 'created': -1 })
                             .exec(function (err, thread) {
                                 if (err) throw err;
+                                if(thread === null) {
+                                    thread = {};
+                                }
 
                                 // Get announcement post
                                 Post.findOne({'thread': thread._id})
@@ -103,6 +109,9 @@ module.exports = {
                                     .sort({ 'created': 1 })
                                     .exec(function (err, announcement) {
                                         if (err) throw err;
+                                        if(announcement === null) {
+                                            announcement = {};
+                                        }
 
                                         // Find latest gallery image
                                         var numImages = 1;
@@ -112,6 +121,9 @@ module.exports = {
                                             .limit(numImages)
                                             .exec(function (err, images) {
                                                 if (err) throw err;
+                                                if(images.length === 0 || images === null) {
+                                                    images = [];
+                                                }
 
                                                 announcement.title = thread.title;
                                                 announcement.threadId = thread._id;

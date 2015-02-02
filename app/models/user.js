@@ -19,8 +19,10 @@ var Schema = mongoose.Schema({
         thumbnail   : String
     }],
     mainCharacter: {
-        name  : String,
-        realm : String
+        name     : String,
+        realm    : String,
+        thumb    : String,
+        classNum : Number
     },
 
     // site settings

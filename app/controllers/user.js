@@ -84,6 +84,19 @@ function login(data, profile, err, user, done) {
                 isAdmin = true;
             }
 
+            // find thumbnail and class
+            for (var h = 0; h < newUser.characters.length; h++) {
+                var c = newUser.characters[h];
+
+                if( c.name  === newUser.mainCharacter.name &&
+                    c.realm === newUser.mainCharacter.realm) {
+                    newUser.mainCharacter.classNum = c.class;
+                    newUser.mainCharacter.thumb    = c.thumbnail;
+                    break;
+                }
+            }
+
+
             newUser.role = {
                officer : isOfficer,
                member  : isMember,
@@ -133,21 +146,40 @@ module.exports = {
                 member.character.name  === name &&
                 member.character.realm === realm) {
                     isMember = true;
+                    classNum = member.character.class;
+                    thumb    = member.character.thumbnail;
                     if (member.rank <= 2) {
                         isOfficer = true;
                         break;
                     }
+                    break;
                 }
             }
 
             User.findOne({ 'bnetId': req.user.bnetId }, function (err, user) {
                 if(err) throw err;
 
-                user.mainCharacter.name  = name;
-                user.mainCharacter.realm = realm;
-                user.role.admin          = req.user.battletag === 'Lup#1749';
-                user.role.officer        = isOfficer;
-                user.role.member         = isMember;
+                // find thumbnail and class
+                var classNum  = 0;
+                var thumb     = '';
+                for (var i = 0; i < user.characters.length; i++) {
+                    var character = user.characters[i];
+
+                    if( character.name  === name &&
+                        character.realm === realm) {
+                        classNum = character.class;
+                        thumb    = character.thumbnail;
+                        break;
+                    }
+                }
+
+                user.mainCharacter.name     = name;
+                user.mainCharacter.realm    = realm;
+                user.mainCharacter.classNum = classNum;
+                user.mainCharacter.thumb    = thumb;
+                user.role.admin             = req.user.battletag === 'Lup#1749';
+                user.role.officer           = isOfficer;
+                user.role.member            = isMember;
 
                 user.save(function (err) {
                     if (err) throw err;
