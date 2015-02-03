@@ -82,16 +82,19 @@ module.exports = {
                 var numPosts = 3;
                 Post
                     .find()
+                    .where('categoryId').ne([])
                     .populate([{path: 'author'}, {path: 'thread'}])
                     .sort({ 'created': -1 })
-                    .limit(numPosts)
                     .exec(function (err, posts) {
                         if (err) throw err;
                         if(posts === null || posts.length === 0) {
                             posts = [];
                         }
 
-                        posts = __.sortBy(posts, 'created');
+                        posts = __.filter(posts, function(item) {
+                            return item.thread.topic !== 'officer';
+                        });
+                        posts = posts.splice(0,3);
 
                         // Find the latest announcement
                         Thread
