@@ -17,19 +17,19 @@ Alpha Roadmap
     - [x] Member
 
 ## Alpha 0.2
-- [ ] Guild News & achievements
-- [ ] Better markdown support and user experience
+- [x] Guild News & achievements
+- [x] Better markdown support and user experience
 - [x] Locked and sticky threads
 - [x] Wowhead tooltips
 - [x] Gallery
-- [ ] Authentication & Permissions
-    - [ ] Banned
-- [ ] Users
-    - [ ] Display character profile
+- [x] Users
+    - [x] Display character profile
 
 ## Alpha 0.3 
 - [ ] Calendar
     - [ ] Import iCal format
+- [ ] Authentication & Permissions
+    - [ ] Banned
 
 ## Alpha 0.4
 - [ ] Forum pagination
