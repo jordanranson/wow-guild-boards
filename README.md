@@ -26,6 +26,8 @@ Alpha Roadmap
     - [x] Display character profile
 
 ## Alpha 0.3 
+- [ ] Delete post/thread
+- [ ] Karma system
 - [ ] Calendar
     - [ ] Import iCal format
 - [ ] Authentication & Permissions
@@ -45,10 +47,8 @@ Alpha Roadmap
 Beta Roadmap
 =======
 - [ ] Polls
-- [ ] Calendar
 - [ ] Custom pages
 - [ ] Custom permissions/guild ranks
 - [ ] Character titles
-- [ ] Rep/karma system
 - [ ] Mobile support
 
