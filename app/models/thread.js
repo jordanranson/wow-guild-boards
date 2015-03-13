@@ -10,7 +10,8 @@ var Schema = mongoose.Schema({
     views   : Number,
     replies : Number,
     sticky  : Boolean,
-    locked  : Boolean
+    locked  : Boolean,
+    deleted : Boolean
 
 });
 

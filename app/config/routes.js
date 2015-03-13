@@ -52,11 +52,11 @@ module.exports = function(app, passport) {
     app.post('/thread/create/:topic', forumsController.createThread);
     app.post('/thread/reply/:id',     forumsController.createPost);
     app.post('/thread/update',    forumsController.updateThread);
-    app.post('/thread/delete',    forumsController.deleteThread);
+    app.post('/thread/delete/:id',    forumsController.deleteThread);
 
     // post api
     app.post('/post/update',  forumsController.updatePost);
-    app.post('/post/delete',  forumsController.deletePost);
+    app.post('/post/delete/:id',  forumsController.deletePost);
 
 
     /*

@@ -164,7 +164,7 @@ module.exports = {
         }
 
         Thread
-        .find({ 'topic' : topic })
+        .find({ 'topic' : topic, 'deleted': {'$ne': true } })
         .populate('author')
         .sort({ 'sticky': -1, 'created': -1 })
         .exec(function(err, threads) {
@@ -221,8 +221,21 @@ module.exports = {
         });
     },
 
-    deleteThread: function() {
+    deleteThread: function(req, res) {
+        Thread
+            .findOne({ '_id': req.params.id })
+            .exec(function (err, thread) {
+                if(err) throw err;
+                if(thread === null) res.redirect('/500');
 
+                thread.deleted = true;
+                thread.locked = true;
+
+                thread.save(function(err) {
+                    if(err) throw err;
+                    res.redirect('/topics');
+                });
+            });
     },
 
     createPost: function(req, res) {
@@ -231,7 +244,7 @@ module.exports = {
         var post     = new Post();
         var threadId = req.params.id;
 
-        Thread.findOne({ '_id' : threadId }, function(err, thread) {
+        Thread.findOne({ '_id' : threadId, 'deleted': {'$ne': true } }, function(err, thread) {
             if (err) throw err;
             if (thread === null) res.redirect('/500');
 
@@ -337,7 +350,7 @@ module.exports = {
 
     deletePost: function(req, res) {
         Post
-        .findOne({ '_id': req.body.id })
+        .findOne({ '_id': req.params.id })
         .populate('author')
         .exec(function (err, post) {
             if(err) throw err;
@@ -354,7 +367,8 @@ module.exports = {
 
     getTopics: function(req, res) {
         Thread.aggregate([
-        { $group: { '_id' : "$topic", count : { $sum: 1 }}}
+        { $group: { '_id' : "$topic", count : { $sum: 1 } } },
+        { '$match': { 'deleted': { '$ne': true } } }
         ], function(err, groups) {
             if(err) throw err;
 

@@ -3,6 +3,13 @@
  */
 
 $(function() {
+    function redirect(url, method) {
+        var form = document.createElement('form');
+        form.method = method;
+        form.action = url;
+        form.submit();
+    }
+
     function onClickReply(e) {
         e.preventDefault();
 
@@ -29,6 +36,38 @@ $(function() {
 
         $('body').scrollTop($('.x-post-editor').offset().top);
 
+    }
+
+    function onClickDeletePost(e) {
+        e.preventDefault();
+
+        var $target  = $(e.target);
+        var postId   = $target.attr('data-for');
+
+        if(confirm("Are you sure you want to delete this post?")) {
+            redirect("/post/delete/"+postId, 'post');
+        }
+    }
+
+    function onClickDeleteThread(e) {
+        e.preventDefault();
+
+        var $target  = $(e.target);
+        var postId   = $target.attr('data-for');
+
+        if(confirm("Are you sure you want to delete this thread?")) {
+            redirect("/thread/delete/"+postId, 'post');
+        }
+    }
+
+    function onClickEditThread(e) {
+        e.preventDefault();
+
+        $('.x-create-post').hide();
+        $('.x-update-thread').show();
+        $('.x-update-post').hide();
+
+        $('body').scrollTop($('.x-post-editor').offset().top);
     }
 
     function onClickEditThread(e) {
@@ -67,6 +106,8 @@ $(function() {
     $body.on('click', '.x-reply',       onClickReply);
     $body.on('click', '.x-cancel',      onClickReply);
     $body.on('click', '.x-edit',        onClickEditPost);
+    $body.on('click', '.x-remove',      onClickDeletePost);
     $body.on('click', '.x-edit-thread', onClickEditThread);
+    $body.on('click', '.x-delete-thread', onClickDeleteThread);
     $body.on('mousedown', '.x-insert',  onClickInsert);
 });

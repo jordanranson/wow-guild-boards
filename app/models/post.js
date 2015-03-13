@@ -11,7 +11,7 @@ var Schema = mongoose.Schema({
         user : { type: ObjectId, ref: 'User' },
         date : Date
     },
-    deleted : false
+    deleted : Boolean
 
 });
 

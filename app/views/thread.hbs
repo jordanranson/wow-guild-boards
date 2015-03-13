@@ -77,7 +77,7 @@
     <p class="edit-thread">
         <a href="#" class="x-edit-thread">Edit Thread</a>
         &nbsp;
-        <!--<a href="#" class="x-delete-thread">Delete Thread</a>-->
+        <a href="#" class="x-delete-thread" data-for="{{thread._id}}">Delete Thread</a>
     </p>
     {{/canModerate}}
 </header>
@@ -152,7 +152,7 @@
                 {{{markdown content}}}
                 {{#if edited.user}}
                 <p class="edited">
-                    Edited by {{username edited.user}} on {{formatDate created 'MMM Do'}}.
+                    Edited by {{username edited.user}} on {{formatDate edited.date 'MMM Do'}}.
                 </p>
                 {{/if}}
                 {{else}}
@@ -163,11 +163,13 @@
             </section>
             {{#if ../user}}
             <footer>
+                {{#unless deleted}}
                 <a href="#" class="x-reply">Reply</a>
                 {{#canModerate ../../user author}}
                 <a href="#" class="x-edit" data-for="{{_id}}">Edit</a>
-                <!--<a href="#" class="x-remove" data-for="{{_id}}">Remove</a>-->
+                <a href="#" class="x-remove" data-for="{{_id}}">Remove</a>
                 {{/canModerate}}
+                {{/unless}}
             </footer>
             {{/if}}
         </li>
