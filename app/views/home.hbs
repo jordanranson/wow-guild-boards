@@ -69,6 +69,7 @@
                 <div class="col">
                     <h2>Latest Guild News</h2>
                     <ul class="news-feed thread-list">
+                        {{#if announcement.title}}
                         <li>
                             <header>
                                 <h4><strong>{{announcement.title}}</strong></h4>
@@ -88,6 +89,7 @@
                                 <a href="/thread/{{announcement.threadId}}">View Thread</a>
                             </footer>
                         </li>
+                        {{/if}}
                     </ul>
 
                     <h2>Featured Screenshot</h2>
