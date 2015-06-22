@@ -1,0 +1,69 @@
+{{!--
+    Main nav
+--}}
+
+{{#section 'nav'}}
+    <a href="/topics">Forums</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/roster">Roster</a>
+    <i></i>
+    {{#if user}}
+        <a href="/account" class="nav-button">{{user.battletag}}</a>
+        <a href="/logout">Sign out</a>
+    {{else}}
+        <a href="/auth/bnet" class="nav-button">Sign in</a>
+    {{/if}}
+{{/section}}
+
+
+
+{{!--
+    Breadcrumb and breadcrumb nav
+--}}
+
+{{#section 'breadcrumb'}}
+    <span>Home</span>
+{{/section}}
+
+{{#section 'breadcrumb_nav'}}
+{{/section}}
+
+
+
+{{!--
+    Scripts
+--}}
+
+{{#section 'scripts'}}
+    <!--<script src="public/js/modules/home.js"></script>-->
+    <script>
+        firebase.child('users/1734498').once('value', function(snapshot) {
+            console.log(snapshot.val());
+        });
+    </script>
+{{/section}}
+
+
+
+{{!--
+    Main content
+--}}
+
+<div class="x-modal modal">
+    <div class="overlay">
+        <span class="loading">Loading...</span>
+        <div class="close">&times;</div>
+        <div class="content"></div>
+    </div>
+</div>
+
+<header class="masthead">
+    <!--<div class="logo"><img src="/public/img/logo.svg"></div>-->
+    <h1>{{guild.name}}</h1>
+    <h2>Darkspear &middot; Alliance</h2>
+    {{!--<blockquote><i>&ldquo;</i>{{tagline}}<i>&rdquo;</i></blockquote>--}}
+</header>
+
+<section class="section-content clear">
+    LOREM IPSUM BRO
+</section>

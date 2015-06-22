@@ -36,6 +36,9 @@ module.exports = function(app, passport) {
 
     // home/index
     app.get('/', homeController.getHomepage);
+    app.get('/rt', function(req, res) {
+        res.render('firebase', {});
+    });
 
 
     /*
