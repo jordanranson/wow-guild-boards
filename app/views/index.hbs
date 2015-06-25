@@ -37,8 +37,24 @@
 {{#section 'scripts'}}
     <!--<script src="public/js/modules/home.js"></script>-->
     <script>
-        firebase.child('users/1734498').once('value', function(snapshot) {
-            console.log(snapshot.val());
+        var user = firebase.child('users/1734498');
+        user.authWithCustomToken(AUTH_TOKEN, function(error, result) {
+            if(error) {
+                console.log(error);
+            }
+            else {
+                user.once(
+                    'value',
+                    function(snapshot) {
+                        console.log(snapshot.val());
+                        user.unauth();
+                    },
+                    function(error) {
+                        console.warn(error);
+                        user.unauth();
+                    }
+                );
+            }
         });
     </script>
 {{/section}}

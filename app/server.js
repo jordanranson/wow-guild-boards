@@ -70,12 +70,13 @@ passport.use(new BnetStrategy({
             ref.authWithCustomToken(token, function(error, result) {
                if(error) {
                    console.log(error);
+                   ref.unauth();
                }
                else {
-                   ref.set(profile);
                    ref.once('value', function(snapshot) {
                        done(null, snapshot.val());
                    });
+                   ref.set(profile);
                    ref.unauth();
                }
             });
@@ -341,7 +342,7 @@ app.get(
 app.get(
     '/auth/bnet/callback',
     passport.authenticate('bnet', { failureRedirect: '/500' }),
-    function(req, res) { res.redirect('/account'); }
+    function(req, res) { res.redirect('/'); }
 );
 
 // logout
