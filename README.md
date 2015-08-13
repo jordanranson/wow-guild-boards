@@ -26,8 +26,8 @@ Alpha Roadmap
     - [x] Display character profile
 
 ## Alpha 0.3 
-- [ ] Calendar
-    - [ ] Import iCal format
+- [ ] Attendance tracker
+    - [ ] Import external data
 - [ ] Authentication & Permissions
     - [ ] Banned
 
