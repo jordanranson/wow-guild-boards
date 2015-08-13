@@ -1,0 +1,174 @@
+{{!--
+    Main nav
+--}}
+
+{{#section 'nav'}}
+    <a href="/topics">Forums</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/roster">Roster</a>
+    <i></i>
+    {{#if user}}
+        <a href="/account" class="nav-button active">{{user.battletag}}</a>
+        <a href="/logout">Sign out</a>
+    {{else}}
+        <a href="/auth/bnet" class="nav-button">Sign in</a>
+    {{/if}}
+{{/section}}
+
+
+
+{{!--
+    Breadcrumb and breadcrumb nav
+--}}
+
+{{#section 'breadcrumb'}}
+    <span>Your Account</span>
+{{/section}}
+
+{{#section 'breadcrumb_nav'}}
+{{/section}}
+
+
+
+{{!--
+    Scripts
+--}}
+
+{{#section 'scripts'}}
+    <script src="/public/js/modules/account.js"></script>
+{{/section}}
+
+
+
+{{!--
+    Main content
+--}}
+
+<header class="section-header">
+    <h1>Your Account</h1>
+    <p>Configure your personal preferences.</p>
+</header>
+
+<section class="section-content">
+
+    <form action="/account/update" method="post">
+        <ul class="settings-group">
+
+            <li>
+                <label class="settings-label">Character</label>
+                <p class="settings-description">Choose the character you would like to be identified as.</p>
+
+                <div class="input-group">
+
+                    {{!--<div class="select select-small" style="z-index:100">
+                        <input id="mainCharacter" type="checkbox" class="select-controller">
+                        <label class="select-current" for="mainCharacter">
+                            <span class="button-segment">
+                                <span class="inliner arrow-bottom arrow-light"><i></i></span>
+                            </span>
+                        </label>
+
+                        <div class="select-dropdown">
+
+
+                            {{#each user.characters}}
+                            <label class="select-group" for="mainCharacter">
+                                <input id="mainCharacter_{{@index}}" type="radio" class="select-option" value="{{name}}:{{realm}}" name="mainCharacter">
+                                <label for="mainCharacter_{{@index}}" class="select-option">{{name}}&ndash;{{realm}}</label>
+                                <label for="mainCharacter" class="select-top">{{name}}&ndash;{{realm}}</label>
+                            </label>
+                            {{/each}}
+                        </div>
+                    </div>--}}
+
+                    <select name="mainCharacter" class="text text-small">
+                        {{#if user.mainCharacter.name}}
+                        <option value="{{user.mainCharacter.name}}:{{user.mainCharacter.realm}}" selected>
+                            {{user.mainCharacter.name}}&ndash;{{user.mainCharacter.realm}} (Selected)
+                        </option>
+                        <option disabled>&mdash;</option>
+                        {{/if}}
+
+                        {{#each user.characters}}
+                        <option value="{{name}}:{{realm}}">{{name}}&ndash;{{realm}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <br>
+
+                <div class="input-group input-group-thin">
+                    <input id="showBattletag" type="checkbox" class="checkbox">
+                    <label for="showBattletag" name="showBattletag" class="checkbox" {{#if user.showBattletag}}checked{{/if}}>Show Battletag instead of character</label>
+                    <p><small style="opacity:.65">Note: If you have no characters, your Battletag will be shown regardless.</small></p>
+                </div>
+            </li>
+
+            {{!--<li>
+                <label class="settings-label">Role</label>
+                <p class="settings-description">Choose the role that you would like displayed in the guild roster.</p>
+                <div class="input-group">
+                    {{!--div class="select select-small" style="z-index:100">
+                        <input id="role" type="checkbox" class="select-controller">
+                        <label class="select-current" for="role">
+                            <span class="button-segment">
+                                <span class="inliner arrow-bottom arrow-light"><i></i></span>
+                            </span>
+                        </label>
+
+                        <div class="select-dropdown">
+                            <label class="select-group" for="role">
+                                <input id="role_1" type="radio" class="select-option" value="damage" name="role" checked="">
+                                <label for="role_1" class="select-option">Damage</label>
+                                <label for="role" class="select-top">Damage</label>
+                            </label>
+
+                            <label class="select-group" for="role">
+                                <input id="role_2" type="radio" class="select-option" value="healer" name="role">
+                                <label for="role_2" class="select-option">Healer</label>
+                                <label for="role" class="select-top">Healer</label>
+                            </label>
+
+                            <label class="select-group" for="role">
+                                <input id="role_3" type="radio" class="select-option" value="tank" name="role">
+                                <label for="role_3" class="select-option">Tank</label>
+                                <label for="role" class="select-top">Tank</label>
+                            </label>
+                        </div>
+                    </div>
+
+                    <select name="characterRole" class="text text-small" style="text-transform:capitalize">
+                        {{#if user.characterRole}}
+                        <option value="{{user.characterRole}}" selected>
+                            {{user.characterRole}}
+                        </option>
+                        <option disabled>&mdash;</option>
+                        {{/if}}
+
+                        <option value="damage">Damage</option>
+                        <option value="healer">Healer</option>
+                        <option value="tank">Tank</option>
+                    </select>
+
+                </div>
+            </li>--}}
+
+            {{!--<li>
+                <label class="settings-label">Item Level</label>
+                <p class="settings-description">Enable this to show off your item level on the forums.</p>
+                <div class="input-group input-group-thin">
+                    <input id="check2" type="checkbox" class="checkbox">
+                    <label for="check2" class="checkbox">Show Item Level</label>
+                </div>
+            </li>--}}
+
+        </ul>
+
+        <p class="settings-submit">
+            <button type="submit" class="button button-primary button-large">Save Settings</button>
+        </p>
+        <br>
+
+    </form>
+
+</section>

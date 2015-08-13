@@ -1,0 +1,76 @@
+{{!--
+    Main nav
+--}}
+
+{{#section 'nav'}}
+    <a href="/topics">Forums</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/roster" class="active">Roster</a>
+    <i></i>
+    {{#if user}}
+        <a href="/account" class="nav-button">{{user.battletag}}</a>
+        <a href="/logout">Sign out</a>
+    {{else}}
+        <a href="/auth/bnet" class="nav-button">Sign in</a>
+    {{/if}}
+{{/section}}
+
+
+
+{{!--
+    Breadcrumb and breadcrumb nav
+--}}
+
+{{#section 'breadcrumb'}}
+    <span>Roster</span>
+{{/section}}
+
+{{#section 'breadcrumb_nav'}}
+{{/section}}
+
+
+
+{{!--
+    Scripts
+--}}
+
+{{#section 'scripts'}}
+    <script src="/js/modules/roster.js"></script>
+{{/section}}
+
+
+
+{{!--
+    Main content
+--}}
+
+
+<header class="section-header">
+    <h1>Roster</h1>
+    <p>A list of our raiders.</p>
+</header>
+
+<section class="section-content clear">
+    <table class="table table-wide table-inline table-large roster-table">
+        <thead>
+            <tr>
+                <th><a class="active">Name</a></th>
+                <th><a>Specialization</a></th>
+                <th><a>Guild Rank</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each guild.members}}
+            <tr data-rank="{{rank}}" data-name="{{character.name}}" data-spec="{{character.spec}}">
+                <td class="{{classSelector character.class}}">
+                    <a href="http://us.battle.net/wow/en/character/{{character.realm}}/{{character.name}}/advanced" target="_blank">
+                        {{character.name}}
+                    </a>
+                </td>
+                <td>{{character.spec.name}}</td>
+                <td>{{rankName rank}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>

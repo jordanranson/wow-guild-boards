@@ -5,6 +5,7 @@
 var express         = require('express');
 var exphbs          = require('express-handlebars');
 var passport        = require('passport');
+var mongoose        = require('mongoose');
 var util            = require('util');
 var https           = require('https');
 var fs              = require('fs');
@@ -14,74 +15,25 @@ var CONFIG          = require('./config/config');
 var bodyParser      = require('body-parser');
 var moment          = require('moment');
 var markdown        = require('markdown').markdown;
+var Guild           = require('./models/guild');
 var request         = require('./request');
 var KEYS            = require('./config/keys');
 var env             = 'dev';
 var hbsHelpers      = require('./public/js/common/handlebar-helpers');
-var Firebase        = require('firebase');
-var FirebaseTokenGenerator = require("firebase-token-generator");
-var tokenGenerator  = new FirebaseTokenGenerator("Aufy0ghYdjB0da9dGnOqzygsFKdmirgE60ylbCe9");
-var BNET_ID         = KEYS.key;
-var BNET_SECRET     = KEYS.secret;
-var BnetStrategy    = require('passport-bnet').Strategy;
 
 
 /*------------------------------------*
- Firebase setup
+ Mongoose setup
  *------------------------------------*/
 
-var firebase = new Firebase("https://wow-guild-boards.firebaseio.com/");
+mongoose.connect(CONFIG.databaseUrl);
 
 
 /*------------------------------------*
  Passport setup
  *------------------------------------*/
 
-//require('./config/passport')(passport);
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-    firebase.child('users/'+id).once('value', function(snapshot) {
-        done(null, snapshot.val());
-    });
-});
-
-// Use the BnetStrategy within Passport.
-passport.use(new BnetStrategy({
-        clientID: BNET_ID,
-        clientSecret: BNET_SECRET,
-        scope: 'wow.profile',
-        callbackURL: 'https://'+CONFIG.prefix+'.'+CONFIG.hostName+'/auth/bnet/callback'
-    },
-    function (accessToken, refreshToken, profile, done) {
-
-        // append auth
-        var token = tokenGenerator.createToken({
-            uid: profile.id.toString()
-        });
-
-        profile.token = token;
-        profile.bnetToken = accessToken;
-
-        process.nextTick(function() {
-            var ref = firebase.child('users/'+profile.id);
-            ref.authWithCustomToken(token, function(error, result) {
-               if(error) {
-                   console.log(error);
-               }
-               else {
-                   ref.set(profile);
-                   ref.once('value', function(snapshot) {
-                       done(null, snapshot.val());
-                   });
-                   ref.unauth();
-               }
-            });
-        });
-    })
-);
+require('./config/passport')(passport);
 
 
 /*------------------------------------*
@@ -330,36 +282,7 @@ app.use(passport.session());
  Routes
  *------------------------------------*/
 
-// static content
-app.use('/public', express.static(__dirname + '/public/'));
-
-// authentication
-app.get(
-    '/auth/bnet',
-    passport.authenticate('bnet')
-);
-app.get(
-    '/auth/bnet/callback',
-    passport.authenticate('bnet', { failureRedirect: '/500' }),
-    function(req, res) { res.redirect('/account'); }
-);
-
-// logout
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
-
-// app
-app.get('/', function(req, res) {
-    firebase.child('guild').on('value', function(snapshot) {
-        var guild = snapshot.val();
-        res.render('index', {
-            guild: guild,
-            user: req.user
-        });
-    });
-});
+require('./config/routes')(app, passport);
 
 
 /*------------------------------------*
@@ -382,25 +305,43 @@ http.listen(80);
 server.listen(443, function() {
     console.log('Listening on port %d', server.address().port);
 
-    request.bnet(
-        'us.battle.net',
-        '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members,news',
-        function(data) {
-            var lastUpdated = new Date().getTime();
-            var guild = firebase.child('guild');
-            var guildData = {};
+    Guild.findOne({}, function(err, guild) {
+        request.bnet(
+            'us.battle.net',
+            '/api/wow/guild/'+CONFIG.realm+'/'+encodeURIComponent(CONFIG.guild)+'?fields=members,news',
+            function(data) {
+                var lastUpdated = new Date().getTime();
+                if(guild !== null) {
+                    for(var key in data) {
+                        guild[key] = data[key];
+                    }
 
-            for(var key in data) {
-                guildData[key] = data[key];
+                    guild.lastUpdated = lastUpdated;
+                    guild.news = data.news;
+                    guild.settings = {
+                        webAdminBattletag: ''
+                    };
+
+                    guild.save(function(err) {
+                        if(err) throw err;
+                    });
+                }
+                else {
+                    var newGuild = new Guild();
+                    for(var key in data) {
+                        newGuild[key] = data[key];
+                    }
+
+                    newGuild.lastUpdated = lastUpdated;
+                    newGuild.settings = {
+                        webAdminBattletag: ''
+                    };
+
+                    newGuild.save(function(err) {
+                        if(err) throw err;
+                    });
+                }
             }
-
-            guildData.lastUpdated = lastUpdated;
-            guildData.news = data.news;
-            guildData.settings = {
-                webAdminBattletag: ''
-            };
-
-            guild.set(guildData);
-        }
-    );
+        );
+    });
 });

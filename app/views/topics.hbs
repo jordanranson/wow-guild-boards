@@ -1,0 +1,126 @@
+{{!--
+    Main nav
+--}}
+
+{{#section 'nav'}}
+    <a href="/topics" class="active">Forums</a>
+    <a href="/gallery">Gallery</a>
+    <a href="/roster">Roster</a>
+    <i></i>
+    {{#if user}}
+        <a href="/account" class="nav-button">{{user.battletag}}</a>
+        <a href="/logout">Sign out</a>
+    {{else}}
+        <a href="/auth/bnet" class="nav-button">Sign in</a>
+    {{/if}}
+{{/section}}
+
+
+
+{{!--
+    Breadcrumb and breadcrumb nav
+--}}
+
+{{#section 'breadcrumb'}}
+    <span>Topics</span>
+{{/section}}
+
+{{#section 'breadcrumb_nav'}}
+{{/section}}
+
+
+
+{{!--
+    Scripts
+--}}
+
+{{#section 'scripts'}}
+    <script src="/public/js/modules/forums.js"></script>
+{{/section}}
+
+
+
+{{!--
+    Main content
+--}}
+
+<header class="section-header">
+    <h1>Forums</h1>
+    <p>Stay a while and listen.</p>
+</header>
+
+<section class="section-content clear">
+
+    <ul class="forum-list">
+
+        <li class="topic-item">
+            <a href="/threads/announcements">
+                <header>
+                    <h2>Announcements</h2>
+                    <p><span>The latest happenings of {{guild}}.</span></p>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>{{threadCount.announcements}}</strong>
+                        <small>Threads</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+
+        {{#if user}}
+
+        {{#if user.role.officer}}
+        <li class="topic-item">
+            <a href="/threads/officer">
+                <header>
+                    <h2>Officer</h2>
+                    <p><span>Officer only boards. Only officers can view and post here.</span></p>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>{{threadCount.officer}}</strong>
+                        <small>Threads</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+        {{/if}}
+
+        <li class="topic-item">
+            <a href="/threads/general">
+                <header>
+                    <h2>General Discussion</h2>
+                    <p><span>For all your off topic discussion.</span></p>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>{{threadCount.general}}</strong>
+                        <small>Threads</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+
+        {{#if user.role.member}}
+        <li class="topic-item">
+            <a href="threads/pve">
+                <header>
+                    <h2>PvP, Dungeons &amp; Raids</h2>
+                    <p><span>Discuss strategies and plan groups.</span></p>
+                </header>
+                <footer>
+                    <div class="forum-list-counter">
+                        <strong>{{threadCount.pve}}</strong>
+                        <small>Threads</small>
+                    </div>
+                </footer>
+            </a>
+        </li>
+        {{/if}}
+
+        {{/if}}
+
+    </ul>
+
+</section>
