@@ -28,18 +28,20 @@ Alpha Roadmap
 ## Alpha 0.3 
 - [ ] Attendance tracker
     - [ ] Import external data
-- [ ] Authentication & Permissions
-    - [ ] Banned
+- [ ] Forum pagination
+- [ ] WYSIWYG post editor
+- [ ] Revamped landing page
 
 ## Alpha 0.4
-- [ ] Forum pagination
+- [ ] Simple calendar with attendance tracker tie-in
 - [ ] Option to split PvE board into PvE and PvP
 - [ ] Authentication & Permissions
     - [ ] Guest
     - [ ] Guild master rank
     - [ ] Custom guild rank names and permissions
+    - [ ] Banned
 - [ ] Users
-    - [ ] Display item level
+    - [ ] Display item level in roster
 
 
 Beta Roadmap
